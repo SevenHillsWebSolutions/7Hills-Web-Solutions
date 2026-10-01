@@ -1,0 +1,125 @@
+import ContactForm from '@/components/public/ContactForm';
+import { 
+  Sparkles, 
+  Mail, 
+  Phone, 
+  MapPin, 
+  Clock, 
+  MessageSquare, 
+  ArrowRight,
+  ShieldCheck,
+  CheckCircle2
+} from 'lucide-react';
+import Link from 'next/link';
+
+export const metadata = {
+  title: "Contact & Project Inquiries | 7Hills Web Solutions",
+  description: "Get in touch with 7Hills Web Solutions for enterprise web development, e-commerce platforms, and custom software engineering.",
+};
+
+export default function ContactPage() {
+  return (
+    <div className="py-12 md:py-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+        
+        {/* Header */}
+        <div className="max-w-3xl space-y-4">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 text-xs font-semibold">
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>Direct Communication (SRS Section 3.6)</span>
+          </div>
+          <h1 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight">
+            Connect With Our Engineering Team
+          </h1>
+          <p className="text-lg text-slate-300 leading-relaxed font-normal">
+            Whether you have a general inquiry, require ongoing website maintenance, or want to discuss enterprise architecture, we are here to assist.
+          </p>
+        </div>
+
+        {/* 2-Column Grid: Contact Information & Form */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+          {/* Left Column: Direct Info Cards */}
+          <div className="lg:col-span-5 space-y-6">
+            <div className="glass-panel p-8 rounded-3xl border-white/10 space-y-6">
+              <h2 className="text-xl font-bold text-white tracking-tight">7Hills Office & Contact Hub</h2>
+              
+              <ul className="space-y-5 text-sm">
+                <li className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center shrink-0 border border-indigo-500/30">
+                    <Mail className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <span className="text-xs text-slate-400 block font-medium">Email Inquiries</span>
+                    <a href="mailto:contact@7hillsweb.com" className="text-white hover:text-indigo-400 font-semibold transition-colors">
+                      contact@7hillsweb.com
+                    </a>
+                  </div>
+                </li>
+
+                <li className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center shrink-0 border border-cyan-500/30">
+                    <Phone className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <span className="text-xs text-slate-400 block font-medium">Phone & WhatsApp</span>
+                    <a href="tel:+919845000000" className="text-white hover:text-cyan-400 font-semibold transition-colors">
+                      +91 98450 00000
+                    </a>
+                  </div>
+                </li>
+
+                <li className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-xl bg-rose-500/20 text-rose-400 flex items-center justify-center shrink-0 border border-rose-500/30">
+                    <MapPin className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <span className="text-xs text-slate-400 block font-medium">Headquarters</span>
+                    <span className="text-white font-semibold">
+                      7Hills Technology Tower, Outer Ring Road, Bangalore 560103, India
+                    </span>
+                  </div>
+                </li>
+
+                <li className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0 border border-emerald-500/30">
+                    <Clock className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <span className="text-xs text-slate-400 block font-medium">Operating Hours</span>
+                    <span className="text-white font-semibold">
+                      Monday &ndash; Saturday: 9:00 AM &ndash; 7:00 PM IST
+                    </span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            {/* Need a full project quote? Highlight */}
+            <div className="p-8 rounded-3xl bg-gradient-to-br from-indigo-900/40 via-slate-900 to-slate-950 border border-indigo-500/30 space-y-4 shadow-xl">
+              <span className="text-xs font-mono font-bold text-cyan-400 uppercase tracking-wider">
+                Need Detailed Architecture & Budget?
+              </span>
+              <h3 className="text-xl font-bold text-white">Starting a New Project?</h3>
+              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                For detailed quotes, use our intelligent requirement wizard. It collects your exact feature lists, domain status, design preferences, and generates an official Requirement ID.
+              </p>
+              <Link
+                href="/start-project"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold text-xs shadow-lg shadow-indigo-600/30 hover:scale-105 transition-all"
+              >
+                <span>Launch Requirement Intake Wizard</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Right Column: Interactive Form */}
+          <div className="lg:col-span-7">
+            <ContactForm />
+          </div>
+        </div>
+
+      </div>
+    </div>
+  );
+}
