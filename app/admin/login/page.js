@@ -18,8 +18,8 @@ import {
 
 export default function AdminLoginPage() {
   const router = useRouter();
-  const [email, setEmail] = useState('admin@7hills.com');
-  const [password, setPassword] = useState('admin123');
+  const [email, setEmail] = useState('sanjayelumalai7363@gmail.com');
+  const [password, setPassword] = useState('Sanjay@2006');
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -86,9 +86,9 @@ export default function AdminLoginPage() {
               <span>Default Administrator Credentials:</span>
             </div>
             <div className="text-[11px] font-mono text-slate-300">
-              Email: <span className="text-white font-semibold">admin@7hills.com</span>
+              Email: <span className="text-white font-semibold">sanjayelumalai7363@gmail.com</span>
               <br />
-              Password: <span className="text-white font-semibold">admin123</span>
+              Password: <span className="text-white font-semibold">Sanjay@2006</span>
             </div>
           </div>
 
@@ -111,7 +111,7 @@ export default function AdminLoginPage() {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="admin@7hills.com"
+                  placeholder="sanjayelumalai7363@gmail.com"
                   className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/40 transition-all"
                 />
               </div>

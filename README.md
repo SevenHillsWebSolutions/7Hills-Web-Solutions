@@ -87,8 +87,8 @@ npm run dev
 Open [http://localhost:3000](http://localhost:3000).
 
 **Admin panel:** [http://localhost:3000/admin](http://localhost:3000/admin)
-- Default email: `admin@7hills.com`
-- Default password: `admin123`
+- Default email: `sanjayelumalai7363@gmail.com`
+- Default password: `Sanjay@2006`
 
 > ⚠️ **Change the default admin password immediately after first login in production.**
 

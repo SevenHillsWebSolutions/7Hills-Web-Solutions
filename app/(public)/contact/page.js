@@ -50,8 +50,8 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <span className="text-xs text-slate-400 block font-medium">Email Inquiries</span>
-                    <a href="mailto:contact@7hillsweb.com" className="text-white hover:text-cyan-400 font-semibold transition-colors">
-                      contact@7hillsweb.com
+                    <a href="mailto:sanjayelumalai7363@gmail.com" className="text-white hover:text-cyan-400 font-semibold transition-colors">
+                      sanjayelumalai7363@gmail.com
                     </a>
                   </div>
                 </li>
@@ -62,9 +62,20 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <span className="text-xs text-slate-400 block font-medium">Phone & WhatsApp</span>
-                    <a href="tel:+919845000000" className="text-white hover:text-cyan-400 font-semibold transition-colors">
-                      +91 98450 00000
-                    </a>
+                    <div className="flex flex-wrap items-center gap-3 mt-1">
+                      <a href="tel:+919500118875" className="text-white hover:text-cyan-400 font-semibold transition-colors">
+                        +91 95001 18875
+                      </a>
+                      <a 
+                        href="https://wa.me/919500118875?text=Hi%207Hills%20Web%20Solutions%2C%20I%20would%20like%20to%20discuss%20a%20project." 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-xs font-medium hover:bg-emerald-500/25 transition-colors"
+                      >
+                        <MessageSquare className="w-3 h-3 text-emerald-400" />
+                        <span>Chat on WhatsApp</span>
+                      </a>
+                    </div>
                   </div>
                 </li>
 
