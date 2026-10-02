@@ -119,8 +119,8 @@ export default async function HomePage() {
 
   return (
     <div className="relative overflow-hidden">
-      {/* Background radial gradients */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-gradient-to-b from-indigo-500/15 via-blue-500/10 to-transparent rounded-full blur-3xl pointer-events-none -z-10" />
+      {/* Background radial gradients matching cyan, sapphire blue, and violet logo palette */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-gradient-to-b from-cyan-500/15 via-blue-600/10 to-violet-600/15 rounded-full blur-3xl pointer-events-none -z-10" />
       <div className="absolute top-80 right-0 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-3xl pointer-events-none -z-10" />
 
       {/* Hero Section */}
@@ -130,14 +130,14 @@ export default async function HomePage() {
             
             {/* 3D Metallic Brand Insignia Showcase */}
             <div className="relative inline-block mx-auto group">
-              <div className="absolute -inset-4 bg-gradient-to-r from-cyan-500/30 via-blue-600/25 to-indigo-600/30 rounded-3xl blur-2xl opacity-75 group-hover:opacity-100 transition duration-700 animate-pulse" />
-              <div className="relative rounded-2xl px-6 sm:px-10 py-4 sm:py-5 bg-[#060b19]/90 border border-cyan-500/30 shadow-[0_0_40px_rgba(0,210,255,0.25)] backdrop-blur-xl flex items-center justify-center">
-                <div className="relative w-64 sm:w-80 md:w-96 h-16 sm:h-22">
+              <div className="absolute -inset-4 bg-gradient-to-r from-cyan-400/40 via-blue-600/35 to-violet-600/40 rounded-3xl blur-2xl opacity-80 group-hover:opacity-100 transition duration-700 animate-pulse" />
+              <div className="relative rounded-2xl sm:rounded-3xl px-6 sm:px-10 py-4 sm:py-5 bg-white border-2 border-cyan-400/60 shadow-[0_0_45px_rgba(0,229,255,0.4),0_0_90px_rgba(0,82,204,0.25)] flex items-center justify-center">
+                <div className="relative w-64 sm:w-80 md:w-[420px] h-18 sm:h-24">
                   <Image 
                     src="/logo.png" 
                     alt="7Hills Web Solutions" 
                     fill 
-                    className="object-contain drop-shadow-[0_0_20px_rgba(0,229,255,0.4)]"
+                    className="object-contain"
                     priority
                   />
                 </div>
@@ -146,9 +146,11 @@ export default async function HomePage() {
 
             {/* Pill */}
             <div>
-              <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#070e22]/90 border border-cyan-500/30 text-cyan-300 text-xs sm:text-sm font-semibold shadow-[0_0_15px_rgba(0,229,255,0.15)] backdrop-blur-md">
+              <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#060c1f]/90 border border-cyan-500/30 text-xs sm:text-sm font-semibold shadow-[0_0_15px_rgba(0,229,255,0.15)] backdrop-blur-md">
                 <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_8px_#00e5ff]" />
-                <span className="tracking-wide uppercase text-[11px] sm:text-xs">Innovate • Build • Grow</span>
+                <span className="tracking-wide uppercase text-[11px] sm:text-xs">
+                  <span className="text-cyan-400 font-bold">Innovate</span> • <span className="text-blue-400 font-bold">Build</span> • <span className="text-violet-400 font-bold">Grow</span>
+                </span>
                 <span className="text-slate-600">|</span>
                 <span className="text-slate-300 font-medium">SRS v1.0 Production Platform</span>
               </div>
@@ -171,7 +173,7 @@ export default async function HomePage() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
               <Link
                 href="/start-project"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-600 to-indigo-600 text-white font-bold text-base shadow-[0_0_25px_rgba(0,229,255,0.35)] hover:shadow-[0_0_35px_rgba(0,229,255,0.55)] hover:scale-[1.02] active:scale-[0.98] transition-all"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-600 to-violet-600 text-white font-bold text-base shadow-[0_0_25px_rgba(0,229,255,0.35)] hover:shadow-[0_0_35px_rgba(0,229,255,0.55)] hover:scale-[1.02] active:scale-[0.98] transition-all"
               >
                 <span>Start Your Project</span>
                 <ArrowRight className="w-5 h-5" />
@@ -211,7 +213,7 @@ export default async function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
             <div className="space-y-3">
-              <div className="inline-flex items-center gap-2 text-xs font-bold text-indigo-400 uppercase tracking-widest">
+              <div className="inline-flex items-center gap-2 text-xs font-bold text-cyan-400 uppercase tracking-widest">
                 <Sparkles className="w-4 h-4" />
                 <span>Our Core Capabilities</span>
               </div>
@@ -224,7 +226,7 @@ export default async function HomePage() {
             </div>
             <Link
               href="/services"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-indigo-400 hover:text-indigo-300 group"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-cyan-400 hover:text-cyan-300 group"
             >
               <span>View All 7 Services With Pricing & FAQs</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -241,14 +243,14 @@ export default async function HomePage() {
                 >
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
-                      <div className="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 group-hover:bg-indigo-500 group-hover:text-white transition-all duration-300">
+                      <div className="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 group-hover:bg-cyan-500 group-hover:text-black transition-all duration-300">
                         <Icon className="w-6 h-6" />
                       </div>
                       <span className="text-[11px] font-semibold tracking-wider uppercase px-2.5 py-1 rounded-full bg-slate-800 text-slate-300 border border-white/5">
                         {service.tag}
                       </span>
                     </div>
-                    <h3 className="text-xl font-bold text-white group-hover:text-indigo-300 transition-colors">
+                    <h3 className="text-xl font-bold text-white group-hover:text-cyan-300 transition-colors">
                       {service.title}
                     </h3>
                     <p className="text-slate-400 text-sm leading-relaxed">
@@ -261,7 +263,7 @@ export default async function HomePage() {
                       className="text-xs font-semibold text-slate-300 group-hover:text-white flex items-center gap-1.5"
                     >
                       <span>Explore features</span>
-                      <ChevronRight className="w-3.5 h-3.5 text-indigo-400 group-hover:translate-x-0.5 transition-transform" />
+                      <ChevronRight className="w-3.5 h-3.5 text-cyan-400 group-hover:translate-x-0.5 transition-transform" />
                     </Link>
                   </div>
                 </div>
@@ -322,7 +324,7 @@ export default async function HomePage() {
                   {/* Body */}
                   <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
                     <div className="space-y-2">
-                      <div className="text-xs text-indigo-400 font-medium">
+                      <div className="text-xs text-cyan-400 font-medium">
                         Client: {item.client_name || 'Enterprise'}
                       </div>
                       <h3 className="text-xl font-bold text-white group-hover:text-cyan-300 transition-colors">
@@ -351,7 +353,7 @@ export default async function HomePage() {
                       <div className="flex items-center justify-between pt-4 border-t border-white/5 text-xs">
                         <Link
                           href={`/portfolio/${item.slug}`}
-                          className="font-semibold text-white hover:text-indigo-400 flex items-center gap-1"
+                          className="font-semibold text-white hover:text-cyan-400 flex items-center gap-1"
                         >
                           <span>Case study details</span>
                           <ChevronRight className="w-3.5 h-3.5" />
@@ -381,8 +383,8 @@ export default async function HomePage() {
       <section className="py-20 bg-slate-950/70 border-t border-b border-white/5 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-            <div className="inline-flex items-center gap-2 text-xs font-bold text-indigo-400 uppercase tracking-widest">
-              <CheckCircle2 className="w-4 h-4" />
+            <div className="inline-flex items-center gap-2 text-xs font-bold text-cyan-400 uppercase tracking-widest">
+              <CheckCircle2 className="w-4 h-4 text-cyan-400" />
               <span>Why Partner With 7Hills Web Solutions</span>
             </div>
             <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
@@ -398,7 +400,7 @@ export default async function HomePage() {
               const Icon = item.icon;
               return (
                 <div key={idx} className="glass-panel p-7 rounded-2xl space-y-3.5 border-white/5">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500/20 to-blue-500/20 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500/20 to-blue-600/20 border border-cyan-500/30 flex items-center justify-center text-cyan-400">
                     <Icon className="w-6 h-6" />
                   </div>
                   <h3 className="text-lg font-bold text-white">{item.title}</h3>
@@ -450,7 +452,7 @@ export default async function HomePage() {
               },
             ].map((step, index) => (
               <div key={index} className="glass-panel p-6 rounded-2xl relative border-white/5 space-y-3">
-                <div className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">
+                <div className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-violet-500">
                   {step.step}
                 </div>
                 <h3 className="text-lg font-bold text-white">{step.title}</h3>
@@ -462,7 +464,7 @@ export default async function HomePage() {
           <div className="text-center pt-10">
             <Link
               href="/process"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-900 border border-white/10 hover:border-white/20 text-slate-200 hover:text-white text-sm font-semibold transition-all"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-900 border border-white/10 hover:border-cyan-500/40 text-slate-200 hover:text-white text-sm font-semibold transition-all"
             >
               <span>Explore the Complete 12-Stage Workflow</span>
               <ArrowRight className="w-4 h-4 text-cyan-400" />
@@ -472,10 +474,10 @@ export default async function HomePage() {
       </section>
 
       {/* Call to Action Banner (SRS 3.1) */}
-      <section className="py-20 bg-gradient-to-b from-transparent to-indigo-950/40 relative">
+      <section className="py-20 bg-gradient-to-b from-transparent to-blue-950/30 relative">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 text-xs font-semibold">
-            <Sparkles className="w-4 h-4" />
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-semibold">
+            <Sparkles className="w-4 h-4 text-cyan-400" />
             <span>Ready for Exceptional Results?</span>
           </div>
           <h2 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight">
@@ -487,7 +489,7 @@ export default async function HomePage() {
           <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/start-project"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500 text-white font-bold text-base shadow-xl shadow-indigo-600/30 hover:shadow-indigo-600/50 hover:scale-105 active:scale-95 transition-all"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-600 to-violet-600 text-white font-bold text-base shadow-xl shadow-cyan-500/25 hover:shadow-cyan-500/45 hover:scale-105 active:scale-95 transition-all"
             >
               <span>Launch Requirement Form</span>
               <ArrowRight className="w-5 h-5" />

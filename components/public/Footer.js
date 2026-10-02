@@ -34,18 +34,18 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-[#060910] border-t border-white/10 text-slate-400 relative overflow-hidden">
-      {/* Ambient background glow */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-indigo-500/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl pointer-events-none" />
+    <footer className="bg-[#030612] border-t border-cyan-500/15 text-slate-400 relative overflow-hidden">
+      {/* Ambient background glow matching Cyan and Violet brand accents */}
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-violet-600/10 rounded-full blur-3xl pointer-events-none" />
 
       {/* Top Banner / Callout */}
       <div className="border-b border-white/5 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="glass-panel p-8 sm:p-10 rounded-2xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6 border-indigo-500/20 shadow-2xl">
+          <div className="glass-panel p-8 sm:p-10 rounded-2xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6 border-cyan-500/25 shadow-2xl">
             <div className="space-y-2 text-center md:text-left">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 text-xs font-semibold">
-                <Sparkles className="w-3.5 h-3.5" />
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-semibold">
+                <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
                 <span>Ready to Elevate Your Digital Footprint?</span>
               </div>
               <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
@@ -57,7 +57,7 @@ export default function Footer() {
             </div>
             <Link
               href="/start-project"
-              className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500 text-white font-semibold shadow-lg shadow-indigo-600/30 hover:shadow-indigo-600/50 hover:scale-105 active:scale-95 transition-all text-sm shrink-0"
+              className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-600 to-violet-600 text-white font-semibold shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/45 hover:scale-105 active:scale-95 transition-all text-sm shrink-0"
             >
               <span>Start Your Project</span>
               <ArrowUpRight className="w-4 h-4" />
@@ -72,12 +72,12 @@ export default function Footer() {
           {/* Brand Info */}
           <div className="lg:col-span-2 space-y-4">
             <Link href="/" className="inline-block group">
-              <div className="relative h-11 w-44 sm:w-52 transition-transform duration-300 group-hover:scale-105">
+              <div className="relative h-12 w-48 sm:w-56 px-3 py-1 bg-white rounded-xl shadow-[0_0_20px_rgba(0,229,255,0.3)] border border-cyan-400/40 flex items-center justify-center transition-all duration-300 group-hover:scale-105 group-hover:shadow-[0_0_30px_rgba(0,229,255,0.5)]">
                 <Image 
                   src="/logo.png" 
                   alt="7Hills Web Solutions" 
                   fill 
-                  className="object-contain drop-shadow-[0_0_15px_rgba(0,229,255,0.3)]"
+                  className="object-contain p-1"
                 />
               </div>
             </Link>
@@ -98,7 +98,7 @@ export default function Footer() {
             <ul className="space-y-2 text-sm">
               {services.map((item) => (
                 <li key={item.name}>
-                  <Link href={item.href} className="hover:text-white transition-colors">
+                  <Link href={item.href} className="hover:text-cyan-300 transition-colors">
                     {item.name}
                   </Link>
                 </li>
@@ -112,7 +112,7 @@ export default function Footer() {
             <ul className="space-y-2 text-sm">
               {quickLinks.map((item) => (
                 <li key={item.name}>
-                  <Link href={item.href} className="hover:text-white transition-colors">
+                  <Link href={item.href} className="hover:text-cyan-300 transition-colors">
                     {item.name}
                   </Link>
                 </li>
@@ -125,28 +125,28 @@ export default function Footer() {
             <h4 className="text-sm font-semibold text-white uppercase tracking-wider">Direct Contact</h4>
             <ul className="space-y-2.5 text-sm">
               <li className="flex items-start gap-2.5">
-                <Mail className="w-4 h-4 text-indigo-400 shrink-0 mt-0.5" />
+                <Mail className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
                 <a href="mailto:contact@7hillsweb.com" className="hover:text-white transition-colors">
                   contact@7hillsweb.com
                 </a>
               </li>
               <li className="flex items-start gap-2.5">
-                <Phone className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
+                <Phone className="w-4 h-4 text-blue-400 shrink-0 mt-0.5" />
                 <a href="tel:+919845000000" className="hover:text-white transition-colors">
                   +91 98450 00000
                 </a>
               </li>
               <li className="flex items-start gap-2.5">
-                <MapPin className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />
+                <MapPin className="w-4 h-4 text-violet-400 shrink-0 mt-0.5" />
                 <span>7Hills Tech Tower, Outer Ring Rd, Bangalore, India</span>
               </li>
             </ul>
             <div className="pt-2">
               <Link
                 href="/admin"
-                className="inline-flex items-center gap-1.5 text-xs text-slate-500 hover:text-slate-300 transition-colors"
+                className="inline-flex items-center gap-1.5 text-xs text-slate-400 hover:text-cyan-300 transition-colors"
               >
-                <ShieldCheck className="w-3.5 h-3.5 text-indigo-400" />
+                <ShieldCheck className="w-3.5 h-3.5 text-cyan-400" />
                 <span>Internal Business Management System</span>
               </Link>
             </div>

@@ -59,12 +59,12 @@ export default function Navbar() {
         <div className="flex items-center justify-between">
           {/* Official 3D Brand Logo */}
           <Link href="/" className="flex items-center gap-3 group relative">
-            <div className="relative h-9 sm:h-10 w-32 sm:w-44 flex items-center transition-transform duration-300 group-hover:scale-105">
+            <div className="relative h-10 sm:h-11 w-36 sm:w-48 px-2.5 py-1 bg-white rounded-xl shadow-[0_0_15px_rgba(0,229,255,0.35)] border border-cyan-400/50 flex items-center justify-center transition-all duration-300 group-hover:scale-105 group-hover:shadow-[0_0_25px_rgba(0,229,255,0.55)]">
               <Image 
                 src="/logo.png" 
                 alt="7Hills Web Solutions" 
                 fill 
-                className="object-contain drop-shadow-[0_0_15px_rgba(0,229,255,0.35)]" 
+                className="object-contain p-1" 
                 priority
               />
             </div>
@@ -98,7 +98,7 @@ export default function Navbar() {
             </Link>
             <Link
               href="/start-project"
-              className="relative group overflow-hidden px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-600 to-indigo-600 text-white text-xs font-bold uppercase tracking-wider shadow-[0_0_20px_rgba(0,229,255,0.3)] hover:shadow-[0_0_30px_rgba(0,229,255,0.5)] transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+              className="relative group overflow-hidden px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-600 to-violet-600 text-white text-xs font-bold uppercase tracking-wider shadow-[0_0_20px_rgba(0,229,255,0.3)] hover:shadow-[0_0_30px_rgba(0,229,255,0.5)] transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
             >
               <span className="relative z-10 flex items-center gap-2">
                 <span>Start a Project</span>
@@ -111,7 +111,7 @@ export default function Navbar() {
           <div className="flex items-center gap-2 lg:hidden">
             <Link
               href="/start-project"
-              className="text-xs px-3 py-1.5 rounded-lg bg-indigo-600 text-white font-medium shadow-md shadow-indigo-600/30"
+              className="text-xs px-3 py-1.5 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-medium shadow-md shadow-cyan-500/20"
             >
               Start Project
             </Link>
@@ -128,7 +128,7 @@ export default function Navbar() {
 
       {/* Mobile Drawer */}
       {isOpen && (
-        <div className="lg:hidden bg-[#090d16]/95 border-b border-white/10 backdrop-blur-xl px-4 pt-3 pb-6 space-y-2 mt-2">
+        <div className="lg:hidden bg-[#060b18]/95 border-b border-cyan-500/20 backdrop-blur-xl px-4 pt-3 pb-6 space-y-2 mt-2">
           {navLinks.map((link) => (
             <Link
               key={link.name}
@@ -136,7 +136,7 @@ export default function Navbar() {
               onClick={() => setIsOpen(false)}
               className={`block px-4 py-2.5 rounded-xl text-base font-medium transition-colors ${
                 isActive(link.href)
-                  ? 'text-white bg-indigo-600/20 border border-indigo-500/30'
+                  ? 'text-cyan-300 bg-cyan-500/15 border border-cyan-500/30'
                   : 'text-slate-300 hover:text-white hover:bg-white/5'
               }`}
             >
@@ -147,15 +147,15 @@ export default function Navbar() {
             <Link
               href="/admin"
               onClick={() => setIsOpen(false)}
-              className="text-xs text-slate-400 hover:text-white flex items-center gap-1.5 px-3 py-2 rounded-lg bg-slate-900 border border-white/10"
+              className="text-xs text-slate-400 hover:text-cyan-300 flex items-center gap-1.5 px-3 py-2 rounded-lg bg-slate-900 border border-white/10"
             >
-              <ShieldCheck className="w-4 h-4 text-indigo-400" />
+              <ShieldCheck className="w-4 h-4 text-cyan-400" />
               <span>Admin Management</span>
             </Link>
             <Link
               href="/start-project"
               onClick={() => setIsOpen(false)}
-              className="text-xs font-semibold px-4 py-2 rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 text-white flex items-center gap-1.5 shadow-md"
+              className="text-xs font-semibold px-4 py-2 rounded-lg bg-gradient-to-r from-cyan-500 via-blue-600 to-violet-600 text-white flex items-center gap-1.5 shadow-md shadow-cyan-500/25"
             >
               <span>Get Started</span>
               <ArrowRight className="w-3.5 h-3.5" />

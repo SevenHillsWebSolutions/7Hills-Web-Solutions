@@ -1,67 +1,78 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { Sparkles, ArrowRight } from 'lucide-react';
+import { ArrowRight, Sparkles } from 'lucide-react';
+
+const TOTAL_DURATION_MS = 5000; // Exact 5 seconds as requested by user
 
 export default function SplashScreen() {
   const [visible, setVisible] = useState(true);
   const [exiting, setExiting] = useState(false);
-  const [progress, setProgress] = useState(15);
-  const [phaseText, setPhaseText] = useState('Initializing Digital Engine...');
+  const [progress, setProgress] = useState(0);
+  const [phaseText, setPhaseText] = useState('Initializing 7Hills Digital Engine...');
+  const animRef = useRef(null);
 
   useEffect(() => {
-    // Check if intro was already played in this browser session
-    const hasSeenIntro = sessionStorage.getItem('7h_intro_seen');
-    if (hasSeenIntro) {
-      setVisible(false);
-      return;
-    }
+    const startTime = performance.now();
 
-    // Step-by-step progress simulation
-    const t1 = setTimeout(() => {
-      setProgress(45);
-      setPhaseText('Synchronizing Cloud Services...');
-    }, 400);
+    const updateFrame = (currentTime) => {
+      const elapsed = currentTime - startTime;
+      const pct = Math.min(100, Math.floor((elapsed / TOTAL_DURATION_MS) * 100));
+      setProgress(pct);
 
-    const t2 = setTimeout(() => {
-      setProgress(85);
-      setPhaseText('Rendering Elite Experience...');
-    }, 900);
+      if (elapsed < 1200) {
+        setPhaseText('Initializing 7Hills Digital Engine...');
+      } else if (elapsed < 2400) {
+        setPhaseText('Architecting High-Performance Infrastructure...');
+      } else if (elapsed < 3600) {
+        setPhaseText('Synthesizing Interactive Experience & Visuals...');
+      } else if (elapsed < 4600) {
+        setPhaseText('Innovate • Build • Grow');
+      } else {
+        setPhaseText('Welcome to 7Hills Web Solutions');
+      }
 
-    const t3 = setTimeout(() => {
-      setProgress(100);
-      setPhaseText('Welcome to 7Hills Web Solutions');
-    }, 1400);
+      if (elapsed < TOTAL_DURATION_MS) {
+        animRef.current = requestAnimationFrame(updateFrame);
+      } else {
+        // Exactly at 5 seconds: trigger smooth reveal
+        handleComplete();
+      }
+    };
 
-    const t4 = setTimeout(() => {
-      handleComplete();
-    }, 2000);
+    animRef.current = requestAnimationFrame(updateFrame);
 
-    // Allow replaying intro via global event
+    // Global event listener to replay intro if triggered
     const handleReplay = () => {
       setVisible(true);
       setExiting(false);
-      setProgress(10);
-      setPhaseText('Initializing Digital Engine...');
-      setTimeout(() => setProgress(60), 300);
-      setTimeout(() => setProgress(100), 800);
-      setTimeout(() => handleComplete(), 1600);
+      setProgress(0);
+      setPhaseText('Initializing 7Hills Digital Engine...');
+      const replayStart = performance.now();
+      const replayFrame = (t) => {
+        const el = t - replayStart;
+        const p = Math.min(100, Math.floor((el / TOTAL_DURATION_MS) * 100));
+        setProgress(p);
+        if (el < TOTAL_DURATION_MS) {
+          animRef.current = requestAnimationFrame(replayFrame);
+        } else {
+          handleComplete();
+        }
+      };
+      animRef.current = requestAnimationFrame(replayFrame);
     };
+
     window.addEventListener('replay-7hills-intro', handleReplay);
 
     return () => {
-      clearTimeout(t1);
-      clearTimeout(t2);
-      clearTimeout(t3);
-      clearTimeout(t4);
+      if (animRef.current) cancelAnimationFrame(animRef.current);
       window.removeEventListener('replay-7hills-intro', handleReplay);
     };
   }, []);
 
   const handleComplete = () => {
     setExiting(true);
-    sessionStorage.setItem('7h_intro_seen', 'true');
     setTimeout(() => {
       setVisible(false);
     }, 700);
@@ -71,75 +82,83 @@ export default function SplashScreen() {
 
   return (
     <div 
-      className={`fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#030610] text-white overflow-hidden transition-all duration-700 ease-out select-none ${
+      className={`fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#02050f] text-white overflow-hidden transition-all duration-700 ease-out select-none ${
         exiting ? 'opacity-0 scale-105 pointer-events-none' : 'opacity-100 scale-100'
       }`}
     >
-      {/* Ambient background glows matching 3D logo aesthetic */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] sm:w-[700px] h-[550px] sm:h-[700px] bg-gradient-to-tr from-cyan-600/25 via-blue-600/20 to-indigo-700/10 rounded-full blur-[120px] pointer-events-none animate-pulse-glow" />
+      {/* Dynamic multi-layer radial auras matching logo colors: Cyan, Sapphire Blue, Violet */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] sm:w-[800px] h-[600px] sm:h-[800px] bg-gradient-to-tr from-cyan-500/30 via-blue-600/25 to-violet-600/30 rounded-full blur-[140px] pointer-events-none animate-pulse-glow" />
+      <div className="absolute top-1/2 left-1/2 w-[450px] h-[450px] bg-cyan-400/20 rounded-full blur-[100px] pointer-events-none animate-aura-spin" />
       
-      {/* Cybernetic grid lines */}
-      <div className="absolute inset-0 ambient-grid opacity-25 pointer-events-none" />
+      {/* Cybernetic ambient grid background */}
+      <div className="absolute inset-0 ambient-grid opacity-35 pointer-events-none" />
+
+      {/* Floating digital pixel cubes matching the pixel accents in the 7Hills logo */}
+      <div className="absolute top-1/4 left-1/4 w-3 h-3 bg-cyan-400 rounded-sm shadow-[0_0_12px_#00e5ff] animate-[floatPixel_3s_infinite_ease-in-out] pointer-events-none opacity-80" />
+      <div className="absolute top-1/3 right-1/4 w-2.5 h-2.5 bg-blue-500 rounded-sm shadow-[0_0_10px_#0052cc] animate-[floatPixel_4s_infinite_ease-in-out_1s] pointer-events-none opacity-80" />
+      <div className="absolute bottom-1/3 left-1/3 w-3 h-3 bg-violet-400 rounded-sm shadow-[0_0_12px_#a855f7] animate-[floatPixel_3.5s_infinite_ease-in-out_0.5s] pointer-events-none opacity-80" />
+      <div className="absolute top-2/3 right-1/3 w-2 h-2 bg-cyan-300 rounded-sm shadow-[0_0_8px_#00e5ff] animate-[floatPixel_2.8s_infinite_ease-in-out_1.5s] pointer-events-none opacity-70" />
 
       {/* Diagonal neon light accents reflecting logo bevels */}
-      <div className="absolute top-0 right-0 w-[400px] h-[1px] bg-gradient-to-l from-cyan-400/80 via-blue-500/40 to-transparent rotate-45 transform origin-top-right shadow-[0_0_15px_#00e5ff]" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[1px] bg-gradient-to-r from-cyan-400/80 via-blue-500/40 to-transparent rotate-45 transform origin-bottom-left shadow-[0_0_15px_#00e5ff]" />
+      <div className="absolute top-0 right-0 w-[450px] h-[1px] bg-gradient-to-l from-cyan-400 via-blue-500/50 to-transparent rotate-45 transform origin-top-right shadow-[0_0_18px_#00e5ff]" />
+      <div className="absolute bottom-0 left-0 w-[450px] h-[1px] bg-gradient-to-r from-violet-500 via-blue-500/50 to-transparent rotate-45 transform origin-bottom-left shadow-[0_0_18px_#a855f7]" />
 
-      {/* Main logo reveal container */}
-      <div className="relative z-10 flex flex-col items-center max-w-xl mx-auto px-6 text-center">
+      {/* Main logo ARISE container */}
+      <div className="relative z-10 flex flex-col items-center max-w-2xl mx-auto px-6 text-center animate-logo-arise">
         
-        {/* Pulsing neon halo */}
+        {/* Pulsing neon halo surrounding the brand logo */}
         <div className="relative mb-6 group cursor-pointer" onClick={handleComplete}>
-          <div className="absolute -inset-4 bg-gradient-to-r from-cyan-500/30 via-blue-500/20 to-indigo-500/30 rounded-3xl blur-2xl opacity-75 group-hover:opacity-100 transition duration-500 animate-pulse" />
+          <div className="absolute -inset-4 bg-gradient-to-r from-cyan-400/40 via-blue-600/35 to-violet-600/40 rounded-3xl blur-2xl opacity-85 group-hover:opacity-100 transition duration-500 animate-pulse" />
           
-          {/* Logo Card with Diagonal Neon Rim */}
-          <div className="relative rounded-2xl p-6 sm:p-8 bg-[#060b18]/90 border border-cyan-500/30 shadow-[0_0_50px_rgba(0,210,255,0.25)] backdrop-blur-xl">
-            {/* Real Official 3D Metallic 7Hills Logo */}
-            <div className="relative w-64 sm:w-80 md:w-96 h-28 sm:h-36 mx-auto">
+          {/* Logo Card with High-Contrast Crisp Container */}
+          <div className="relative rounded-2xl sm:rounded-3xl p-6 sm:p-9 bg-white border-2 border-cyan-400/70 shadow-[0_0_55px_rgba(0,229,255,0.45),0_0_110px_rgba(0,82,204,0.3)] transition-transform duration-500 group-hover:scale-[1.02]">
+            {/* The Official 3D 7Hills Logo */}
+            <div className="relative w-64 sm:w-80 md:w-[440px] h-28 sm:h-36 mx-auto flex items-center justify-center">
               <Image 
                 src="/logo.png" 
                 alt="7Hills Web Solutions" 
                 fill 
                 priority 
-                className="object-contain drop-shadow-[0_0_25px_rgba(0,229,255,0.4)]"
+                className="object-contain"
               />
             </div>
             
-            {/* Glowing sweep beam animation across logo */}
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full animate-[shimmer_2s_infinite] pointer-events-none rounded-2xl" />
+            {/* Holographic sweep beam animation across the logo */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-400/15 to-transparent -translate-x-full animate-[shimmer_2.5s_infinite] pointer-events-none rounded-2xl sm:rounded-3xl" />
           </div>
         </div>
 
-        {/* Dynamic subtext with animated glowing cyan bullet points */}
-        <div className="flex items-center justify-center gap-3 text-xs sm:text-sm font-semibold tracking-[0.25em] uppercase text-slate-300 mb-8">
-          <span className="text-cyan-400 drop-shadow-[0_0_8px_#00e5ff]">Innovate</span>
+        {/* Dynamic subtext with illuminated jewel dots matching the 3 brand words */}
+        <div className="flex items-center justify-center gap-3 sm:gap-4 text-xs sm:text-sm font-bold tracking-[0.25em] uppercase mb-8">
+          <span className="text-cyan-400 drop-shadow-[0_0_10px_#00e5ff]">Innovate</span>
           <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_#00e5ff] animate-ping" />
-          <span className="text-slate-100">Build</span>
-          <span className="w-1.5 h-1.5 rounded-full bg-blue-400 shadow-[0_0_8px_#0070f3]" />
-          <span className="text-cyan-400 drop-shadow-[0_0_8px_#00e5ff]">Grow</span>
+          <span className="text-blue-400 drop-shadow-[0_0_10px_#0052cc]">Build</span>
+          <span className="w-1.5 h-1.5 rounded-full bg-violet-400 shadow-[0_0_8px_#a855f7]" />
+          <span className="text-violet-400 drop-shadow-[0_0_10px_#a855f7]">Grow</span>
         </div>
 
-        {/* Futuristic progress indicator */}
-        <div className="w-64 sm:w-72 space-y-2.5">
-          <div className="w-full h-1.5 bg-slate-900/80 rounded-full overflow-hidden p-[1px] border border-cyan-500/30">
+        {/* 5-Second Futuristic Progress Indicator */}
+        <div className="w-72 sm:w-84 space-y-2.5">
+          <div className="w-full h-2 bg-slate-950/90 rounded-full overflow-hidden p-[1px] border border-cyan-500/40 shadow-[0_0_15px_rgba(0,229,255,0.25)]">
             <div 
-              className="h-full bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 rounded-full transition-all duration-300 ease-out shadow-[0_0_12px_#00e5ff]"
+              className="h-full bg-gradient-to-r from-cyan-400 via-blue-500 to-violet-500 rounded-full transition-all duration-75 ease-linear shadow-[0_0_14px_#00e5ff]"
               style={{ width: `${progress}%` }}
             />
           </div>
-          <div className="flex items-center justify-between text-[11px] text-slate-400 tracking-wider">
+          
+          <div className="flex items-center justify-between text-[11px] text-slate-300 tracking-wider">
             <span className="text-cyan-300 font-mono flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_6px_#00e5ff]" />
               {phaseText}
             </span>
-            <span className="font-mono text-slate-500">{progress}%</span>
+            <span className="font-mono text-cyan-400 font-bold">{progress}%</span>
           </div>
         </div>
 
-        {/* Instant Skip / Enter button */}
+        {/* Enter Website / Fast Forward */}
         <button
           onClick={handleComplete}
-          className="mt-8 inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/5 hover:bg-cyan-500/10 border border-white/10 hover:border-cyan-500/40 text-xs text-slate-400 hover:text-cyan-300 transition-all duration-200"
+          className="mt-7 inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/5 hover:bg-cyan-500/15 border border-white/10 hover:border-cyan-400/50 text-xs text-slate-300 hover:text-cyan-300 transition-all duration-200 shadow-sm"
         >
           <span>Enter Website</span>
           <ArrowRight className="w-3.5 h-3.5" />
