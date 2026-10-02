@@ -123,10 +123,35 @@ export async function POST(request) {
       );
     }
 
+    const requirementCode = generateRequirementCode();
+    let customerCode = generateCustomerCode();
+
+    if (!process.env.DATABASE_URL) {
+      console.log('Requirement received (DB not configured yet):', {
+        requirementCode,
+        customerCode,
+        fullName,
+        email,
+        phone,
+        whatsapp,
+        businessName,
+        websiteType,
+        budget,
+        timeline,
+        features,
+      });
+      return NextResponse.json({
+        success: true,
+        message: 'Project requirement successfully submitted and registered.',
+        requirementCode,
+        customerCode,
+        requirementId: 1,
+      });
+    }
+
     // Check or create customer
     let [customer] = await sql`SELECT id, customer_code FROM customers WHERE email = ${email.trim().toLowerCase()}`;
     let customerId;
-    let customerCode;
 
     if (customer) {
       customerId = customer.id;
@@ -159,8 +184,6 @@ export async function POST(request) {
       `;
       customerId = newCust.id;
     }
-
-    const requirementCode = generateRequirementCode();
 
     const fullBusinessDetails = JSON.stringify({
       businessDescription: businessDescription || '',

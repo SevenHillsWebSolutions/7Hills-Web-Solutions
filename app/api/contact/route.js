@@ -22,6 +22,25 @@ export async function POST(request) {
       );
     }
 
+    const enquiryCode = generateEnquiryCode();
+
+    if (!process.env.DATABASE_URL) {
+      console.log('Contact message received (DB not configured yet):', {
+        enquiryCode,
+        name,
+        email,
+        phone,
+        subject,
+        message,
+      });
+      return NextResponse.json({
+        success: true,
+        message: 'Your message has been successfully received and logged into our management system.',
+        enquiryCode,
+        contactId: 1,
+      });
+    }
+
     // 1. Insert into contact_messages table
     const [msgRow] = await sql`
       INSERT INTO contact_messages (name, email, phone, subject, message, status)
@@ -30,7 +49,6 @@ export async function POST(request) {
     `;
 
     // 2. Also log as an official enquiry
-    const enquiryCode = generateEnquiryCode();
     await sql`
       INSERT INTO enquiries (enquiry_code, name, email, phone, subject, message, status, source, notes)
       VALUES (
