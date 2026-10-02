@@ -218,7 +218,7 @@ export default function ProjectDetailPage({ params }) {
   if (loading) {
     return (
       <div className="flex-1 flex items-center justify-center min-h-screen text-slate-400 text-xs">
-        <Loader2 className="w-5 h-5 animate-spin text-indigo-400 mr-2" />
+        <Loader2 className="w-5 h-5 animate-spin text-cyan-400 mr-2" />
         <span>Loading project details...</span>
       </div>
     );
@@ -228,7 +228,7 @@ export default function ProjectDetailPage({ params }) {
     return (
       <div className="flex-1 p-8 text-center text-slate-400">
         Project not found.{' '}
-        <Link href="/admin/projects" className="text-indigo-400 underline">Back to Projects</Link>
+        <Link href="/admin/projects" className="text-cyan-400 underline">Back to Projects</Link>
       </div>
     );
   }
@@ -274,7 +274,7 @@ export default function ProjectDetailPage({ params }) {
                 {project.project_name}
               </h2>
               <div className="text-xs text-slate-400 mt-1 flex items-center gap-2">
-                <Building className="w-3.5 h-3.5 text-indigo-400" />
+                <Building className="w-3.5 h-3.5 text-cyan-400" />
                 <span>Client: <strong>{project.customer_name}</strong></span>
                 {project.business_name && <span>({project.business_name})</span>}
               </div>
@@ -283,7 +283,7 @@ export default function ProjectDetailPage({ params }) {
             <button
               onClick={handleUpdateProject}
               disabled={saving}
-              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-xs font-bold shadow-md shadow-indigo-600/30 cursor-pointer disabled:opacity-50"
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-600 to-violet-600 text-white text-xs font-bold shadow-md shadow-cyan-500/25 cursor-pointer disabled:opacity-50"
             >
               <Save className="w-3.5 h-3.5" />
               <span>{saving ? 'Saving...' : 'Save Changes'}</span>
@@ -320,7 +320,7 @@ export default function ProjectDetailPage({ params }) {
                   max="100"
                   value={progress}
                   onChange={(e) => setProgress(Number(e.target.value))}
-                  className="w-full accent-indigo-500"
+                  className="w-full accent-cyan-400"
                 />
               </div>
             </div>
@@ -381,7 +381,7 @@ export default function ProjectDetailPage({ params }) {
           <div className="flex items-center justify-between">
             <div className="space-y-1">
               <h3 className="text-lg font-bold text-white flex items-center gap-2">
-                <CheckSquare className="w-5 h-5 text-indigo-400" />
+                <CheckSquare className="w-5 h-5 text-cyan-400" />
                 <span>Project Tasks & Milestones ({tasks.length})</span>
               </h3>
               <p className="text-xs text-slate-400">
@@ -419,7 +419,7 @@ export default function ProjectDetailPage({ params }) {
                       className={`w-6 h-6 rounded-lg flex items-center justify-center border transition-all cursor-pointer ${
                         task.status === 'Done'
                           ? 'bg-emerald-500 border-emerald-400 text-white'
-                          : 'border-white/20 hover:border-indigo-400 text-transparent'
+                          : 'border-white/20 hover:border-cyan-400 text-transparent'
                       }`}
                     >
                       <Check className="w-3.5 h-3.5" />
@@ -511,7 +511,7 @@ export default function ProjectDetailPage({ params }) {
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-2 rounded-xl bg-indigo-600 text-white font-bold"
+                  className="px-5 py-2 rounded-xl bg-cyan-500 text-white font-bold"
                 >
                   Create Task
                 </button>
@@ -613,7 +613,7 @@ export default function ProjectDetailPage({ params }) {
                     type="checkbox"
                     checked={portfolioData.featured === 1}
                     onChange={(e) => setPortfolioData({ ...portfolioData, featured: e.target.checked ? 1 : 0 })}
-                    className="accent-indigo-500"
+                    className="accent-cyan-400"
                   />
                   <span>Mark as Featured on Homepage</span>
                 </label>

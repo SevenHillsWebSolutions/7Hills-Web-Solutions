@@ -163,7 +163,7 @@ export default function Footer() {
             <Link href="/services" className="hover:text-slate-400 transition-colors">Services</Link>
             <Link href="/portfolio" className="hover:text-slate-400 transition-colors">Portfolio</Link>
             <Link href="/contact" className="hover:text-slate-400 transition-colors">Contact</Link>
-            <Link href="/admin/login" className="hover:text-indigo-400 transition-colors flex items-center gap-1">
+            <Link href="/admin/login" className="hover:text-cyan-400 transition-colors flex items-center gap-1">
               <ShieldCheck className="w-3 h-3" />
               <span>Admin Portal</span>
             </Link>

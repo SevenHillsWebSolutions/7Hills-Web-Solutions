@@ -105,7 +105,7 @@ export default function SettingsAdminPage() {
           <div className="md:col-span-7 space-y-6">
             <div className="glass-panel p-6 sm:p-8 rounded-3xl border-white/10 space-y-6">
               <div className="flex items-center gap-3 border-b border-white/10 pb-4">
-                <div className="w-10 h-10 rounded-xl bg-indigo-500/15 text-indigo-400 flex items-center justify-center border border-indigo-500/25">
+                <div className="w-10 h-10 rounded-xl bg-cyan-500/15 text-cyan-400 flex items-center justify-center border border-cyan-400/25">
                   <User className="w-5 h-5" />
                 </div>
                 <div>
@@ -122,7 +122,7 @@ export default function SettingsAdminPage() {
                     required
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white text-xs focus:outline-none focus:border-indigo-500"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white text-xs focus:outline-none focus:border-cyan-400"
                   />
                 </div>
 
@@ -133,12 +133,12 @@ export default function SettingsAdminPage() {
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white text-xs focus:outline-none focus:border-indigo-500"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white text-xs focus:outline-none focus:border-cyan-400"
                   />
                 </div>
 
                 <div className="pt-4 border-t border-white/10 space-y-3">
-                  <div className="flex items-center gap-2 text-indigo-400 font-semibold">
+                  <div className="flex items-center gap-2 text-cyan-400 font-semibold">
                     <Key className="w-4 h-4" />
                     <span>Change Admin Password</span>
                   </div>
@@ -170,7 +170,7 @@ export default function SettingsAdminPage() {
                   <button
                     type="submit"
                     disabled={saving}
-                    className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-xs font-bold shadow-md shadow-indigo-600/30 cursor-pointer disabled:opacity-50"
+                    className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-600 to-violet-600 text-white text-xs font-bold shadow-md shadow-cyan-500/25 cursor-pointer disabled:opacity-50"
                   >
                     {saving ? 'Saving Changes...' : 'Save Settings'}
                   </button>

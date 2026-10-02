@@ -68,7 +68,7 @@ export default async function AdminDashboardPage() {
   const stats = [
     { title: 'Total Customers', value: totalCustomers, icon: Users, color: 'text-blue-400', bg: 'bg-blue-500/10', href: '/admin/customers' },
     { title: 'New Enquiries', value: newEnquiries, icon: Inbox, color: 'text-amber-400', bg: 'bg-amber-500/10', href: '/admin/enquiries' },
-    { title: 'Active Projects', value: activeProjects, icon: FolderKanban, color: 'text-indigo-400', bg: 'bg-indigo-500/10', href: '/admin/projects' },
+    { title: 'Active Projects', value: activeProjects, icon: FolderKanban, color: 'text-cyan-400', bg: 'bg-cyan-500/10', href: '/admin/projects' },
     { title: 'Completed Projects', value: completedProjects, icon: CheckCircle2, color: 'text-emerald-400', bg: 'bg-emerald-500/10', href: '/admin/projects' },
     { title: 'Portfolio Projects', value: portfolioProjects, icon: Briefcase, color: 'text-cyan-400', bg: 'bg-cyan-500/10', href: '/admin/portfolio' },
   ];
@@ -84,9 +84,9 @@ export default async function AdminDashboardPage() {
       <main className="flex-1 p-6 sm:p-8 space-y-8 overflow-y-auto max-w-7xl w-full mx-auto">
         
         {/* Welcome Banner */}
-        <div className="glass-panel p-6 sm:p-8 rounded-3xl border-indigo-500/20 relative overflow-hidden flex flex-col md:flex-row items-start md:items-center justify-between gap-6 shadow-xl">
+        <div className="glass-panel p-6 sm:p-8 rounded-3xl border-cyan-500/25 relative overflow-hidden flex flex-col md:flex-row items-start md:items-center justify-between gap-6 shadow-xl">
           <div className="space-y-1.5">
-            <div className="inline-flex items-center gap-1.5 text-xs text-indigo-400 font-semibold uppercase tracking-wider">
+            <div className="inline-flex items-center gap-1.5 text-xs text-cyan-400 font-semibold uppercase tracking-wider">
               <Sparkles className="w-3.5 h-3.5" />
               <span>Operational Status: Healthy & Online</span>
             </div>
@@ -94,14 +94,14 @@ export default async function AdminDashboardPage() {
               Welcome back, {user.name}
             </h2>
             <p className="text-xs sm:text-sm text-slate-400 max-w-xl">
-              You have <span className="text-amber-400 font-semibold">{newEnquiries} new lead enquiries</span> and <span className="text-indigo-400 font-semibold">{activeProjects} active client projects</span> currently in development.
+              You have <span className="text-amber-400 font-semibold">{newEnquiries} new lead enquiries</span> and <span className="text-cyan-400 font-semibold">{activeProjects} active client projects</span> currently in development.
             </p>
           </div>
 
           <div className="flex flex-wrap gap-2.5">
             <Link
               href="/admin/enquiries"
-              className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-xs font-semibold shadow-lg shadow-indigo-600/30 hover:scale-105 transition-all flex items-center gap-1.5"
+              className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-600 to-violet-600 text-white text-xs font-semibold shadow-lg shadow-cyan-500/25 hover:scale-105 transition-all flex items-center gap-1.5"
             >
               <Inbox className="w-3.5 h-3.5" />
               <span>Review Enquiries</span>
@@ -147,12 +147,12 @@ export default async function AdminDashboardPage() {
           <div className="lg:col-span-7 space-y-4">
             <div className="flex items-center justify-between">
               <h3 className="text-base font-bold text-white flex items-center gap-2">
-                <FolderKanban className="w-4 h-4 text-indigo-400" />
+                <FolderKanban className="w-4 h-4 text-cyan-400" />
                 <span>Active Projects in Development ({activeProjects})</span>
               </h3>
               <Link
                 href="/admin/projects"
-                className="text-xs text-indigo-400 hover:text-indigo-300 font-medium flex items-center gap-1"
+                className="text-xs text-cyan-400 hover:text-cyan-300 font-medium flex items-center gap-1"
               >
                 <span>View all</span>
                 <ChevronRight className="w-3.5 h-3.5" />
@@ -179,7 +179,7 @@ export default async function AdminDashboardPage() {
                           <StatusBadge status={prj.status} />
                         </div>
                         <h4 className="text-sm font-bold text-white mt-1">
-                          <Link href={`/admin/projects/${prj.id}`} className="hover:text-indigo-300 transition-colors">
+                          <Link href={`/admin/projects/${prj.id}`} className="hover:text-cyan-300 transition-colors">
                             {prj.project_name}
                           </Link>
                         </h4>
@@ -189,7 +189,7 @@ export default async function AdminDashboardPage() {
                       </div>
 
                       <div className="text-right">
-                        <span className="text-xs font-mono font-bold text-indigo-400">
+                        <span className="text-xs font-mono font-bold text-cyan-400">
                           {prj.progress || 0}%
                         </span>
                         <div className="text-[10px] text-slate-500">Target: {formatDate(prj.expected_end_date)}</div>
@@ -199,7 +199,7 @@ export default async function AdminDashboardPage() {
                     {/* Progress Bar */}
                     <div className="w-full h-1.5 rounded-full bg-slate-900 overflow-hidden">
                       <div
-                        className="h-full bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full"
+                        className="h-full bg-gradient-to-r from-cyan-400 to-blue-600 rounded-full"
                         style={{ width: `${prj.progress || 5}%` }}
                       />
                     </div>
@@ -293,7 +293,7 @@ export default async function AdminDashboardPage() {
                 <div className="pt-1">
                   <Link
                     href={`/admin/requirements?code=${req.requirement_code}`}
-                    className="text-xs font-semibold text-indigo-400 hover:text-indigo-300 flex items-center gap-1"
+                    className="text-xs font-semibold text-cyan-400 hover:text-cyan-300 flex items-center gap-1"
                   >
                     <span>Inspect details</span>
                     <ArrowRight className="w-3 h-3" />

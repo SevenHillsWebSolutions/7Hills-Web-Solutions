@@ -64,7 +64,7 @@ export default function FAQPage() {
         
         {/* Header */}
         <div className="text-center space-y-4 max-w-2xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 text-xs font-semibold">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-semibold">
             <HelpCircle className="w-3.5 h-3.5" />
             <span>Answers to Common Questions (SRS Section 9)</span>
           </div>
@@ -84,7 +84,7 @@ export default function FAQPage() {
               <div
                 key={index}
                 className={`glass-panel rounded-2xl border transition-all duration-200 overflow-hidden ${
-                  isOpen ? 'border-indigo-500/40 bg-slate-900/80 shadow-xl shadow-indigo-500/10' : 'border-white/5 hover:border-white/10'
+                  isOpen ? 'border-cyan-400/40 bg-slate-900/80 shadow-xl shadow-cyan-500/10' : 'border-white/5 hover:border-white/10'
                 }`}
               >
                 <button
@@ -93,14 +93,14 @@ export default function FAQPage() {
                   aria-expanded={isOpen}
                 >
                   <div className="space-y-1">
-                    <span className="text-[11px] font-semibold uppercase tracking-wider text-indigo-400">
+                    <span className="text-[11px] font-semibold uppercase tracking-wider text-cyan-400">
                       {faq.category}
                     </span>
                     <h3 className="text-base sm:text-lg font-bold text-white">
                       {faq.question}
                     </h3>
                   </div>
-                  <div className={`w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center text-slate-300 shrink-0 transition-transform duration-200 ${isOpen ? 'rotate-180 bg-indigo-600 text-white' : ''}`}>
+                  <div className={`w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center text-slate-300 shrink-0 transition-transform duration-200 ${isOpen ? 'rotate-180 bg-cyan-500 text-white' : ''}`}>
                     <ChevronDown className="w-4 h-4" />
                   </div>
                 </button>
@@ -117,7 +117,7 @@ export default function FAQPage() {
 
         {/* Still have questions */}
         <div className="glass-panel p-8 sm:p-10 rounded-3xl border-white/10 text-center space-y-4">
-          <div className="w-12 h-12 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center mx-auto">
+          <div className="w-12 h-12 rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center mx-auto">
             <MessageSquare className="w-6 h-6" />
           </div>
           <h2 className="text-2xl font-bold text-white">Have a Specific Technical Question?</h2>
@@ -133,7 +133,7 @@ export default function FAQPage() {
             </Link>
             <Link
               href="/start-project"
-              className="px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-xs font-semibold transition-all shadow-md shadow-indigo-600/30"
+              className="px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-600 to-violet-600 text-white text-xs font-semibold transition-all shadow-md shadow-cyan-500/25"
             >
               Launch Requirement Wizard
             </Link>

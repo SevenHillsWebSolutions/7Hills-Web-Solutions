@@ -31,7 +31,7 @@ export default function ProcessPage() {
       phase: 'Requirement Intake',
       title: 'Visitor & Start a Project',
       icon: FileText,
-      color: 'from-blue-500 to-indigo-600',
+      color: 'from-cyan-400 to-blue-600',
       description: 'You access our online requirement wizard and detail your business information, target audience, preferred website type, and functional feature checklist.',
       deliverable: 'Client requirement questionnaire input.',
     },
@@ -40,7 +40,7 @@ export default function ProcessPage() {
       phase: 'System Logging',
       title: 'Requirement ID Generation',
       icon: Sparkles,
-      color: 'from-indigo-500 to-cyan-500',
+      color: 'from-blue-600 to-cyan-400',
       description: 'Our system immediately logs your request into our database and generates an official Requirement ID (e.g. 7HWS-REQ-2026-0001) for end-to-end milestone tracking.',
       deliverable: 'Unique 7HWS Requirement Tracking Code.',
     },
@@ -121,7 +121,7 @@ export default function ProcessPage() {
       phase: 'Refinement',
       title: 'Client Review & Revisions',
       icon: RefreshCcw,
-      color: 'from-purple-500 to-indigo-600',
+      color: 'from-violet-500 to-blue-600',
       description: 'You review the live staging build. We incorporate your feedback, fine-tune copy, adjust layout details, and ensure 100% satisfaction before go-live.',
       deliverable: 'Final client sign-off and production authorization.',
     },
@@ -130,7 +130,7 @@ export default function ProcessPage() {
       phase: 'Launch',
       title: 'Production Deployment & Portfolio Showcase',
       icon: Trophy,
-      color: 'from-indigo-600 to-blue-500',
+      color: 'from-blue-600 to-cyan-400',
       description: 'We configure custom domains, SSL certificates, automated backups, and push live. With your permission, the completed case study is published to our public portfolio.',
       deliverable: 'Live website in production and ongoing SLA support.',
     },
@@ -142,7 +142,7 @@ export default function ProcessPage() {
         
         {/* Header */}
         <div className="max-w-3xl space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 text-xs font-semibold">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-semibold">
             <Sparkles className="w-3.5 h-3.5" />
             <span>Structured Methodology (SRS Section 6)</span>
           </div>
@@ -161,11 +161,11 @@ export default function ProcessPage() {
             return (
               <div
                 key={st.step}
-                className="glass-panel p-7 rounded-2xl border-white/5 space-y-4 relative flex flex-col justify-between group hover:border-indigo-500/30 transition-all duration-300"
+                className="glass-panel p-7 rounded-2xl border-white/5 space-y-4 relative flex flex-col justify-between group hover:border-cyan-500/30 transition-all duration-300"
               >
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
-                    <span className="text-2xl font-extrabold font-mono text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">
+                    <span className="text-2xl font-extrabold font-mono text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-violet-500">
                       {st.step}
                     </span>
                     <span className="text-[11px] font-semibold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-slate-800 text-slate-300 border border-white/5">
@@ -177,7 +177,7 @@ export default function ProcessPage() {
                     <div className={`w-9 h-9 rounded-lg bg-gradient-to-br ${st.color} flex items-center justify-center text-white shadow-md shrink-0`}>
                       <Icon className="w-4 h-4" />
                     </div>
-                    <h3 className="text-lg font-bold text-white group-hover:text-indigo-300 transition-colors">
+                    <h3 className="text-lg font-bold text-white group-hover:text-cyan-300 transition-colors">
                       {st.title}
                     </h3>
                   </div>
@@ -204,7 +204,7 @@ export default function ProcessPage() {
           <h2 className="text-2xl font-bold text-white tracking-tight">System Status Lifecycle</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="space-y-3">
-              <h3 className="text-sm font-bold uppercase tracking-wider text-indigo-400">
+              <h3 className="text-sm font-bold uppercase tracking-wider text-cyan-400">
                 Project Operational Statuses
               </h3>
               <p className="text-xs text-slate-400">
@@ -212,7 +212,7 @@ export default function ProcessPage() {
               </p>
               <div className="flex flex-wrap gap-2 pt-1">
                 {['Planning', 'Design', 'Development', 'Testing', 'Client Review', 'Revision', 'Deployment', 'Completed'].map((s, i) => (
-                  <span key={i} className="text-xs px-3 py-1 rounded-lg bg-slate-900 border border-indigo-500/20 text-slate-200">
+                  <span key={i} className="text-xs px-3 py-1 rounded-lg bg-slate-900 border border-cyan-500/25 text-slate-200">
                     {i + 1}. {s}
                   </span>
                 ))}
@@ -238,7 +238,7 @@ export default function ProcessPage() {
         </div>
 
         {/* CTA */}
-        <div className="glass-panel p-8 sm:p-12 rounded-3xl border-indigo-500/20 text-center max-w-4xl mx-auto space-y-6">
+        <div className="glass-panel p-8 sm:p-12 rounded-3xl border-cyan-500/25 text-center max-w-4xl mx-auto space-y-6">
           <h2 className="text-3xl font-extrabold text-white">Ready to Trigger Stage 01?</h2>
           <p className="text-slate-300 text-sm sm:text-base max-w-xl mx-auto">
             Submit your requirements now to receive an official Requirement Tracking ID and kickstart your project.
@@ -246,7 +246,7 @@ export default function ProcessPage() {
           <div className="pt-2">
             <Link
               href="/start-project"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500 text-white font-bold text-base shadow-xl shadow-indigo-600/30 hover:scale-105 transition-all"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-600 to-violet-600 text-white font-bold text-base shadow-xl shadow-cyan-500/25 hover:scale-105 transition-all"
             >
               <span>Begin Stage 01: Requirement Intake</span>
               <ArrowRight className="w-5 h-5" />

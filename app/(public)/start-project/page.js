@@ -14,7 +14,7 @@ export default function StartProjectPage() {
         
         {/* Header */}
         <div className="text-center space-y-4 max-w-2xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 text-xs font-semibold">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-semibold">
             <Sparkles className="w-3.5 h-3.5" />
             <span>Structured Requirement System (SRS Section 4)</span>
           </div>
@@ -29,7 +29,7 @@ export default function StartProjectPage() {
         {/* Value Badges */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs text-slate-300">
           <div className="glass-panel p-3.5 rounded-xl flex items-center gap-2.5 border-white/5">
-            <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
+            <ShieldCheck className="w-4 h-4 text-cyan-400 shrink-0" />
             <span>100% Confidential & Secure Intake</span>
           </div>
           <div className="glass-panel p-3.5 rounded-xl flex items-center gap-2.5 border-white/5">
@@ -37,7 +37,7 @@ export default function StartProjectPage() {
             <span>Proposal Delivery Within 24 Hours</span>
           </div>
           <div className="glass-panel p-3.5 rounded-xl flex items-center gap-2.5 border-white/5">
-            <Award className="w-4 h-4 text-indigo-400 shrink-0" />
+            <Award className="w-4 h-4 text-cyan-400 shrink-0" />
             <span>Transparent Pricing & Milestone Schedule</span>
           </div>
         </div>

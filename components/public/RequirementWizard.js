@@ -216,15 +216,15 @@ export default function RequirementWizard() {
           <h3 className="text-sm font-bold text-white uppercase tracking-wider">What Happens Next (12-Stage Process):</h3>
           <ol className="space-y-3 text-xs text-slate-300">
             <li className="flex items-start gap-2.5">
-              <span className="w-5 h-5 rounded-full bg-indigo-600/30 text-indigo-400 flex items-center justify-center font-bold text-[10px] shrink-0 mt-0.5">1</span>
+              <span className="w-5 h-5 rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold text-[10px] shrink-0 mt-0.5">1</span>
               <span><strong>Admin Notification:</strong> Your requirement is routed to our engineering dashboard for architectural evaluation.</span>
             </li>
             <li className="flex items-start gap-2.5">
-              <span className="w-5 h-5 rounded-full bg-indigo-600/30 text-indigo-400 flex items-center justify-center font-bold text-[10px] shrink-0 mt-0.5">2</span>
+              <span className="w-5 h-5 rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold text-[10px] shrink-0 mt-0.5">2</span>
               <span><strong>Discovery Contact:</strong> We reach out via {formData.preferredContact} to clarify technical scope and confirm timeline.</span>
             </li>
             <li className="flex items-start gap-2.5">
-              <span className="w-5 h-5 rounded-full bg-indigo-600/30 text-indigo-400 flex items-center justify-center font-bold text-[10px] shrink-0 mt-0.5">3</span>
+              <span className="w-5 h-5 rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold text-[10px] shrink-0 mt-0.5">3</span>
               <span><strong>Proposal & Prototype:</strong> We issue a formal deliverables schedule, milestone dates, and initiate UI/UX wireframing.</span>
             </li>
           </ol>
@@ -239,7 +239,7 @@ export default function RequirementWizard() {
           </Link>
           <Link
             href="/portfolio"
-            className="w-full sm:w-auto px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-xs font-semibold transition-all shadow-md shadow-indigo-600/30"
+            className="w-full sm:w-auto px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-600 to-violet-600 text-white text-xs font-semibold transition-all shadow-md shadow-cyan-500/25"
           >
             Explore Case Studies
           </Link>
@@ -269,7 +269,7 @@ export default function RequirementWizard() {
         </div>
         <div className="w-full h-2 rounded-full bg-slate-900 overflow-hidden">
           <div
-            className="h-full bg-gradient-to-r from-blue-500 via-indigo-500 to-cyan-400 transition-all duration-300 rounded-full"
+            className="h-full bg-gradient-to-r from-blue-500 via-blue-600 to-cyan-400 transition-all duration-300 rounded-full"
             style={{ width: `${(step / totalSteps) * 100}%` }}
           />
         </div>
@@ -282,7 +282,7 @@ export default function RequirementWizard() {
         {step === 1 && (
           <div className="space-y-6 animate-in fade-in duration-300">
             <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-indigo-400">Section 4.1</span>
+              <span className="text-xs font-bold uppercase tracking-wider text-cyan-400">Section 4.1</span>
               <h2 className="text-2xl font-bold text-white">Your Contact Details</h2>
               <p className="text-slate-400 text-sm mt-1">
                 Tell us who you are and how you prefer our engineering team to reach you.
@@ -301,7 +301,7 @@ export default function RequirementWizard() {
                   value={formData.fullName}
                   onChange={handleTextChange}
                   placeholder="e.g. Arun Kumar"
-                  className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-indigo-500"
+                  className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/40"
                 />
               </div>
 
@@ -315,7 +315,7 @@ export default function RequirementWizard() {
                   value={formData.businessName}
                   onChange={handleTextChange}
                   placeholder="e.g. Apex Global Logistics"
-                  className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-indigo-500"
+                  className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/40"
                 />
               </div>
 
@@ -330,7 +330,7 @@ export default function RequirementWizard() {
                   value={formData.email}
                   onChange={handleTextChange}
                   placeholder="arun@example.com"
-                  className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-indigo-500"
+                  className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/40"
                 />
               </div>
 
@@ -342,7 +342,7 @@ export default function RequirementWizard() {
                   value={formData.phone}
                   onChange={handleTextChange}
                   placeholder="+91 98450 00000"
-                  className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-indigo-500"
+                  className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/40"
                 />
               </div>
 
@@ -354,7 +354,7 @@ export default function RequirementWizard() {
                   value={formData.whatsapp}
                   onChange={handleTextChange}
                   placeholder="+91 98450 00000 (if different)"
-                  className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-indigo-500"
+                  className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/40"
                 />
               </div>
 
@@ -366,7 +366,7 @@ export default function RequirementWizard() {
                   value={formData.location}
                   onChange={handleTextChange}
                   placeholder="e.g. Bangalore, India"
-                  className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-indigo-500"
+                  className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/40"
                 />
               </div>
             </div>
@@ -381,7 +381,7 @@ export default function RequirementWizard() {
                     onClick={() => setFormData((p) => ({ ...p, preferredContact: method }))}
                     className={`py-2.5 px-4 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
                       formData.preferredContact === method
-                        ? 'bg-indigo-600 text-white border border-indigo-500 shadow-md shadow-indigo-600/30'
+                        ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white border border-cyan-400 shadow-md shadow-cyan-500/25'
                         : 'bg-slate-900 text-slate-400 border border-white/5 hover:bg-slate-800'
                     }`}
                   >
@@ -411,7 +411,7 @@ export default function RequirementWizard() {
                   name="businessType"
                   value={formData.businessType}
                   onChange={handleTextChange}
-                  className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white text-sm focus:outline-none focus:border-indigo-500"
+                  className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white text-sm focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/40"
                 >
                   <option value="Startup / New Venture">Startup / New Venture</option>
                   <option value="Private Enterprise">Private Enterprise / Established Corp</option>
@@ -430,7 +430,7 @@ export default function RequirementWizard() {
                   value={formData.industry}
                   onChange={handleTextChange}
                   placeholder="e.g. Healthcare, Logistics, FinTech, E-Commerce"
-                  className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-indigo-500"
+                  className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/40"
                 />
               </div>
             </div>
@@ -443,7 +443,7 @@ export default function RequirementWizard() {
                 value={formData.businessDescription}
                 onChange={handleTextChange}
                 placeholder="Briefly describe what your company does, who your target customers are, and what makes you unique..."
-                className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-indigo-500"
+                className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/40"
               />
             </div>
 
@@ -456,7 +456,7 @@ export default function RequirementWizard() {
                   value={formData.existingWebsite}
                   onChange={handleTextChange}
                   placeholder="https://yourcurrentsite.com"
-                  className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-indigo-500"
+                  className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/40"
                 />
               </div>
 
@@ -468,7 +468,7 @@ export default function RequirementWizard() {
                   value={formData.socialLinks}
                   onChange={handleTextChange}
                   placeholder="e.g. linkedin.com/company/apex, instagram.com/..."
-                  className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-indigo-500"
+                  className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/40"
                 />
               </div>
             </div>
@@ -479,7 +479,7 @@ export default function RequirementWizard() {
         {step === 3 && (
           <div className="space-y-6 animate-in fade-in duration-300">
             <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-indigo-400">Section 4.3</span>
+              <span className="text-xs font-bold uppercase tracking-wider text-cyan-400">Section 4.3</span>
               <h2 className="text-2xl font-bold text-white">Website Requirements</h2>
               <p className="text-slate-400 text-sm mt-1">
                 Define the primary purpose and scope of pages you wish to launch.
@@ -503,7 +503,7 @@ export default function RequirementWizard() {
                     onClick={() => setFormData((p) => ({ ...p, websiteType: type }))}
                     className={`p-3 rounded-xl text-xs font-semibold text-left transition-all cursor-pointer ${
                       formData.websiteType === type
-                        ? 'bg-indigo-600 text-white border border-indigo-400 shadow-md shadow-indigo-600/30'
+                        ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white border border-cyan-400 shadow-md shadow-cyan-500/25'
                         : 'bg-slate-900 text-slate-300 border border-white/5 hover:bg-slate-800'
                     }`}
                   >
@@ -521,7 +521,7 @@ export default function RequirementWizard() {
                 value={formData.purpose}
                 onChange={handleTextChange}
                 placeholder="e.g. Generate enterprise inbound leads, sell direct-to-consumer, provide customer portal..."
-                className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-indigo-500"
+                className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/40"
               />
             </div>
 
@@ -533,7 +533,7 @@ export default function RequirementWizard() {
                 value={formData.requiredPages}
                 onChange={handleTextChange}
                 placeholder="e.g. Home, About, Services, Case Studies, Pricing, Blog, Contact, Client Portal"
-                className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-indigo-500"
+                className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/40"
               />
             </div>
 
@@ -545,7 +545,7 @@ export default function RequirementWizard() {
                 value={formData.functionalRequirements}
                 onChange={handleTextChange}
                 placeholder="Any special workflows, user roles, calculation logic, or integrations needed..."
-                className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-indigo-500"
+                className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/40"
               />
             </div>
           </div>
@@ -573,11 +573,11 @@ export default function RequirementWizard() {
                     onClick={() => toggleFeature(feat.id)}
                     className={`p-3.5 rounded-xl text-left flex items-start gap-3 transition-all cursor-pointer ${
                       isSelected
-                        ? 'bg-indigo-600/25 border border-indigo-500 text-white shadow-sm shadow-indigo-500/20'
+                        ? 'bg-cyan-500/20 border border-cyan-400 text-white shadow-sm shadow-cyan-500/25'
                         : 'bg-slate-900/60 border border-white/5 text-slate-300 hover:bg-slate-800/80 hover:text-white'
                     }`}
                   >
-                    <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${isSelected ? 'bg-indigo-500 text-white' : 'bg-slate-800 text-slate-400'}`}>
+                    <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${isSelected ? 'bg-cyan-400 text-slate-950 font-bold' : 'bg-slate-800 text-slate-400'}`}>
                       <Icon className="w-4 h-4" />
                     </div>
                     <div className="space-y-0.5">
@@ -600,7 +600,7 @@ export default function RequirementWizard() {
                 value={formData.customFeatureNotes}
                 onChange={handleTextChange}
                 placeholder="e.g. Integrate with our custom ERP system, support multi-currency EUR/USD, etc."
-                className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-indigo-500"
+                className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/40"
               />
             </div>
           </div>
@@ -610,7 +610,7 @@ export default function RequirementWizard() {
         {step === 5 && (
           <div className="space-y-6 animate-in fade-in duration-300">
             <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-indigo-400">Section 4.5</span>
+              <span className="text-xs font-bold uppercase tracking-wider text-cyan-400">Section 4.5</span>
               <h2 className="text-2xl font-bold text-white">Design & Aesthetic Preferences</h2>
               <p className="text-slate-400 text-sm mt-1">
                 Help us align with your visual identity and aesthetic goals.
@@ -632,7 +632,7 @@ export default function RequirementWizard() {
                     onClick={() => setFormData((p) => ({ ...p, designStyle: style }))}
                     className={`p-3 rounded-xl text-xs font-semibold text-left transition-all cursor-pointer ${
                       formData.designStyle === style
-                        ? 'bg-indigo-600 text-white border border-indigo-400 shadow-md shadow-indigo-600/30'
+                        ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white border border-cyan-400 shadow-md shadow-cyan-500/25'
                         : 'bg-slate-900 text-slate-300 border border-white/5 hover:bg-slate-800'
                     }`}
                   >
@@ -651,7 +651,7 @@ export default function RequirementWizard() {
                   value={formData.brandColors}
                   onChange={handleTextChange}
                   placeholder="#0F172A, #3B82F6, #10B981"
-                  className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-indigo-500"
+                  className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/40"
                 />
               </div>
 
@@ -661,7 +661,7 @@ export default function RequirementWizard() {
                   name="logoAvailable"
                   value={formData.logoAvailable}
                   onChange={handleTextChange}
-                  className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white text-sm focus:outline-none focus:border-indigo-500"
+                  className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white text-sm focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/40"
                 >
                   <option value="Yes, we have high-res vector/PNG">Yes, ready in vector SVG/PNG</option>
                   <option value="We have a logo but need touchups/redesign">We have a logo but need touchups</option>
@@ -678,7 +678,7 @@ export default function RequirementWizard() {
                 value={formData.referenceWebsites}
                 onChange={handleTextChange}
                 placeholder="e.g. stripe.com, linear.app, flexport.com"
-                className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-indigo-500"
+                className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/40"
               />
             </div>
 
@@ -690,7 +690,7 @@ export default function RequirementWizard() {
                 value={formData.designRequirements}
                 onChange={handleTextChange}
                 placeholder="Specific typography preferences, animations, or mood guidelines..."
-                className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-indigo-500"
+                className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/40"
               />
             </div>
           </div>
@@ -721,7 +721,7 @@ export default function RequirementWizard() {
                       onClick={() => setFormData((p) => ({ ...p, hasDomain: opt }))}
                       className={`p-3 rounded-xl text-xs font-semibold text-left transition-all cursor-pointer ${
                         formData.hasDomain === opt
-                          ? 'bg-indigo-600 text-white border border-indigo-400 shadow-md shadow-indigo-600/30'
+                          ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white border border-cyan-400 shadow-md shadow-cyan-500/25'
                           : 'bg-slate-900 text-slate-300 border border-white/5 hover:bg-slate-800'
                       }`}
                     >
@@ -739,7 +739,7 @@ export default function RequirementWizard() {
                   value={formData.domainDetails}
                   onChange={handleTextChange}
                   placeholder="e.g. apexlogistics.com on Cloudflare / GoDaddy / Namecheap"
-                  className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-indigo-500"
+                  className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/40"
                 />
               </div>
 
@@ -756,7 +756,7 @@ export default function RequirementWizard() {
                       onClick={() => setFormData((p) => ({ ...p, hasHosting: opt }))}
                       className={`p-3 rounded-xl text-xs font-semibold text-left transition-all cursor-pointer ${
                         formData.hasHosting === opt
-                          ? 'bg-indigo-600 text-white border border-indigo-400 shadow-md shadow-indigo-600/30'
+                          ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white border border-cyan-400 shadow-md shadow-cyan-500/25'
                           : 'bg-slate-900 text-slate-300 border border-white/5 hover:bg-slate-800'
                       }`}
                     >
@@ -774,7 +774,7 @@ export default function RequirementWizard() {
                   value={formData.hostingDetails}
                   onChange={handleTextChange}
                   placeholder="e.g. AWS, Vercel, DigitalOcean, or recommend best setup"
-                  className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-indigo-500"
+                  className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/40"
                 />
               </div>
             </div>
@@ -785,7 +785,7 @@ export default function RequirementWizard() {
         {step === 7 && (
           <div className="space-y-6 animate-in fade-in duration-300">
             <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-indigo-400">Section 4.7 & 4.8</span>
+              <span className="text-xs font-bold uppercase tracking-wider text-cyan-400">Section 4.7 & 4.8</span>
               <h2 className="text-2xl font-bold text-white">Budget, Timeline & Review</h2>
               <p className="text-slate-400 text-sm mt-1">
                 Configure your target financial range and expected delivery window before submitting.
@@ -809,7 +809,7 @@ export default function RequirementWizard() {
                     onClick={() => setFormData((p) => ({ ...p, budget: b }))}
                     className={`p-3 rounded-xl text-xs font-semibold text-left transition-all cursor-pointer ${
                       formData.budget === b
-                        ? 'bg-indigo-600 text-white border border-indigo-400 shadow-md shadow-indigo-600/30'
+                        ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white border border-cyan-400 shadow-md shadow-cyan-500/25'
                         : 'bg-slate-900 text-slate-300 border border-white/5 hover:bg-slate-800'
                     }`}
                   >
@@ -853,7 +853,7 @@ export default function RequirementWizard() {
                 value={formData.additionalRequirements}
                 onChange={handleTextChange}
                 placeholder="Any special milestones, NDA requirements, or launch events..."
-                className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-indigo-500"
+                className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/40"
               />
             </div>
 
@@ -893,7 +893,7 @@ export default function RequirementWizard() {
             <button
               type="button"
               onClick={handleNext}
-              className="inline-flex items-center gap-2 px-7 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white text-xs font-bold shadow-lg shadow-indigo-600/30 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
+              className="inline-flex items-center gap-2 px-7 py-3 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-600 to-violet-600 hover:from-cyan-400 hover:via-blue-500 hover:to-violet-500 text-white text-xs font-bold shadow-lg shadow-cyan-500/25 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
             >
               <span>Next: Step {step + 1}</span>
               <ArrowRight className="w-3.5 h-3.5" />

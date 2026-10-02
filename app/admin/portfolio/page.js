@@ -218,7 +218,7 @@ export default function PortfolioAdminPage() {
 
           <button
             onClick={handleOpenAdd}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white text-xs font-bold shadow-md shadow-indigo-600/30 cursor-pointer"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-600 to-violet-600 hover:from-cyan-400 hover:via-blue-500 hover:to-violet-500 text-white text-xs font-bold shadow-md shadow-cyan-500/25 cursor-pointer"
           >
             <Plus className="w-4 h-4" />
             <span>Create Portfolio Entry</span>
@@ -229,7 +229,7 @@ export default function PortfolioAdminPage() {
         <div className="glass-panel rounded-2xl border-white/10 overflow-hidden">
           {loading ? (
             <div className="p-12 text-center text-slate-400 text-xs flex items-center justify-center gap-2">
-              <Loader2 className="w-4 h-4 animate-spin text-indigo-400" />
+              <Loader2 className="w-4 h-4 animate-spin text-cyan-400" />
               <span>Loading portfolio items...</span>
             </div>
           ) : items.length === 0 ? (
@@ -314,7 +314,7 @@ export default function PortfolioAdminPage() {
                           )}
                           <button
                             onClick={() => handleOpenEdit(item)}
-                            className="p-1.5 rounded-lg bg-indigo-600/20 text-indigo-300 hover:bg-indigo-600 hover:text-white"
+                            className="p-1.5 rounded-lg bg-cyan-500/20 text-cyan-300 hover:bg-cyan-500 hover:text-white"
                             title="Edit"
                           >
                             <Edit2 className="w-3.5 h-3.5" />
@@ -485,7 +485,7 @@ export default function PortfolioAdminPage() {
                     type="checkbox"
                     checked={formData.published === 1}
                     onChange={(e) => setFormData({ ...formData, published: e.target.checked ? 1 : 0 })}
-                    className="accent-indigo-500"
+                    className="accent-cyan-400"
                   />
                   <span>Published on Public Website</span>
                 </label>
@@ -512,7 +512,7 @@ export default function PortfolioAdminPage() {
                 <button
                   type="submit"
                   disabled={saving}
-                  className="px-6 py-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold"
+                  className="px-6 py-2 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-600 to-violet-600 text-white font-bold"
                 >
                   {saving ? 'Saving...' : editingItem ? 'Update Case Study' : 'Create Case Study'}
                 </button>

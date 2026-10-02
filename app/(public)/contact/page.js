@@ -24,7 +24,7 @@ export default function ContactPage() {
         
         {/* Header */}
         <div className="max-w-3xl space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 text-xs font-semibold">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-semibold">
             <Sparkles className="w-3.5 h-3.5" />
             <span>Direct Communication (SRS Section 3.6)</span>
           </div>
@@ -45,12 +45,12 @@ export default function ContactPage() {
               
               <ul className="space-y-5 text-sm">
                 <li className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center shrink-0 border border-indigo-500/30">
+                  <div className="w-10 h-10 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center shrink-0 border border-cyan-500/30">
                     <Mail className="w-5 h-5" />
                   </div>
                   <div>
                     <span className="text-xs text-slate-400 block font-medium">Email Inquiries</span>
-                    <a href="mailto:contact@7hillsweb.com" className="text-white hover:text-indigo-400 font-semibold transition-colors">
+                    <a href="mailto:contact@7hillsweb.com" className="text-white hover:text-cyan-400 font-semibold transition-colors">
                       contact@7hillsweb.com
                     </a>
                   </div>
@@ -81,7 +81,7 @@ export default function ContactPage() {
                 </li>
 
                 <li className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0 border border-emerald-500/30">
+                  <div className="w-10 h-10 rounded-xl bg-emerald-500/20 text-cyan-400 flex items-center justify-center shrink-0 border border-emerald-500/30">
                     <Clock className="w-5 h-5" />
                   </div>
                   <div>
@@ -95,7 +95,7 @@ export default function ContactPage() {
             </div>
 
             {/* Need a full project quote? Highlight */}
-            <div className="p-8 rounded-3xl bg-gradient-to-br from-indigo-900/40 via-slate-900 to-slate-950 border border-indigo-500/30 space-y-4 shadow-xl">
+            <div className="p-8 rounded-3xl bg-gradient-to-br from-[#060c1f] via-slate-900 to-slate-950 border border-cyan-500/30 space-y-4 shadow-xl">
               <span className="text-xs font-mono font-bold text-cyan-400 uppercase tracking-wider">
                 Need Detailed Architecture & Budget?
               </span>
@@ -105,7 +105,7 @@ export default function ContactPage() {
               </p>
               <Link
                 href="/start-project"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold text-xs shadow-lg shadow-indigo-600/30 hover:scale-105 transition-all"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-600 to-violet-600 text-white font-semibold text-xs shadow-lg shadow-cyan-500/25 hover:scale-105 transition-all"
               >
                 <span>Launch Requirement Intake Wizard</span>
                 <ArrowRight className="w-3.5 h-3.5" />

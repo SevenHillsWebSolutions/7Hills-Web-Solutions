@@ -14,7 +14,7 @@ export default function StatusBadge({ status, type = 'default' }) {
       case 'development':
       case 'requirement received':
       case 'proposal sent':
-        return 'bg-indigo-500/15 text-indigo-300 border-indigo-500/30';
+        return 'bg-cyan-500/15 text-cyan-300 border-cyan-500/30';
       case 'testing':
       case 'client review':
       case 'revision':

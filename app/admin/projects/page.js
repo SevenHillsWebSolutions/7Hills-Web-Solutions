@@ -145,7 +145,7 @@ function ProjectsAdminContent() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search projects by code, project name, or customer..."
-              className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white placeholder-slate-500 text-xs focus:outline-none focus:border-indigo-500"
+              className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white placeholder-slate-500 text-xs focus:outline-none focus:border-cyan-400"
             />
           </form>
 
@@ -155,7 +155,7 @@ function ProjectsAdminContent() {
               <select
                 value={selectedStatus}
                 onChange={(e) => setSelectedStatus(e.target.value)}
-                className="px-3 py-2 rounded-xl bg-slate-900 border border-white/10 text-white text-xs focus:outline-none focus:border-indigo-500"
+                className="px-3 py-2 rounded-xl bg-slate-900 border border-white/10 text-white text-xs focus:outline-none focus:border-cyan-400"
               >
                 {statuses.map((s) => (
                   <option key={s} value={s}>{s}</option>
@@ -165,7 +165,7 @@ function ProjectsAdminContent() {
 
             <button
               onClick={() => setShowAddModal(true)}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white text-xs font-bold shadow-md shadow-indigo-600/30 transition-all cursor-pointer whitespace-nowrap"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-600 to-violet-600 hover:from-cyan-400 hover:via-blue-500 hover:to-violet-500 text-white text-xs font-bold shadow-md shadow-cyan-500/25 transition-all cursor-pointer whitespace-nowrap"
             >
               <Plus className="w-4 h-4" />
               <span>Initialize Project</span>
@@ -177,7 +177,7 @@ function ProjectsAdminContent() {
         <div className="space-y-4">
           {loading ? (
             <div className="glass-panel p-12 rounded-2xl text-center text-slate-400 text-xs flex items-center justify-center gap-2">
-              <Loader2 className="w-4 h-4 animate-spin text-indigo-400" />
+              <Loader2 className="w-4 h-4 animate-spin text-cyan-400" />
               <span>Loading projects...</span>
             </div>
           ) : projects.length === 0 ? (
@@ -189,7 +189,7 @@ function ProjectsAdminContent() {
               {projects.map((project) => (
                 <div
                   key={project.id}
-                  className="glass-panel p-6 rounded-3xl border-white/10 space-y-5 hover:border-indigo-500/30 transition-all flex flex-col justify-between"
+                  className="glass-panel p-6 rounded-3xl border-white/10 space-y-5 hover:border-cyan-500/30 transition-all flex flex-col justify-between"
                 >
                   <div className="space-y-3">
                     <div className="flex items-center justify-between">
@@ -200,13 +200,13 @@ function ProjectsAdminContent() {
                     </div>
 
                     <div>
-                      <h3 className="text-lg font-bold text-white hover:text-indigo-300 transition-colors">
+                      <h3 className="text-lg font-bold text-white hover:text-cyan-300 transition-colors">
                         <Link href={`/admin/projects/${project.id}`}>
                           {project.project_name}
                         </Link>
                       </h3>
                       <div className="text-xs text-slate-400 flex items-center gap-1.5 mt-0.5">
-                        <Building className="w-3.5 h-3.5 text-indigo-400" />
+                        <Building className="w-3.5 h-3.5 text-cyan-400" />
                         <span>{project.customer_name}</span>
                         {project.business_name && <span>({project.business_name})</span>}
                       </div>
@@ -224,7 +224,7 @@ function ProjectsAdminContent() {
                       </div>
                       <div className="w-full h-2 rounded-full bg-slate-900 overflow-hidden">
                         <div
-                          className="h-full bg-gradient-to-r from-blue-500 via-indigo-500 to-cyan-400 rounded-full"
+                          className="h-full bg-gradient-to-r from-cyan-400 via-blue-500 to-violet-500 rounded-full"
                           style={{ width: `${project.progress}%` }}
                         />
                       </div>
@@ -235,7 +235,7 @@ function ProjectsAdminContent() {
                   <div className="pt-4 border-t border-white/5 space-y-3 text-xs">
                     <div className="flex items-center justify-between text-slate-400 text-[11px]">
                       <span className="flex items-center gap-1">
-                        <Calendar className="w-3 h-3 text-indigo-400" />
+                        <Calendar className="w-3 h-3 text-cyan-400" />
                         <span>Start: {formatDate(project.start_date)}</span>
                       </span>
                       <span>Target: {formatDate(project.expected_end_date)}</span>
@@ -273,7 +273,7 @@ function ProjectsAdminContent() {
 
                       <Link
                         href={`/admin/projects/${project.id}`}
-                        className="px-4 py-1.5 rounded-lg bg-indigo-600/20 text-indigo-300 hover:bg-indigo-600 hover:text-white border border-indigo-500/30 transition-all font-semibold"
+                        className="px-4 py-1.5 rounded-lg bg-cyan-500/20 text-cyan-300 hover:bg-cyan-500 hover:text-white border border-cyan-500/30 transition-all font-semibold"
                       >
                         Manage Project & Tasks &rarr;
                       </Link>
@@ -308,7 +308,7 @@ function ProjectsAdminContent() {
                     required
                     value={formData.customer_id}
                     onChange={(e) => setFormData({ ...formData, customer_id: e.target.value })}
-                    className="w-full px-3.5 py-2 rounded-xl bg-slate-900 border border-white/10 text-white text-xs focus:outline-none focus:border-indigo-500"
+                    className="w-full px-3.5 py-2 rounded-xl bg-slate-900 border border-white/10 text-white text-xs focus:outline-none focus:border-cyan-400"
                   >
                     <option value="">Select Customer...</option>
                     {customers.map((c) => (
@@ -324,7 +324,7 @@ function ProjectsAdminContent() {
                   <select
                     value={formData.status}
                     onChange={(e) => setFormData({ ...formData, status: e.target.value })}
-                    className="w-full px-3.5 py-2 rounded-xl bg-slate-900 border border-white/10 text-white text-xs focus:outline-none focus:border-indigo-500"
+                    className="w-full px-3.5 py-2 rounded-xl bg-slate-900 border border-white/10 text-white text-xs focus:outline-none focus:border-cyan-400"
                   >
                     {statuses.filter((s) => s !== 'All').map((s) => (
                       <option key={s} value={s}>{s}</option>
@@ -341,7 +341,7 @@ function ProjectsAdminContent() {
                   value={formData.project_name}
                   onChange={(e) => setFormData({ ...formData, project_name: e.target.value })}
                   placeholder="e.g. Apex Freight Global Logistics Platform"
-                  className="w-full px-3.5 py-2 rounded-xl bg-slate-900 border border-white/10 text-white text-xs focus:outline-none focus:border-indigo-500"
+                  className="w-full px-3.5 py-2 rounded-xl bg-slate-900 border border-white/10 text-white text-xs focus:outline-none focus:border-cyan-400"
                 />
               </div>
 
@@ -352,7 +352,7 @@ function ProjectsAdminContent() {
                   value={formData.description}
                   onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                   placeholder="Summary of project goals and specifications..."
-                  className="w-full px-3.5 py-2 rounded-xl bg-slate-900 border border-white/10 text-white text-xs focus:outline-none focus:border-indigo-500"
+                  className="w-full px-3.5 py-2 rounded-xl bg-slate-900 border border-white/10 text-white text-xs focus:outline-none focus:border-cyan-400"
                 />
               </div>
 
@@ -363,7 +363,7 @@ function ProjectsAdminContent() {
                     type="date"
                     value={formData.start_date}
                     onChange={(e) => setFormData({ ...formData, start_date: e.target.value })}
-                    className="w-full px-3.5 py-2 rounded-xl bg-slate-900 border border-white/10 text-white text-xs focus:outline-none focus:border-indigo-500"
+                    className="w-full px-3.5 py-2 rounded-xl bg-slate-900 border border-white/10 text-white text-xs focus:outline-none focus:border-cyan-400"
                   />
                 </div>
                 <div className="space-y-1">
@@ -372,7 +372,7 @@ function ProjectsAdminContent() {
                     type="date"
                     value={formData.expected_end_date}
                     onChange={(e) => setFormData({ ...formData, expected_end_date: e.target.value })}
-                    className="w-full px-3.5 py-2 rounded-xl bg-slate-900 border border-white/10 text-white text-xs focus:outline-none focus:border-indigo-500"
+                    className="w-full px-3.5 py-2 rounded-xl bg-slate-900 border border-white/10 text-white text-xs focus:outline-none focus:border-cyan-400"
                   />
                 </div>
               </div>
@@ -388,7 +388,7 @@ function ProjectsAdminContent() {
                   max="100"
                   value={formData.progress}
                   onChange={(e) => setFormData({ ...formData, progress: Number(e.target.value) })}
-                  className="w-full accent-indigo-500"
+                  className="w-full accent-cyan-400"
                 />
               </div>
 
@@ -400,7 +400,7 @@ function ProjectsAdminContent() {
                     value={formData.live_url}
                     onChange={(e) => setFormData({ ...formData, live_url: e.target.value })}
                     placeholder="https://..."
-                    className="w-full px-3.5 py-2 rounded-xl bg-slate-900 border border-white/10 text-white text-xs focus:outline-none focus:border-indigo-500"
+                    className="w-full px-3.5 py-2 rounded-xl bg-slate-900 border border-white/10 text-white text-xs focus:outline-none focus:border-cyan-400"
                   />
                 </div>
                 <div className="space-y-1">
@@ -410,7 +410,7 @@ function ProjectsAdminContent() {
                     value={formData.repository_url}
                     onChange={(e) => setFormData({ ...formData, repository_url: e.target.value })}
                     placeholder="https://github.com/..."
-                    className="w-full px-3.5 py-2 rounded-xl bg-slate-900 border border-white/10 text-white text-xs focus:outline-none focus:border-indigo-500"
+                    className="w-full px-3.5 py-2 rounded-xl bg-slate-900 border border-white/10 text-white text-xs focus:outline-none focus:border-cyan-400"
                   />
                 </div>
               </div>
@@ -422,7 +422,7 @@ function ProjectsAdminContent() {
                   value={formData.technologies}
                   onChange={(e) => setFormData({ ...formData, technologies: e.target.value })}
                   placeholder="Next.js, React, Tailwind CSS, PostgreSQL"
-                  className="w-full px-3.5 py-2 rounded-xl bg-slate-900 border border-white/10 text-white text-xs focus:outline-none focus:border-indigo-500"
+                  className="w-full px-3.5 py-2 rounded-xl bg-slate-900 border border-white/10 text-white text-xs focus:outline-none focus:border-cyan-400"
                 />
               </div>
 
@@ -437,7 +437,7 @@ function ProjectsAdminContent() {
                 <button
                   type="submit"
                   disabled={saving}
-                  className="px-6 py-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-xs font-bold shadow-md shadow-indigo-600/30"
+                  className="px-6 py-2 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-600 to-violet-600 text-white text-xs font-bold shadow-md shadow-cyan-500/25"
                 >
                   {saving ? 'Creating Project...' : 'Initialize Project'}
                 </button>

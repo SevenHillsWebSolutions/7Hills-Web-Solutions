@@ -156,7 +156,7 @@ export default function EnquiriesAdminPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search enquiries by code, client name, subject, or email..."
-              className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white placeholder-slate-500 text-xs focus:outline-none focus:border-indigo-500"
+              className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white placeholder-slate-500 text-xs focus:outline-none focus:border-cyan-400"
             />
           </form>
 
@@ -165,7 +165,7 @@ export default function EnquiriesAdminPage() {
             <select
               value={selectedStatus}
               onChange={(e) => setSelectedStatus(e.target.value)}
-              className="px-3 py-2 rounded-xl bg-slate-900 border border-white/10 text-white text-xs focus:outline-none focus:border-indigo-500"
+              className="px-3 py-2 rounded-xl bg-slate-900 border border-white/10 text-white text-xs focus:outline-none focus:border-cyan-400"
             >
               {statuses.map((s) => (
                 <option key={s} value={s}>{s}</option>
@@ -178,7 +178,7 @@ export default function EnquiriesAdminPage() {
         <div className="glass-panel rounded-2xl border-white/10 overflow-hidden">
           {loading ? (
             <div className="p-12 text-center text-slate-400 text-xs flex items-center justify-center gap-2">
-              <Loader2 className="w-4 h-4 animate-spin text-indigo-400" />
+              <Loader2 className="w-4 h-4 animate-spin text-cyan-400" />
               <span>Loading enquiries...</span>
             </div>
           ) : enquiries.length === 0 ? (
@@ -224,7 +224,7 @@ export default function EnquiriesAdminPage() {
                       <td className="p-4 text-right whitespace-nowrap">
                         <button
                           onClick={() => handleOpenDetail(enq)}
-                          className="px-3 py-1.5 rounded-lg bg-indigo-600/20 text-indigo-300 hover:bg-indigo-600 hover:text-white border border-indigo-500/30 transition-all font-semibold flex items-center gap-1 ml-auto cursor-pointer"
+                          className="px-3 py-1.5 rounded-lg bg-cyan-500/20 text-cyan-300 hover:bg-cyan-500 hover:text-white border border-cyan-500/30 transition-all font-semibold flex items-center gap-1 ml-auto cursor-pointer"
                         >
                           <Eye className="w-3.5 h-3.5" />
                           <span>View Details</span>
@@ -269,7 +269,7 @@ export default function EnquiriesAdminPage() {
               <div className="space-y-1">
                 <span className="text-slate-500 font-medium block">Lead Name</span>
                 <span className="text-white font-semibold flex items-center gap-1.5">
-                  <Building className="w-3.5 h-3.5 text-indigo-400" />
+                  <Building className="w-3.5 h-3.5 text-cyan-400" />
                   <span>{selectedEnquiry.name || selectedEnquiry.cust_name || 'Prospective Client'}</span>
                 </span>
               </div>
@@ -326,7 +326,7 @@ export default function EnquiriesAdminPage() {
                     onClick={() => handleStatusChange(st)}
                     className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
                       selectedEnquiry.status === st
-                        ? 'bg-indigo-600 text-white shadow-md'
+                        ? 'bg-cyan-500 text-white shadow-md'
                         : 'bg-slate-900 text-slate-400 hover:text-white hover:bg-slate-800'
                     }`}
                   >
@@ -353,7 +353,7 @@ export default function EnquiriesAdminPage() {
                 value={noteText}
                 onChange={(e) => setNoteText(e.target.value)}
                 placeholder="Add private operational notes, follow-up dates, call summaries..."
-                className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white placeholder-slate-500 text-xs focus:outline-none focus:border-indigo-500"
+                className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white placeholder-slate-500 text-xs focus:outline-none focus:border-cyan-400"
               />
             </div>
 

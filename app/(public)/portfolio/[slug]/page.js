@@ -64,11 +64,11 @@ export default async function PortfolioDetailPage({ params }) {
         {/* Hero Section of Case Study */}
         <div className="space-y-6">
           <div className="flex flex-wrap items-center gap-3">
-            <span className="px-3 py-1 rounded-full text-xs font-semibold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+            <span className="px-3 py-1 rounded-full text-xs font-semibold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
               {project.category}
             </span>
             {project.featured === 1 && (
-              <span className="px-3 py-1 rounded-full text-xs font-semibold bg-amber-500/20 text-amber-300 border border-amber-500/30 flex items-center gap-1">
+              <span className="px-3 py-1 rounded-full text-xs font-semibold bg-violet-500/20 text-violet-300 border border-violet-500/30 flex items-center gap-1">
                 <Sparkles className="w-3.5 h-3.5" />
                 <span>Featured Project</span>
               </span>
@@ -88,7 +88,7 @@ export default async function PortfolioDetailPage({ params }) {
             <div>
               <span className="text-slate-500 block mb-1 font-medium">Client / Organization</span>
               <span className="text-white font-semibold flex items-center gap-1.5">
-                <Building className="w-3.5 h-3.5 text-indigo-400" />
+                <Building className="w-3.5 h-3.5 text-cyan-400" />
                 <span>{project.client_name || 'Confidential'}</span>
               </span>
             </div>
@@ -104,7 +104,7 @@ export default async function PortfolioDetailPage({ params }) {
             <div>
               <span className="text-slate-500 block mb-1 font-medium">Primary Architecture</span>
               <span className="text-white font-semibold flex items-center gap-1.5">
-                <Tag className="w-3.5 h-3.5 text-emerald-400" />
+                <Tag className="w-3.5 h-3.5 text-cyan-400" />
                 <span>{project.category}</span>
               </span>
             </div>
@@ -153,7 +153,7 @@ export default async function PortfolioDetailPage({ params }) {
 
           {/* Solution */}
           <div className="glass-panel p-8 sm:p-10 rounded-3xl space-y-4 border-emerald-500/20 relative">
-            <div className="flex items-center gap-2 text-emerald-400 text-xs font-bold uppercase tracking-wider">
+            <div className="flex items-center gap-2 text-cyan-400 text-xs font-bold uppercase tracking-wider">
               <CheckCircle2 className="w-4 h-4" />
               <span>Engineered Solution</span>
             </div>
@@ -188,7 +188,7 @@ export default async function PortfolioDetailPage({ params }) {
                 key={idx}
                 className="px-4 py-2 rounded-xl glass-panel text-sm font-semibold text-slate-200 border-white/10 flex items-center gap-2"
               >
-                <Code2 className="w-4 h-4 text-indigo-400" />
+                <Code2 className="w-4 h-4 text-cyan-400" />
                 <span>{tech}</span>
               </span>
             ))}
@@ -213,7 +213,7 @@ export default async function PortfolioDetailPage({ params }) {
                   />
                   <div className="space-y-1">
                     <span className="text-[11px] text-cyan-400 font-semibold uppercase">{rel.category}</span>
-                    <h3 className="text-base font-bold text-white group-hover:text-indigo-300 transition-colors line-clamp-1">
+                    <h3 className="text-base font-bold text-white group-hover:text-cyan-300 transition-colors line-clamp-1">
                       {rel.title}
                     </h3>
                     <p className="text-xs text-slate-400 line-clamp-2">{rel.description}</p>
@@ -225,7 +225,7 @@ export default async function PortfolioDetailPage({ params }) {
         )}
 
         {/* Bottom CTA */}
-        <div className="glass-panel p-8 sm:p-12 rounded-3xl border-indigo-500/20 text-center space-y-6">
+        <div className="glass-panel p-8 sm:p-12 rounded-3xl border-cyan-500/25 text-center space-y-6">
           <h2 className="text-2xl sm:text-3xl font-extrabold text-white">Need a Similar Solution for Your Business?</h2>
           <p className="text-slate-300 text-sm max-w-xl mx-auto">
             We can architect and deliver a high-performance web platform tailored to your specific operational workflows.
@@ -233,7 +233,7 @@ export default async function PortfolioDetailPage({ params }) {
           <div className="pt-2">
             <Link
               href="/start-project"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500 text-white font-bold text-sm shadow-xl shadow-indigo-600/30 hover:scale-105 transition-all"
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-600 to-violet-600 text-white font-bold text-sm shadow-xl shadow-cyan-500/25 hover:scale-105 transition-all"
             >
               <span>Submit Your Project Requirements</span>
               <ArrowRight className="w-4 h-4" />

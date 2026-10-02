@@ -109,7 +109,7 @@ export default function FilesAdminPage() {
 
           <button
             onClick={() => setShowUploadModal(true)}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white text-xs font-bold shadow-md shadow-indigo-600/30 cursor-pointer"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-600 to-violet-600 hover:from-cyan-400 hover:via-blue-500 hover:to-violet-500 text-white text-xs font-bold shadow-md shadow-cyan-500/25 cursor-pointer"
           >
             <UploadCloud className="w-4 h-4" />
             <span>Upload Document</span>
@@ -121,11 +121,11 @@ export default function FilesAdminPage() {
           {files.map((file) => (
             <div
               key={file.id}
-              className="glass-panel p-5 rounded-2xl border-white/10 space-y-4 hover:border-indigo-500/30 transition-all flex flex-col justify-between"
+              className="glass-panel p-5 rounded-2xl border-white/10 space-y-4 hover:border-cyan-500/30 transition-all flex flex-col justify-between"
             >
               <div className="space-y-3">
                 <div className="flex items-start justify-between gap-2">
-                  <div className="w-10 h-10 rounded-xl bg-indigo-500/15 text-indigo-400 flex items-center justify-center shrink-0 border border-indigo-500/25">
+                  <div className="w-10 h-10 rounded-xl bg-cyan-500/15 text-cyan-400 flex items-center justify-center shrink-0 border border-cyan-400/25">
                     <FileText className="w-5 h-5" />
                   </div>
                   <button
@@ -207,7 +207,7 @@ export default function FilesAdminPage() {
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-2 rounded-xl bg-indigo-600 text-white font-bold"
+                  className="px-5 py-2 rounded-xl bg-cyan-500 text-white font-bold"
                 >
                   Save to Vault
                 </button>

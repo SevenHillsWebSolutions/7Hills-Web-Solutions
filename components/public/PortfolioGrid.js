@@ -32,7 +32,7 @@ export default function PortfolioGrid({ projects }) {
             onClick={() => setSelectedCategory(category)}
             className={`px-4 py-2 text-xs sm:text-sm font-semibold rounded-xl transition-all duration-200 cursor-pointer ${
               selectedCategory === category
-                ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg shadow-indigo-600/30 scale-105'
+                ? 'bg-gradient-to-r from-cyan-500 via-blue-600 to-violet-600 text-white shadow-lg shadow-cyan-500/25 scale-105'
                 : 'glass-panel text-slate-400 hover:text-white hover:bg-slate-800/80 border-white/5'
             }`}
           >
@@ -47,7 +47,7 @@ export default function PortfolioGrid({ projects }) {
           <p className="text-slate-400 text-base">No published projects found under &ldquo;{selectedCategory}&rdquo;.</p>
           <button
             onClick={() => setSelectedCategory('All')}
-            className="text-xs font-semibold text-indigo-400 hover:underline"
+            className="text-xs font-semibold text-cyan-400 hover:underline"
           >
             Reset filter to view all projects
           </button>
@@ -61,7 +61,7 @@ export default function PortfolioGrid({ projects }) {
             return (
               <div
                 key={project.id}
-                className="glass-panel glass-panel-hover rounded-2xl overflow-hidden flex flex-col group border-white/10"
+                className="glass-panel glass-panel-hover rounded-2xl overflow-hidden flex flex-col group border-cyan-500/15"
               >
                 {/* Thumbnail */}
                 <div className="relative h-60 w-full overflow-hidden bg-slate-900">
@@ -70,7 +70,7 @@ export default function PortfolioGrid({ projects }) {
                     alt={project.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#090d16] via-transparent to-transparent opacity-85" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#060c1f] via-transparent to-transparent opacity-85" />
                   
                   {/* Category Pill */}
                   <div className="absolute top-4 left-4 flex gap-2">
@@ -78,8 +78,8 @@ export default function PortfolioGrid({ projects }) {
                       {project.category}
                     </span>
                     {project.featured === 1 && (
-                      <span className="px-2.5 py-1 rounded-full text-xs font-medium bg-amber-500/20 text-amber-300 border border-amber-500/40 backdrop-blur-md flex items-center gap-1">
-                        <Sparkles className="w-3 h-3" />
+                      <span className="px-2.5 py-1 rounded-full text-xs font-medium bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 backdrop-blur-md flex items-center gap-1 shadow-[0_0_10px_rgba(0,229,255,0.2)]">
+                        <Sparkles className="w-3 h-3 text-cyan-400" />
                         <span>Featured</span>
                       </span>
                     )}
@@ -90,7 +90,7 @@ export default function PortfolioGrid({ projects }) {
                 <div className="p-6 flex-1 flex flex-col justify-between space-y-5">
                   <div className="space-y-3">
                     <div className="flex items-center justify-between text-xs text-slate-400">
-                      <span className="flex items-center gap-1.5 text-indigo-400 font-medium">
+                      <span className="flex items-center gap-1.5 text-cyan-400 font-medium">
                         <Building className="w-3.5 h-3.5" />
                         <span>{project.client_name || 'Client Deliverable'}</span>
                       </span>
@@ -130,7 +130,7 @@ export default function PortfolioGrid({ projects }) {
                     <div className="flex items-center justify-between pt-4 border-t border-white/5 text-xs">
                       <Link
                         href={`/portfolio/${project.slug}`}
-                        className="font-semibold text-white hover:text-indigo-400 flex items-center gap-1 group/btn"
+                        className="font-semibold text-white hover:text-cyan-300 flex items-center gap-1 group/btn"
                       >
                         <span>View case study</span>
                         <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />

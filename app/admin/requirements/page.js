@@ -108,7 +108,7 @@ export default function RequirementsAdminPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search requirements by code, client name, email, or website type..."
-              className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white placeholder-slate-500 text-xs focus:outline-none focus:border-indigo-500"
+              className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white placeholder-slate-500 text-xs focus:outline-none focus:border-cyan-400"
             />
           </form>
 
@@ -117,7 +117,7 @@ export default function RequirementsAdminPage() {
             <select
               value={selectedStatus}
               onChange={(e) => setSelectedStatus(e.target.value)}
-              className="px-3 py-2 rounded-xl bg-slate-900 border border-white/10 text-white text-xs focus:outline-none focus:border-indigo-500"
+              className="px-3 py-2 rounded-xl bg-slate-900 border border-white/10 text-white text-xs focus:outline-none focus:border-cyan-400"
             >
               {statuses.map((s) => (
                 <option key={s} value={s}>{s}</option>
@@ -130,7 +130,7 @@ export default function RequirementsAdminPage() {
         <div className="glass-panel rounded-2xl border-white/10 overflow-hidden">
           {loading ? (
             <div className="p-12 text-center text-slate-400 text-xs flex items-center justify-center gap-2">
-              <Loader2 className="w-4 h-4 animate-spin text-indigo-400" />
+              <Loader2 className="w-4 h-4 animate-spin text-cyan-400" />
               <span>Loading requirement submissions...</span>
             </div>
           ) : requirements.length === 0 ? (
@@ -180,7 +180,7 @@ export default function RequirementsAdminPage() {
                       <td className="p-4 text-right whitespace-nowrap">
                         <button
                           onClick={() => setViewingReq(req)}
-                          className="px-3 py-1.5 rounded-lg bg-indigo-600/20 text-indigo-300 hover:bg-indigo-600 hover:text-white border border-indigo-500/30 transition-all font-semibold flex items-center gap-1 ml-auto cursor-pointer"
+                          className="px-3 py-1.5 rounded-lg bg-cyan-500/20 text-cyan-300 hover:bg-cyan-500 hover:text-white border border-cyan-500/30 transition-all font-semibold flex items-center gap-1 ml-auto cursor-pointer"
                         >
                           <Eye className="w-3.5 h-3.5" />
                           <span>Inspect</span>
@@ -233,7 +233,7 @@ export default function RequirementsAdminPage() {
             {/* Scope & Objectives */}
             <div className="space-y-3 text-xs">
               <div className="p-4 rounded-xl bg-slate-900/40 border border-white/5 space-y-1">
-                <span className="font-bold text-indigo-400 uppercase">Primary Objective:</span>
+                <span className="font-bold text-cyan-400 uppercase">Primary Objective:</span>
                 <p className="text-slate-200">{viewingReq.purpose || 'Not specified'}</p>
               </div>
 
@@ -305,7 +305,7 @@ export default function RequirementsAdminPage() {
                     onClick={() => handleStatusChange(s)}
                     className={`px-3 py-1.5 rounded-lg text-xs font-semibold cursor-pointer transition-all ${
                       viewingReq.status === s
-                        ? 'bg-indigo-600 text-white shadow-md'
+                        ? 'bg-cyan-500 text-white shadow-md'
                         : 'bg-slate-900 text-slate-400 hover:text-white hover:bg-slate-800'
                     }`}
                   >
@@ -319,7 +319,7 @@ export default function RequirementsAdminPage() {
             <div className="pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-3">
               <Link
                 href={`/admin/projects?create_from_req=${viewingReq.id}&cust_id=${viewingReq.customer_id}&name=${encodeURIComponent(viewingReq.website_type + ' - ' + viewingReq.customer_name)}`}
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white text-xs font-bold shadow-lg shadow-indigo-600/30"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-600 to-violet-600 hover:from-cyan-400 hover:via-blue-500 hover:to-violet-500 text-white text-xs font-bold shadow-lg shadow-cyan-500/25"
               >
                 <FolderPlus className="w-4 h-4" />
                 <span>Initialize Project From This Requirement</span>

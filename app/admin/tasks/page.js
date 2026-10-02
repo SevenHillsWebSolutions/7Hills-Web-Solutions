@@ -132,7 +132,7 @@ export default function TasksAdminPage() {
                 onClick={() => setStatusFilter(st)}
                 className={`px-3 py-1.5 rounded-xl text-xs font-semibold cursor-pointer transition-all ${
                   statusFilter === st
-                    ? 'bg-indigo-600 text-white shadow-md'
+                    ? 'bg-cyan-500 text-white shadow-md'
                     : 'bg-slate-900 text-slate-400 hover:text-white'
                 }`}
               >
@@ -143,7 +143,7 @@ export default function TasksAdminPage() {
 
           <button
             onClick={() => setShowAddModal(true)}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white text-xs font-bold shadow-md shadow-indigo-600/30 cursor-pointer"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-600 to-violet-600 hover:from-cyan-400 hover:via-blue-500 hover:to-violet-500 text-white text-xs font-bold shadow-md shadow-cyan-500/25 cursor-pointer"
           >
             <Plus className="w-4 h-4" />
             <span>Assign New Task</span>
@@ -154,7 +154,7 @@ export default function TasksAdminPage() {
         <div className="glass-panel rounded-2xl border-white/10 overflow-hidden">
           {loading ? (
             <div className="p-12 text-center text-slate-400 text-xs flex items-center justify-center gap-2">
-              <Loader2 className="w-4 h-4 animate-spin text-indigo-400" />
+              <Loader2 className="w-4 h-4 animate-spin text-cyan-400" />
               <span>Loading tasks...</span>
             </div>
           ) : tasks.length === 0 ? (
@@ -174,7 +174,7 @@ export default function TasksAdminPage() {
                       className={`w-5 h-5 rounded-lg flex items-center justify-center border mt-0.5 transition-all cursor-pointer ${
                         task.status === 'Done'
                           ? 'bg-emerald-500 border-emerald-400 text-white'
-                          : 'border-white/20 hover:border-indigo-400 text-transparent'
+                          : 'border-white/20 hover:border-cyan-400 text-transparent'
                       }`}
                     >
                       <Check className="w-3.5 h-3.5" />
@@ -210,7 +210,7 @@ export default function TasksAdminPage() {
                     <span className="text-[11px] px-2.5 py-0.5 rounded-full bg-slate-800 text-slate-300 font-semibold border border-white/5">
                       {task.priority || 'Medium'}
                     </span>
-                    <span className="text-[11px] px-2.5 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 font-semibold border border-indigo-500/30">
+                    <span className="text-[11px] px-2.5 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 font-semibold border border-cyan-500/30">
                       {task.status}
                     </span>
                     <button
@@ -303,7 +303,7 @@ export default function TasksAdminPage() {
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-2 rounded-xl bg-indigo-600 text-white font-bold"
+                  className="px-5 py-2 rounded-xl bg-cyan-500 text-white font-bold"
                 >
                   Create Task
                 </button>

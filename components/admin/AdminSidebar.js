@@ -59,12 +59,12 @@ export default function AdminSidebar({ user }) {
       {/* Brand Header */}
       <div className="p-5 border-b border-white/10 flex items-center justify-between">
         <Link href="/admin" className="flex flex-col gap-1 group">
-          <div className="relative h-10 w-40">
+          <div className="relative h-10 w-40 px-2 py-0.5 bg-white rounded-xl shadow-[0_0_12px_rgba(0,229,255,0.3)] border border-cyan-400/40 flex items-center justify-center">
             <Image 
               src="/logo.png" 
               alt="7Hills Web Solutions" 
               fill 
-              className="object-contain drop-shadow-[0_0_12px_rgba(0,229,255,0.3)]"
+              className="object-contain p-0.5"
             />
           </div>
           <div className="flex items-center justify-between text-[10px] text-slate-400 px-1">
@@ -89,7 +89,7 @@ export default function AdminSidebar({ user }) {
               href={item.href}
               className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-medium transition-all ${
                 active
-                  ? 'bg-gradient-to-r from-blue-600/30 to-indigo-600/30 text-white border border-indigo-500/40 shadow-sm'
+                  ? 'bg-gradient-to-r from-cyan-500/20 via-blue-600/25 to-violet-600/20 text-white border border-cyan-400/40 shadow-sm'
                   : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900/60'
               }`}
             >
@@ -97,7 +97,7 @@ export default function AdminSidebar({ user }) {
                 <Icon className={`w-4 h-4 ${active ? 'text-cyan-400' : 'text-slate-500'}`} />
                 <span>{item.name}</span>
               </div>
-              {active && <ChevronRight className="w-3.5 h-3.5 text-indigo-400" />}
+              {active && <ChevronRight className="w-3.5 h-3.5 text-cyan-400" />}
             </Link>
           );
         })}
@@ -111,7 +111,7 @@ export default function AdminSidebar({ user }) {
           className="flex items-center justify-between px-3.5 py-2 rounded-xl text-xs text-slate-400 hover:text-white hover:bg-slate-900/60 transition-colors"
         >
           <div className="flex items-center gap-2">
-            <ExternalLink className="w-3.5 h-3.5 text-indigo-400" />
+            <ExternalLink className="w-3.5 h-3.5 text-cyan-400" />
             <span>Public Agency Site</span>
           </div>
           <span className="text-[10px] text-slate-500">View</span>

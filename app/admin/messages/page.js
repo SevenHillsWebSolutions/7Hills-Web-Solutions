@@ -97,7 +97,7 @@ export default function MessagesAdminPage() {
           <div className="lg:col-span-7 glass-panel rounded-2xl border-white/10 overflow-hidden divide-y divide-white/5">
             {loading ? (
               <div className="p-12 text-center text-slate-400 text-xs flex items-center justify-center gap-2">
-                <Loader2 className="w-4 h-4 animate-spin text-indigo-400" />
+                <Loader2 className="w-4 h-4 animate-spin text-cyan-400" />
                 <span>Loading messages...</span>
               </div>
             ) : messages.length === 0 ? (
@@ -111,7 +111,7 @@ export default function MessagesAdminPage() {
                   onClick={() => handleOpenMessage(msg)}
                   className={`p-4 sm:p-5 cursor-pointer transition-colors space-y-2 ${
                     selectedMsg?.id === msg.id
-                      ? 'bg-indigo-600/15 border-l-4 border-indigo-500'
+                      ? 'bg-cyan-500/15 border-l-4 border-cyan-400'
                       : msg.status === 'Unread'
                       ? 'bg-slate-900/70 hover:bg-slate-900'
                       : 'hover:bg-slate-900/40 opacity-80'
