@@ -9,12 +9,16 @@ export const metadata = {
 };
 
 export default async function PortfolioPage() {
-  // Fetch real published projects from database
-  const projects = await sql`
-    SELECT * FROM portfolio
-    WHERE published = 1
-    ORDER BY featured DESC, completion_date DESC, id DESC
-  `;
+  let projects = [];
+  try {
+    projects = await sql`
+      SELECT * FROM portfolio
+      WHERE published = 1
+      ORDER BY featured DESC, completion_date DESC, id DESC
+    `;
+  } catch (err) {
+    console.warn('Portfolio query during render (DB not configured yet):', err.message);
+  }
 
   return (
     <div className="py-12 md:py-20">

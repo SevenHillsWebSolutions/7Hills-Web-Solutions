@@ -19,22 +19,25 @@ import {
   Activity,
   Award
 } from 'lucide-react';
-import getDb from '@/lib/db';
+import { sql } from '@/lib/db';
 
 export const metadata = {
   title: "7Hills Web Solutions | Modern Web Development Agency",
   description: "Bespoke website development, high-conversion e-commerce stores, and enterprise web applications engineered for speed, scale, and business growth.",
 };
 
-export default function HomePage() {
-  const db = getDb();
-  // Fetch real featured portfolio items from database (SRS Section 19 compliance: no mock data!)
-  const featuredPortfolio = db.prepare(`
-    SELECT * FROM portfolio 
-    WHERE published = 1 
-    ORDER BY featured DESC, id ASC 
-    LIMIT 3
-  `).all();
+export default async function HomePage() {
+  let featuredPortfolio = [];
+  try {
+    featuredPortfolio = await sql`
+      SELECT * FROM portfolio 
+      WHERE published = 1 
+      ORDER BY featured DESC, id ASC 
+      LIMIT 3
+    `;
+  } catch (err) {
+    console.warn('Portfolio query during render (DB not configured yet):', err.message);
+  }
 
   const servicesPreview = [
     {
