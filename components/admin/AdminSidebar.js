@@ -18,12 +18,15 @@ import {
   ShieldCheck, 
   ExternalLink,
   ChevronRight,
-  Sparkles
+  Sparkles,
+  X
 } from 'lucide-react';
+import { useAdminUI } from './AdminUIContext';
 
 export default function AdminSidebar({ user }) {
   const pathname = usePathname();
   const router = useRouter();
+  const { mobileMenuOpen, closeMobileMenu } = useAdminUI();
 
   const navItems = [
     { name: 'Dashboard', href: '/admin', icon: LayoutDashboard },
@@ -41,10 +44,13 @@ export default function AdminSidebar({ user }) {
   const handleLogout = async () => {
     try {
       await fetch('/api/auth/logout', { method: 'POST' });
-      router.push('/admin/login');
-      router.refresh();
+      if (typeof window !== 'undefined') {
+        window.location.href = '/admin/login';
+      }
     } catch (e) {
-      router.push('/admin/login');
+      if (typeof window !== 'undefined') {
+        window.location.href = '/admin/login';
+      }
     }
   };
 
@@ -54,11 +60,15 @@ export default function AdminSidebar({ user }) {
     return false;
   };
 
-  return (
-    <aside className="w-64 bg-[#070b13] border-r border-white/10 flex flex-col shrink-0 min-h-screen">
+  const renderSidebarContent = (isMobile = false) => (
+    <div className="flex flex-col h-full bg-[#070b13] text-slate-100">
       {/* Brand Header */}
       <div className="p-5 border-b border-white/10 flex items-center justify-between">
-        <Link href="/admin" className="flex flex-col gap-1 group">
+        <Link 
+          href="/admin" 
+          onClick={isMobile ? closeMobileMenu : undefined}
+          className="flex flex-col gap-1 group"
+        >
           <div className="relative h-10 w-40 px-2 py-0.5 bg-white rounded-xl shadow-[0_0_12px_rgba(0,229,255,0.3)] border border-cyan-400/40 flex items-center justify-center">
             <Image 
               src="/logo-sm.webp" 
@@ -73,9 +83,18 @@ export default function AdminSidebar({ user }) {
             <span className="px-1.5 py-0.2 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 font-mono">v1.0</span>
           </div>
         </Link>
+
+        {isMobile && (
+          <button
+            onClick={closeMobileMenu}
+            className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        )}
       </div>
 
-      {/* Navigation List (SRS Section 9) */}
+      {/* Navigation List */}
       <nav className="flex-1 p-3 space-y-1 overflow-y-auto">
         <div className="px-3 py-2 text-[10px] font-bold uppercase tracking-wider text-slate-500">
           Management Modules
@@ -88,6 +107,7 @@ export default function AdminSidebar({ user }) {
             <Link
               key={item.name}
               href={item.href}
+              onClick={isMobile ? closeMobileMenu : undefined}
               className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-medium transition-all ${
                 active
                   ? 'bg-gradient-to-r from-cyan-500/20 via-blue-600/25 to-violet-600/20 text-white border border-cyan-400/40 shadow-sm'
@@ -134,6 +154,28 @@ export default function AdminSidebar({ user }) {
           </div>
         )}
       </div>
-    </aside>
+    </div>
+  );
+
+  return (
+    <>
+      {/* Desktop Persistent Sidebar */}
+      <aside className="hidden md:flex w-64 bg-[#070b13] border-r border-white/10 flex-col shrink-0 min-h-screen sticky top-0 h-screen z-30">
+        {renderSidebarContent(false)}
+      </aside>
+
+      {/* Mobile Slide-over Drawer */}
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 z-50 md:hidden flex">
+          <div 
+            className="fixed inset-0 bg-black/80 backdrop-blur-sm transition-opacity" 
+            onClick={closeMobileMenu} 
+          />
+          <div className="relative w-64 max-w-[80vw] h-full shadow-2xl z-10 border-r border-white/10">
+            {renderSidebarContent(true)}
+          </div>
+        </div>
+      )}
+    </>
   );
 }

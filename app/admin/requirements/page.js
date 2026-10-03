@@ -24,6 +24,7 @@ import {
 } from 'lucide-react';
 import { formatDate } from '@/lib/utils';
 import Link from 'next/link';
+import { adminFetch } from '@/lib/adminApi';
 
 export default function RequirementsAdminPage() {
   const [requirements, setRequirements] = useState([]);
@@ -50,7 +51,8 @@ export default function RequirementsAdminPage() {
       const s = statusOverride !== undefined ? statusOverride : selectedStatus;
       if (s && s !== 'All') query.append('status', s);
 
-      const res = await fetch(`/api/requirements?${query.toString()}`);
+      const res = await adminFetch(`/api/requirements?${query.toString()}`);
+      if (!res) return;
       const data = await res.json();
       if (data.requirements) {
         setRequirements(data.requirements);
@@ -77,14 +79,17 @@ export default function RequirementsAdminPage() {
     if (!viewingReq) return;
     setUpdating(true);
     try {
-      const res = await fetch('/api/requirements', {
+      const res = await adminFetch('/api/requirements', {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ id: viewingReq.id, status: newStatus }),
       });
-      if (res.ok) {
+      if (res && res.ok) {
         setViewingReq((prev) => ({ ...prev, status: newStatus }));
         fetchRequirements();
+      } else {
+        const err = await res?.json().catch(() => ({}));
+        alert(err?.error || 'Failed to update requirement status');
       }
     } catch (e) {
       alert('Error updating status');

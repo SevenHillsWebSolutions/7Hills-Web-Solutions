@@ -18,6 +18,7 @@ import {
   Sparkles
 } from 'lucide-react';
 import SendEmailModal from '@/components/admin/SendEmailModal';
+import { adminFetch } from '@/lib/adminApi';
 
 export default function SettingsAdminPage() {
   const [data, setData] = useState(null);
@@ -32,7 +33,8 @@ export default function SettingsAdminPage() {
 
   const fetchSettings = async () => {
     try {
-      const res = await fetch('/api/admin/settings');
+      const res = await adminFetch('/api/admin/settings');
+      if (!res) return;
       const json = await res.json();
       if (json.user) {
         setData(json);
@@ -56,7 +58,7 @@ export default function SettingsAdminPage() {
     setSaving(true);
     setFeedback(null);
     try {
-      const res = await fetch('/api/admin/settings', {
+      const res = await adminFetch('/api/admin/settings', {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -66,6 +68,7 @@ export default function SettingsAdminPage() {
           newPassword: newPassword || undefined,
         }),
       });
+      if (!res) return;
       const resData = await res.json();
       if (!res.ok) throw new Error(resData.error || 'Failed to update settings');
 

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { X, Mail, Send, Loader2, CheckCircle2, AlertCircle } from 'lucide-react';
+import { adminFetch } from '@/lib/adminApi';
 
 export default function SendEmailModal({
   isOpen,
@@ -38,7 +39,7 @@ export default function SendEmailModal({
     setResult(null);
 
     try {
-      const res = await fetch('/api/admin/send-email', {
+      const res = await adminFetch('/api/admin/send-email', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -49,6 +50,7 @@ export default function SendEmailModal({
         }),
       });
 
+      if (!res) return;
       const data = await res.json();
 
       if (res.ok) {

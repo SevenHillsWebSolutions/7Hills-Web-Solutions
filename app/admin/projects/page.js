@@ -4,6 +4,7 @@ import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import AdminHeader from '@/components/admin/AdminHeader';
 import StatusBadge from '@/components/admin/StatusBadge';
+import { adminFetch } from '@/lib/adminApi';
 import { 
   FolderKanban, 
   Search, 
@@ -70,7 +71,7 @@ function ProjectsAdminContent() {
       const s = statusOverride !== undefined ? statusOverride : selectedStatus;
       if (s && s !== 'All') query.append('status', s);
 
-      const res = await fetch(`/api/projects?${query.toString()}`);
+      const res = await adminFetch(`/api/projects?${query.toString()}`);
       const data = await res.json();
       if (data.projects) {
         setProjects(data.projects);
@@ -84,7 +85,7 @@ function ProjectsAdminContent() {
 
   const fetchCustomers = async () => {
     try {
-      const res = await fetch('/api/customers');
+      const res = await adminFetch('/api/customers');
       const data = await res.json();
       if (data.customers) {
         setCustomers(data.customers);
@@ -113,7 +114,7 @@ function ProjectsAdminContent() {
     e.preventDefault();
     setSaving(true);
     try {
-      const res = await fetch('/api/projects', {
+      const res = await adminFetch('/api/projects', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),

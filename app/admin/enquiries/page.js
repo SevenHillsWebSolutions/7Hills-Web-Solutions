@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import AdminHeader from '@/components/admin/AdminHeader';
 import StatusBadge from '@/components/admin/StatusBadge';
+import { adminFetch } from '@/lib/adminApi';
 import { 
   Search, 
   Filter, 
@@ -13,13 +14,13 @@ import {
   X, 
   AlertCircle, 
   Loader2, 
-  ExternalLink,
-  MessageSquare,
-  Building,
-  Mail,
-  Phone,
-  Calendar,
-  Plus
+  ExternalLink, 
+  MessageSquare, 
+  Building, 
+  Mail, 
+  Phone, 
+  Calendar, 
+  Plus 
 } from 'lucide-react';
 import { formatDate } from '@/lib/utils';
 import SendEmailModal from '@/components/admin/SendEmailModal';
@@ -54,7 +55,7 @@ export default function EnquiriesAdminPage() {
       const statusToUse = overrideStatus !== undefined ? overrideStatus : selectedStatus;
       if (statusToUse && statusToUse !== 'All') query.append('status', statusToUse);
 
-      const res = await fetch(`/api/enquiries?${query.toString()}`);
+      const res = await adminFetch(`/api/enquiries?${query.toString()}`);
       const data = await res.json();
       if (data.enquiries) {
         setEnquiries(data.enquiries);
@@ -86,13 +87,18 @@ export default function EnquiriesAdminPage() {
     if (!selectedEnquiry) return;
     setUpdating(true);
     try {
-      await fetch('/api/enquiries', {
+      const res = await adminFetch('/api/enquiries', {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ id: selectedEnquiry.id, status: newStatus }),
       });
-      setSelectedEnquiry((prev) => ({ ...prev, status: newStatus }));
-      fetchEnquiries();
+      const data = await res.json();
+      if (res.ok) {
+        setSelectedEnquiry((prev) => ({ ...prev, status: newStatus }));
+        fetchEnquiries();
+      } else {
+        alert(data.error || 'Failed to update status');
+      }
     } catch (e) {
       alert('Failed to update status');
     } finally {
@@ -104,14 +110,19 @@ export default function EnquiriesAdminPage() {
     if (!selectedEnquiry) return;
     setUpdating(true);
     try {
-      await fetch('/api/enquiries', {
+      const res = await adminFetch('/api/enquiries', {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ id: selectedEnquiry.id, notes: noteText }),
       });
-      setSelectedEnquiry((prev) => ({ ...prev, notes: noteText }));
-      fetchEnquiries();
-      alert('Internal notes saved successfully');
+      const data = await res.json();
+      if (res.ok) {
+        setSelectedEnquiry((prev) => ({ ...prev, notes: noteText }));
+        fetchEnquiries();
+        alert('Internal notes saved successfully');
+      } else {
+        alert(data.error || 'Failed to save notes');
+      }
     } catch (e) {
       alert('Failed to save notes');
     } finally {
@@ -125,7 +136,7 @@ export default function EnquiriesAdminPage() {
 
     setUpdating(true);
     try {
-      const res = await fetch('/api/enquiries', {
+      const res = await adminFetch('/api/enquiries', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ action: 'convert_to_customer', enquiryId: selectedEnquiry.id }),

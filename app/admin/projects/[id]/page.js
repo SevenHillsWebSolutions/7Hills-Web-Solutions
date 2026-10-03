@@ -4,6 +4,7 @@ import { useState, useEffect, use } from 'react';
 import Link from 'next/link';
 import AdminHeader from '@/components/admin/AdminHeader';
 import StatusBadge from '@/components/admin/StatusBadge';
+import { adminFetch } from '@/lib/adminApi';
 import { 
   ArrowLeft, 
   CheckSquare, 
@@ -76,7 +77,7 @@ export default function ProjectDetailPage({ params }) {
     if (!targetId) return;
 
     try {
-      const res = await fetch(`/api/projects`);
+      const res = await adminFetch(`/api/projects`);
       const data = await res.json();
       if (data.projects) {
         const found = data.projects.find((p) => String(p.id) === String(targetId));
@@ -98,7 +99,7 @@ export default function ProjectDetailPage({ params }) {
       }
 
       // Fetch linked tasks
-      const taskRes = await fetch(`/api/tasks?project_id=${targetId}`);
+      const taskRes = await adminFetch(`/api/tasks?project_id=${targetId}`);
       const taskData = await taskRes.json();
       if (taskData.tasks) {
         setTasks(taskData.tasks);
@@ -118,7 +119,7 @@ export default function ProjectDetailPage({ params }) {
   const handleUpdateProject = async () => {
     setSaving(true);
     try {
-      const res = await fetch('/api/projects', {
+      const res = await adminFetch('/api/projects', {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -131,11 +132,12 @@ export default function ProjectDetailPage({ params }) {
           completed_date: status === 'Completed' ? new Date().toISOString().split('T')[0] : null,
         }),
       });
+      const data = await res.json();
       if (res.ok) {
         alert('Project updated successfully.');
         fetchProjectData();
       } else {
-        alert('Failed to update project.');
+        alert(data.error || 'Failed to update project.');
       }
     } catch (e) {
       alert('Error updating project.');
@@ -148,7 +150,7 @@ export default function ProjectDetailPage({ params }) {
     e.preventDefault();
     if (!newTaskTitle) return;
     try {
-      const res = await fetch('/api/tasks', {
+      const res = await adminFetch('/api/tasks', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -158,10 +160,13 @@ export default function ProjectDetailPage({ params }) {
           due_date: newTaskDueDate || null,
         }),
       });
+      const data = await res.json();
       if (res.ok) {
         setNewTaskTitle('');
         setShowTaskModal(false);
         fetchProjectData();
+      } else {
+        alert(data.error || 'Failed to add task');
       }
     } catch (e) {
       alert('Error adding task');
@@ -171,12 +176,17 @@ export default function ProjectDetailPage({ params }) {
   const handleToggleTaskStatus = async (taskId, currentStatus) => {
     const nextStatus = currentStatus === 'Done' ? 'In Progress' : 'Done';
     try {
-      await fetch('/api/tasks', {
+      const res = await adminFetch('/api/tasks', {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ id: taskId, status: nextStatus }),
       });
-      fetchProjectData();
+      const data = await res.json();
+      if (res.ok) {
+        fetchProjectData();
+      } else {
+        alert(data.error || 'Failed to update task');
+      }
     } catch (e) {
       alert('Error updating task');
     }
@@ -185,8 +195,13 @@ export default function ProjectDetailPage({ params }) {
   const handleDeleteTask = async (taskId) => {
     if (!confirm('Delete this task?')) return;
     try {
-      await fetch(`/api/tasks?id=${taskId}`, { method: 'DELETE' });
-      fetchProjectData();
+      const res = await adminFetch(`/api/tasks?id=${taskId}`, { method: 'DELETE' });
+      const data = await res.json();
+      if (res.ok) {
+        fetchProjectData();
+      } else {
+        alert(data.error || 'Failed to delete task');
+      }
     } catch (e) {
       alert('Error deleting task');
     }
@@ -196,7 +211,7 @@ export default function ProjectDetailPage({ params }) {
     e.preventDefault();
     setSaving(true);
     try {
-      const res = await fetch('/api/portfolio', {
+      const res = await adminFetch('/api/portfolio', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

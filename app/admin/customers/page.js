@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import AdminHeader from '@/components/admin/AdminHeader';
+import { adminFetch } from '@/lib/adminApi';
 import { 
   Users, 
   Search, 
@@ -49,7 +50,7 @@ export default function CustomersAdminPage() {
     try {
       const q = searchTerm !== undefined ? searchTerm : search;
       const query = q ? `?search=${encodeURIComponent(q)}` : '';
-      const res = await fetch(`/api/customers${query}`);
+      const res = await adminFetch(`/api/customers${query}`);
       const data = await res.json();
       if (data.customers) {
         setCustomers(data.customers);
@@ -106,20 +107,22 @@ export default function CustomersAdminPage() {
     try {
       if (editingCustomer) {
         // Update
-        const res = await fetch('/api/customers', {
+        const res = await adminFetch('/api/customers', {
           method: 'PATCH',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ id: editingCustomer.id, ...formData }),
         });
-        if (!res.ok) throw new Error('Failed to update customer');
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Failed to update customer');
       } else {
         // Create
-        const res = await fetch('/api/customers', {
+        const res = await adminFetch('/api/customers', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(formData),
         });
-        if (!res.ok) throw new Error('Failed to create customer');
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Failed to create customer');
       }
 
       setShowAddModal(false);
@@ -135,11 +138,12 @@ export default function CustomersAdminPage() {
   const handleDeleteCustomer = async (id, name) => {
     if (!confirm(`Are you sure you want to delete customer record for "${name}"? This will also cascade delete related records.`)) return;
     try {
-      const res = await fetch(`/api/customers?id=${id}`, { method: 'DELETE' });
+      const res = await adminFetch(`/api/customers?id=${id}`, { method: 'DELETE' });
+      const data = await res.json();
       if (res.ok) {
         fetchCustomers();
       } else {
-        alert('Failed to delete customer');
+        alert(data.error || 'Failed to delete customer');
       }
     } catch (e) {
       alert('Error deleting customer');

@@ -19,6 +19,7 @@ import {
 } from 'lucide-react';
 import { formatDate } from '@/lib/utils';
 import SendEmailModal from '@/components/admin/SendEmailModal';
+import { adminFetch } from '@/lib/adminApi';
 
 export default function MessagesAdminPage() {
   const [messages, setMessages] = useState([]);
@@ -29,7 +30,8 @@ export default function MessagesAdminPage() {
 
   const fetchMessages = async () => {
     try {
-      const res = await fetch('/api/messages');
+      const res = await adminFetch('/api/messages');
+      if (!res) return;
       const data = await res.json();
       if (data.messages) {
         setMessages(data.messages);
@@ -48,15 +50,20 @@ export default function MessagesAdminPage() {
 
   const handleStatusUpdate = async (id, status) => {
     try {
-      await fetch('/api/messages', {
+      const res = await adminFetch('/api/messages', {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ id, status }),
       });
-      if (selectedMsg && selectedMsg.id === id) {
-        setSelectedMsg((prev) => ({ ...prev, status }));
+      if (res && res.ok) {
+        if (selectedMsg && selectedMsg.id === id) {
+          setSelectedMsg((prev) => ({ ...prev, status }));
+        }
+        fetchMessages();
+      } else {
+        const err = await res?.json().catch(() => ({}));
+        alert(err?.error || 'Failed to update status');
       }
-      fetchMessages();
     } catch (e) {
       alert('Error updating status');
     }
@@ -65,9 +72,14 @@ export default function MessagesAdminPage() {
   const handleDelete = async (id) => {
     if (!confirm('Delete this contact message?')) return;
     try {
-      await fetch(`/api/messages?id=${id}`, { method: 'DELETE' });
-      if (selectedMsg && selectedMsg.id === id) setSelectedMsg(null);
-      fetchMessages();
+      const res = await adminFetch(`/api/messages?id=${id}`, { method: 'DELETE' });
+      if (res && res.ok) {
+        if (selectedMsg && selectedMsg.id === id) setSelectedMsg(null);
+        fetchMessages();
+      } else {
+        const err = await res?.json().catch(() => ({}));
+        alert(err?.error || 'Failed to delete message');
+      }
     } catch (e) {
       alert('Error deleting message');
     }

@@ -9,15 +9,27 @@ import {
   ShieldCheck, 
   Database,
   ExternalLink,
-  User
+  User,
+  Menu
 } from 'lucide-react';
+import { useAdminUI } from './AdminUIContext';
 
 export default function AdminHeader({ title, user, subtitle }) {
   const [showQuickAdd, setShowQuickAdd] = useState(false);
+  const { toggleMobileMenu } = useAdminUI();
 
   return (
-    <header className="h-16 bg-[#070b13]/80 border-b border-white/10 backdrop-blur-md px-6 flex items-center justify-between sticky top-0 z-30">
-      <div className="flex items-center gap-4">
+    <header className="h-16 bg-[#070b13]/80 border-b border-white/10 backdrop-blur-md px-4 sm:px-6 flex items-center justify-between sticky top-0 z-30">
+      <div className="flex items-center gap-3">
+        {/* Mobile menu toggle */}
+        <button
+          onClick={toggleMobileMenu}
+          className="md:hidden p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-900 border border-white/5 cursor-pointer"
+          title="Toggle Navigation Menu"
+        >
+          <Menu className="w-5 h-5" />
+        </button>
+
         <div>
           <h1 className="text-base sm:text-lg font-bold text-white tracking-tight leading-tight">
             {title || 'Dashboard'}
@@ -28,11 +40,11 @@ export default function AdminHeader({ title, user, subtitle }) {
         </div>
       </div>
 
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-2.5 sm:gap-3">
         {/* Live DB indicator */}
-        <div className="hidden md:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[11px] font-medium">
+        <div className="hidden lg:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[11px] font-medium">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-          <span>Live SQLite Database</span>
+          <span>Live Cloud Database (Neon)</span>
         </div>
 
         {/* Quick Add Dropdown */}

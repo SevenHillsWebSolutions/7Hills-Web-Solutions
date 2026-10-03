@@ -46,8 +46,7 @@ export default function AdminLoginPage() {
       // Check for redirect query parameter if present
       const params = new URLSearchParams(window.location.search);
       const redirectUrl = params.get('redirect') || '/admin';
-      router.push(redirectUrl);
-      router.refresh();
+      window.location.href = redirectUrl;
     } catch (err) {
       setError(err.message);
     } finally {

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import AdminHeader from '@/components/admin/AdminHeader';
+import { adminFetch } from '@/lib/adminApi';
 import { 
   Briefcase, 
   Plus, 
@@ -54,7 +55,7 @@ export default function PortfolioAdminPage() {
 
   const fetchPortfolio = async () => {
     try {
-      const res = await fetch('/api/portfolio');
+      const res = await adminFetch('/api/portfolio');
       const data = await res.json();
       if (data.portfolio) {
         setItems(data.portfolio);
@@ -127,12 +128,17 @@ export default function PortfolioAdminPage() {
   const handleTogglePublished = async (item) => {
     const nextPub = item.published === 1 ? 0 : 1;
     try {
-      await fetch('/api/portfolio', {
+      const res = await adminFetch('/api/portfolio', {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ id: item.id, published: nextPub }),
       });
-      fetchPortfolio();
+      const data = await res.json();
+      if (res.ok) {
+        fetchPortfolio();
+      } else {
+        alert(data.error || 'Failed to update published status');
+      }
     } catch (e) {
       alert('Error updating published status');
     }
@@ -141,12 +147,17 @@ export default function PortfolioAdminPage() {
   const handleToggleFeatured = async (item) => {
     const nextFeat = item.featured === 1 ? 0 : 1;
     try {
-      await fetch('/api/portfolio', {
+      const res = await adminFetch('/api/portfolio', {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ id: item.id, featured: nextFeat }),
       });
-      fetchPortfolio();
+      const data = await res.json();
+      if (res.ok) {
+        fetchPortfolio();
+      } else {
+        alert(data.error || 'Failed to update featured status');
+      }
     } catch (e) {
       alert('Error updating featured status');
     }
@@ -155,8 +166,13 @@ export default function PortfolioAdminPage() {
   const handleDelete = async (id, title) => {
     if (!confirm(`Are you sure you want to delete portfolio case study "${title}"?`)) return;
     try {
-      await fetch(`/api/portfolio?id=${id}`, { method: 'DELETE' });
-      fetchPortfolio();
+      const res = await adminFetch(`/api/portfolio?id=${id}`, { method: 'DELETE' });
+      const data = await res.json();
+      if (res.ok) {
+        fetchPortfolio();
+      } else {
+        alert(data.error || 'Failed to delete portfolio item');
+      }
     } catch (e) {
       alert('Error deleting portfolio item');
     }
@@ -174,20 +190,22 @@ export default function PortfolioAdminPage() {
 
       if (editingItem) {
         // Update
-        const res = await fetch('/api/portfolio', {
+        const res = await adminFetch('/api/portfolio', {
           method: 'PATCH',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ id: editingItem.id, ...payload }),
         });
-        if (!res.ok) throw new Error('Failed to update portfolio item');
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Failed to update portfolio item');
       } else {
         // Create
-        const res = await fetch('/api/portfolio', {
+        const res = await adminFetch('/api/portfolio', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload),
         });
-        if (!res.ok) throw new Error('Failed to create portfolio item');
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Failed to create portfolio item');
       }
 
       setShowModal(false);

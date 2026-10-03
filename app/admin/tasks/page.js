@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import AdminHeader from '@/components/admin/AdminHeader';
+import { adminFetch } from '@/lib/adminApi';
 import { 
   CheckSquare, 
   Search, 
@@ -39,7 +40,7 @@ export default function TasksAdminPage() {
     try {
       const f = filterOverride !== undefined ? filterOverride : statusFilter;
       const query = f !== 'All' ? `?status=${encodeURIComponent(f)}` : '';
-      const res = await fetch(`/api/tasks${query}`);
+      const res = await adminFetch(`/api/tasks${query}`);
       const data = await res.json();
       if (data.tasks) {
         setTasks(data.tasks);
@@ -53,7 +54,7 @@ export default function TasksAdminPage() {
 
   const fetchProjects = async () => {
     try {
-      const res = await fetch('/api/projects');
+      const res = await adminFetch('/api/projects');
       const data = await res.json();
       if (data.projects) {
         setProjects(data.projects);
@@ -75,12 +76,17 @@ export default function TasksAdminPage() {
   const handleToggleTask = async (task) => {
     const nextStatus = task.status === 'Done' ? 'In Progress' : 'Done';
     try {
-      await fetch('/api/tasks', {
+      const res = await adminFetch('/api/tasks', {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ id: task.id, status: nextStatus }),
       });
-      fetchTasks();
+      const data = await res.json();
+      if (res.ok) {
+        fetchTasks();
+      } else {
+        alert(data.error || 'Failed to update task');
+      }
     } catch (e) {
       alert('Error updating task');
     }
@@ -89,8 +95,13 @@ export default function TasksAdminPage() {
   const handleDeleteTask = async (id) => {
     if (!confirm('Delete task?')) return;
     try {
-      await fetch(`/api/tasks?id=${id}`, { method: 'DELETE' });
-      fetchTasks();
+      const res = await adminFetch(`/api/tasks?id=${id}`, { method: 'DELETE' });
+      const data = await res.json();
+      if (res.ok) {
+        fetchTasks();
+      } else {
+        alert(data.error || 'Failed to delete task');
+      }
     } catch (e) {
       alert('Error deleting task');
     }
@@ -100,15 +111,18 @@ export default function TasksAdminPage() {
     e.preventDefault();
     if (!newTask.title || !newTask.project_id) return;
     try {
-      const res = await fetch('/api/tasks', {
+      const res = await adminFetch('/api/tasks', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newTask),
       });
+      const data = await res.json();
       if (res.ok) {
         setShowAddModal(false);
         setNewTask((p) => ({ ...p, title: '', description: '', due_date: '' }));
         fetchTasks();
+      } else {
+        alert(data.error || 'Failed to create task');
       }
     } catch (e) {
       alert('Failed to create task');
