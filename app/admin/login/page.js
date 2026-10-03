@@ -12,8 +12,7 @@ import {
   Loader2, 
   AlertCircle,
   Eye,
-  EyeOff,
-  Sparkles
+  EyeOff
 } from 'lucide-react';
 
 export default function AdminLoginPage() {
@@ -84,19 +83,6 @@ export default function AdminLoginPage() {
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md z-10 px-4">
         <div className="glass-panel p-8 sm:p-10 rounded-3xl border-white/10 shadow-2xl space-y-6">
           
-          {/* Quick Demo Credentials Pill */}
-          <div className="p-3.5 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-xs text-cyan-300 space-y-1">
-            <div className="font-semibold flex items-center gap-1.5">
-              <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
-              <span>Default Administrator Credentials:</span>
-            </div>
-            <div className="text-[11px] font-mono text-slate-300">
-              Email: <span className="text-white font-semibold">sanjayelumalai7363@gmail.com</span>
-              <br />
-              Password: <span className="text-white font-semibold">Sanjay@2006</span>
-            </div>
-          </div>
-
           {error && (
             <div className="p-3.5 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-300 flex items-start gap-2.5 text-xs">
               <AlertCircle className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />
@@ -114,9 +100,10 @@ export default function AdminLoginPage() {
                 <input
                   type="email"
                   required
+                  autoComplete="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="sanjayelumalai7363@gmail.com"
+                  placeholder="admin@7hillsweb.com"
                   className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/40 transition-all"
                 />
               </div>
@@ -131,6 +118,7 @@ export default function AdminLoginPage() {
                 <input
                   type={showPassword ? 'text' : 'password'}
                   required
+                  autoComplete="current-password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
