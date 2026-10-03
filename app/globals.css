@@ -2,52 +2,57 @@
 
 @layer base {
   :root {
-    --bg-main: #020612;
-    --bg-card: #060c1f;
-    --bg-card-hover: #0a1638;
+    --bg-primary: #07111F;
+    --bg-secondary: #0D1B2A;
+    --bg-card: #111F30;
+    --bg-light: #F8FAFC;
+    --bg-light-alt: #F1F5F9;
     --border-subtle: rgba(255, 255, 255, 0.08);
-    --border-highlight: rgba(0, 229, 255, 0.4);
-    --text-primary: #f8fafc;
-    --text-secondary: #94a3b8;
-    --text-muted: #64748b;
-    --accent-cyan: #00e5ff;
-    --accent-blue: #0052cc;
-    --accent-violet: #a855f7;
-    --accent-sky: #38bdf8;
+    --border-card: rgba(59, 130, 246, 0.18);
+    --text-primary: #F8FAFC;
+    --text-secondary: #A8B3C2;
+    --text-muted: #64748B;
+    --accent-blue: #3B82F6;
+    --accent-cyan: #06B6D4;
+    --accent-emerald: #22C55E;
   }
 
   body {
-    background-color: var(--bg-main);
+    background-color: var(--bg-primary);
     color: var(--text-primary);
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
     overflow-x: hidden;
   }
 
-  /* Custom elite scrollbar */
+  /* Custom refined scrollbar */
   ::-webkit-scrollbar {
-    width: 7px;
-    height: 7px;
+    width: 6px;
+    height: 6px;
   }
   ::-webkit-scrollbar-track {
-    background: #020612;
+    background: #07111F;
   }
   ::-webkit-scrollbar-thumb {
-    background: #0e1c3a;
+    background: #111F30;
     border-radius: 4px;
-    border: 1px solid rgba(0, 229, 255, 0.2);
+    border: 1px solid rgba(59, 130, 246, 0.2);
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #0052cc;
+    background: #3B82F6;
   }
 }
 
-/* Glassmorphic and elite ambient styling utilities */
-.glass-panel {
-  background: rgba(6, 12, 31, 0.82);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(0, 229, 255, 0.15);
-  box-shadow: 0 10px 35px -10px rgba(0, 0, 0, 0.7);
+/* Sophisticated dark cards and subtle borders */
+.navy-card {
+  background: #111F30;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.navy-card:hover {
+  border-color: rgba(59, 130, 246, 0.35);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.65), 0 0 20px -5px rgba(59, 130, 246, 0.15);
 }
 
 .glass-panel-hover {

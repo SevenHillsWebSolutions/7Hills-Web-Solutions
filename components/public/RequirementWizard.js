@@ -81,8 +81,8 @@ export default function RequirementWizard() {
     hasHosting: 'No, need high-speed cloud hosting setup',
     hostingDetails: '',
     // 4.7 Budget & Timeline
-    budget: '$3,000 - $5,000',
-    timeline: '2 to 4 weeks',
+    budget: '₹50,000 – ₹1,00,000',
+    timeline: '1–2 months',
     additionalRequirements: '',
   });
 
@@ -796,12 +796,12 @@ export default function RequirementWizard() {
               <label className="text-xs font-semibold text-slate-300">Budget Range (Configurable)</label>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                 {[
-                  'Under $2,000',
-                  '$2,000 - $4,000',
-                  '$4,000 - $7,000',
-                  '$7,000 - $12,000',
-                  '$12,000+',
-                  'Flexible / To Be Advised',
+                  'Under ₹25,000',
+                  '₹25,000 – ₹50,000',
+                  '₹50,000 – ₹1,00,000',
+                  '₹1,00,000 – ₹3,00,000',
+                  '₹3,00,000+',
+                  'Not sure',
                 ].map((b) => (
                   <button
                     key={b}
