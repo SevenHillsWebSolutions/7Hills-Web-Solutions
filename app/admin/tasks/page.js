@@ -35,10 +35,10 @@ export default function TasksAdminPage() {
 
   const statuses = ['All', 'To Do', 'In Progress', 'Review', 'Done'];
 
-  const fetchTasks = async () => {
+  const fetchTasks = async (filterOverride) => {
     try {
-      setLoading(true);
-      const query = statusFilter !== 'All' ? `?status=${encodeURIComponent(statusFilter)}` : '';
+      const f = filterOverride !== undefined ? filterOverride : statusFilter;
+      const query = f !== 'All' ? `?status=${encodeURIComponent(f)}` : '';
       const res = await fetch(`/api/tasks${query}`);
       const data = await res.json();
       if (data.tasks) {
@@ -67,9 +67,10 @@ export default function TasksAdminPage() {
   };
 
   useEffect(() => {
-    fetchTasks();
+    fetchTasks(statusFilter);
     fetchProjects();
   }, [statusFilter]);
+
 
   const handleToggleTask = async (task) => {
     const nextStatus = task.status === 'Done' ? 'In Progress' : 'Done';
@@ -118,7 +119,7 @@ export default function TasksAdminPage() {
     <div className="flex-1 flex flex-col min-h-screen">
       <AdminHeader 
         title="Engineering Tasks & Milestones" 
-        subtitle="Cross-project task management and deliverables tracker (SRS Section 7)" 
+        subtitle="Cross-project task management and deliverables tracker" 
       />
 
       <main className="flex-1 p-6 sm:p-8 space-y-6 max-w-7xl w-full mx-auto">

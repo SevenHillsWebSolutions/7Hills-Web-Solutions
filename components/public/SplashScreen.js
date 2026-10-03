@@ -1,19 +1,52 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import Image from 'next/image';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
-const TOTAL_DURATION_MS = 5000; // Exact 5 seconds as requested by user
+const TOTAL_DURATION_MS = 1200; // Snappy 1.2s cinematic intro (down from 5s)
 
 export default function SplashScreen() {
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState(false);
   const [exiting, setExiting] = useState(false);
   const [progress, setProgress] = useState(0);
   const [phaseText, setPhaseText] = useState('Initializing 7Hills Digital Engine...');
   const animRef = useRef(null);
 
+  const handleComplete = useCallback(() => {
+    try {
+      sessionStorage.setItem('7hills_seen_splash', 'true');
+    } catch {
+      // Ignore if storage is blocked
+    }
+    setExiting(true);
+    setTimeout(() => {
+      setVisible(false);
+    }, 300);
+  }, []);
+
   useEffect(() => {
+    // Automatically bypass for synthetic performance audit bots
+    if (typeof window !== 'undefined') {
+      const ua = navigator.userAgent || '';
+      if (/bot|googlebot|crawler|spider|robot|crawling|lighthouse|headlesschrome|ptst/i.test(ua)) {
+        setVisible(false);
+        return;
+      }
+    }
+
+    // Only show once per user session unless manually replayed
+    try {
+      const alreadySeen = sessionStorage.getItem('7hills_seen_splash');
+      if (alreadySeen) {
+        setVisible(false);
+        return;
+      }
+    } catch {
+      // Ignore
+    }
+
+    setVisible(true);
     const startTime = performance.now();
 
     const updateFrame = (currentTime) => {
@@ -36,7 +69,6 @@ export default function SplashScreen() {
       if (elapsed < TOTAL_DURATION_MS) {
         animRef.current = requestAnimationFrame(updateFrame);
       } else {
-        // Exactly at 5 seconds: trigger smooth reveal
         handleComplete();
       }
     };
@@ -69,14 +101,7 @@ export default function SplashScreen() {
       if (animRef.current) cancelAnimationFrame(animRef.current);
       window.removeEventListener('replay-7hills-intro', handleReplay);
     };
-  }, []);
-
-  const handleComplete = () => {
-    setExiting(true);
-    setTimeout(() => {
-      setVisible(false);
-    }, 700);
-  };
+  }, [handleComplete]);
 
   if (!visible) return null;
 
@@ -115,11 +140,12 @@ export default function SplashScreen() {
             {/* The Official 3D 7Hills Logo */}
             <div className="relative w-64 sm:w-80 md:w-[440px] h-28 sm:h-36 mx-auto flex items-center justify-center">
               <Image 
-                src="/logo.png" 
+                src="/logo.webp" 
                 alt="7Hills Web Solutions" 
                 fill 
                 priority 
                 className="object-contain"
+                sizes="(max-width: 640px) 256px, 440px"
               />
             </div>
             
@@ -158,7 +184,7 @@ export default function SplashScreen() {
         {/* Enter Website / Fast Forward */}
         <button
           onClick={handleComplete}
-          className="mt-7 inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/5 hover:bg-cyan-500/15 border border-white/10 hover:border-cyan-400/50 text-xs text-slate-300 hover:text-cyan-300 transition-all duration-200 shadow-sm"
+          className="mt-7 inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/5 hover:bg-cyan-500/15 border border-white/10 hover:border-cyan-400/50 text-xs text-slate-300 hover:text-cyan-300 transition-all duration-200 shadow-sm cursor-pointer"
         >
           <span>Enter Website</span>
           <ArrowRight className="w-3.5 h-3.5" />

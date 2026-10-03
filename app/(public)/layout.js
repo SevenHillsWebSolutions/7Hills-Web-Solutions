@@ -1,6 +1,7 @@
 import Navbar from '@/components/public/Navbar';
 import Footer from '@/components/public/Footer';
 import SplashScreen from '@/components/public/SplashScreen';
+import WhatsAppButton from '@/components/public/WhatsAppButton';
 
 export default function PublicLayout({ children }) {
   return (
@@ -8,7 +9,9 @@ export default function PublicLayout({ children }) {
       <SplashScreen />
       <Navbar />
       <main className="flex-1 pt-20">{children}</main>
+      <WhatsAppButton />
       <Footer />
     </div>
   );
 }
+

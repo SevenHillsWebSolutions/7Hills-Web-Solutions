@@ -31,7 +31,15 @@ export async function GET() {
     messages: messages.c,
   };
 
-  return NextResponse.json({ user, counts });
+  const emailConfig = {
+    from: process.env.EMAIL_FROM || '7Hills Web Solutions <contact@7hillsweb.com>',
+    to: process.env.EMAIL_TO || 'contact@7hillsweb.com',
+    smtpHost: process.env.SMTP_HOST || 'Simulated (local dev logging mode)',
+    smtpPort: process.env.SMTP_PORT || '587',
+    isConfigured: !!(process.env.SMTP_HOST && process.env.SMTP_USER),
+  };
+
+  return NextResponse.json({ user, counts, emailConfig });
 }
 
 export async function PATCH(request) {

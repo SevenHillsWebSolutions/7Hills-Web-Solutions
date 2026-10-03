@@ -134,10 +134,11 @@ export default async function HomePage() {
               <div className="relative rounded-2xl sm:rounded-3xl px-6 sm:px-10 py-4 sm:py-5 bg-white border-2 border-cyan-400/60 shadow-[0_0_45px_rgba(0,229,255,0.4),0_0_90px_rgba(0,82,204,0.25)] flex items-center justify-center">
                 <div className="relative w-64 sm:w-80 md:w-[420px] h-18 sm:h-24">
                   <Image 
-                    src="/logo.png" 
+                    src="/logo.webp" 
                     alt="7Hills Web Solutions" 
                     fill 
                     className="object-contain"
+                    sizes="(max-width: 640px) 256px, (max-width: 768px) 320px, 420px"
                     priority
                   />
                 </div>
@@ -152,7 +153,7 @@ export default async function HomePage() {
                   <span className="text-cyan-400 font-bold">Innovate</span> • <span className="text-blue-400 font-bold">Build</span> • <span className="text-violet-400 font-bold">Grow</span>
                 </span>
                 <span className="text-slate-600">|</span>
-                <span className="text-slate-300 font-medium">SRS v1.0 Production Platform</span>
+                <span className="text-slate-300 font-medium">Next-Gen Digital Solutions</span>
               </div>
             </div>
 
@@ -308,12 +309,16 @@ export default async function HomePage() {
                 >
                   {/* Thumbnail */}
                   <div className="relative h-56 w-full overflow-hidden bg-slate-900">
-                    <img
+                    <Image
                       src={item.thumbnail}
                       alt={item.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      fill
+                      loading="lazy"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#090d16] via-transparent to-transparent opacity-80" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#090d16] via-transparent to-transparent opacity-80 pointer-events-none" />
+
                     <div className="absolute top-4 left-4">
                       <span className="px-3 py-1 rounded-full text-xs font-medium bg-black/60 backdrop-blur-md text-white border border-white/15">
                         {item.category}

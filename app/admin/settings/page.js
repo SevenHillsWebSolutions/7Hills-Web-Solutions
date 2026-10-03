@@ -12,8 +12,12 @@ import {
   Lock, 
   CheckCircle2, 
   AlertCircle, 
-  Loader2 
+  Loader2,
+  Mail,
+  Send,
+  Sparkles
 } from 'lucide-react';
+import SendEmailModal from '@/components/admin/SendEmailModal';
 
 export default function SettingsAdminPage() {
   const [data, setData] = useState(null);
@@ -24,10 +28,10 @@ export default function SettingsAdminPage() {
   const [newPassword, setNewPassword] = useState('');
   const [saving, setSaving] = useState(false);
   const [feedback, setFeedback] = useState(null);
+  const [emailModalOpen, setEmailModalOpen] = useState(false);
 
   const fetchSettings = async () => {
     try {
-      setLoading(true);
       const res = await fetch('/api/admin/settings');
       const json = await res.json();
       if (json.user) {
@@ -41,6 +45,7 @@ export default function SettingsAdminPage() {
       setLoading(false);
     }
   };
+
 
   useEffect(() => {
     fetchSettings();
@@ -79,7 +84,7 @@ export default function SettingsAdminPage() {
     <div className="flex-1 flex flex-col min-h-screen">
       <AdminHeader 
         title="System & Security Settings" 
-        subtitle="Manage credentials, agency identity, and database health (SRS Section 10)" 
+        subtitle="Manage credentials, agency identity, company email dispatcher, and database health" 
       />
 
       <main className="flex-1 p-6 sm:p-8 space-y-8 max-w-5xl w-full mx-auto">
@@ -181,6 +186,55 @@ export default function SettingsAdminPage() {
 
           {/* Database & System Architecture Information (5 cols) */}
           <div className="md:col-span-5 space-y-6">
+            
+            {/* Official Company Email Dispatcher Card */}
+            <div className="glass-panel p-6 sm:p-8 rounded-3xl border-cyan-500/25 space-y-5 shadow-xl relative overflow-hidden">
+              <div className="flex items-center gap-3 border-b border-white/10 pb-4">
+                <div className="w-10 h-10 rounded-xl bg-cyan-500/15 text-cyan-400 flex items-center justify-center border border-cyan-500/25">
+                  <Mail className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="text-base font-bold text-white">Company Email System</h3>
+                  <p className="text-xs text-slate-400">Outbound sender & automated notifications</p>
+                </div>
+              </div>
+
+              <div className="space-y-3 text-xs">
+                <div>
+                  <span className="text-slate-400 block text-[11px] mb-1">Company Sender ID (EMAIL_FROM):</span>
+                  <div className="p-2.5 rounded-xl bg-slate-900 border border-white/10 font-mono text-cyan-300 text-xs break-all">
+                    {data?.emailConfig?.from || '7Hills Web Solutions <contact@7hillsweb.com>'}
+                  </div>
+                </div>
+
+                <div>
+                  <span className="text-slate-400 block text-[11px] mb-1">Admin Alert Recipient (EMAIL_TO):</span>
+                  <div className="p-2.5 rounded-xl bg-slate-900 border border-white/10 font-mono text-white text-xs break-all">
+                    {data?.emailConfig?.to || 'contact@7hillsweb.com'}
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-between py-2 border-t border-white/5">
+                  <span className="text-slate-400">SMTP Mode:</span>
+                  <span className={`font-semibold ${data?.emailConfig?.isConfigured ? 'text-emerald-400' : 'text-amber-400'}`}>
+                    {data?.emailConfig?.isConfigured ? 'Production SMTP (Active)' : 'Development Mode (Simulated)'}
+                  </span>
+                </div>
+              </div>
+
+              <div className="pt-2 border-t border-white/10">
+                <button
+                  type="button"
+                  onClick={() => setEmailModalOpen(true)}
+                  className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white text-xs font-bold shadow-lg shadow-cyan-500/20 transition-all cursor-pointer"
+                >
+                  <Send className="w-3.5 h-3.5" />
+                  <span>Send Custom Company Email</span>
+                </button>
+              </div>
+            </div>
+
+            {/* Database Health Card */}
             <div className="glass-panel p-6 sm:p-8 rounded-3xl border-white/10 space-y-5">
               <div className="flex items-center gap-3 border-b border-white/10 pb-4">
                 <div className="w-10 h-10 rounded-xl bg-cyan-500/15 text-cyan-400 flex items-center justify-center border border-cyan-500/25">
@@ -188,7 +242,7 @@ export default function SettingsAdminPage() {
                 </div>
                 <div>
                   <h3 className="text-base font-bold text-white">Database Health</h3>
-                  <p className="text-xs text-slate-400">Relational SQLite schema & table row counts</p>
+                  <p className="text-xs text-slate-400">Neon serverless PostgreSQL database</p>
                 </div>
               </div>
 
@@ -196,7 +250,7 @@ export default function SettingsAdminPage() {
                 <div className="space-y-2.5 text-xs">
                   <div className="flex justify-between py-1 border-b border-white/5">
                     <span className="text-slate-400">Database Engine:</span>
-                    <span className="font-mono text-cyan-400 font-semibold">SQLite (WAL Mode)</span>
+                    <span className="font-mono text-cyan-400 font-semibold">PostgreSQL (Neon Cloud)</span>
                   </div>
                   <div className="flex justify-between py-1 border-b border-white/5">
                     <span className="text-slate-400">Registered Customers:</span>
@@ -228,12 +282,21 @@ export default function SettingsAdminPage() {
               )}
 
               <div className="pt-2 text-[11px] text-slate-400 leading-relaxed border-t border-white/5">
-                Complies with SRS Section 7 & 10: parameterized queries prevent SQL injection; admin session cookies use HMAC SHA-256 signatures with 7-day expiration.
+                Enterprise-grade security: parameterized queries prevent SQL injection; admin session cookies use HMAC SHA-256 signatures with 7-day expiration.
               </div>
             </div>
           </div>
         </div>
       </main>
+
+      {/* Custom Company Email Modal */}
+      <SendEmailModal
+        isOpen={emailModalOpen}
+        onClose={() => setEmailModalOpen(false)}
+        initialTo=""
+        initialName=""
+        initialSubject="Communication from 7Hills Web Solutions"
+      />
     </div>
   );
 }

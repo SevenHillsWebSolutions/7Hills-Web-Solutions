@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 import { formatDate } from '@/lib/utils';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function PortfolioAdminPage() {
   const [items, setItems] = useState([]);
@@ -53,7 +54,6 @@ export default function PortfolioAdminPage() {
 
   const fetchPortfolio = async () => {
     try {
-      setLoading(true);
       const res = await fetch('/api/portfolio');
       const data = await res.json();
       if (data.portfolio) {
@@ -203,7 +203,7 @@ export default function PortfolioAdminPage() {
     <div className="flex-1 flex flex-col min-h-screen">
       <AdminHeader 
         title="Portfolio & Case Studies Management" 
-        subtitle="Publish, curate, and feature project case studies (SRS Section 5.6)" 
+        subtitle="Publish, curate, and feature project case studies and engineering showcases" 
       />
 
       <main className="flex-1 p-6 sm:p-8 space-y-6 max-w-7xl w-full mx-auto">
@@ -255,11 +255,19 @@ export default function PortfolioAdminPage() {
                     <tr key={item.id} className="hover:bg-slate-900/40 transition-colors">
                       <td className="p-4">
                         <div className="flex items-center gap-3">
-                          <img
-                            src={item.thumbnail}
-                            alt=""
-                            className="w-12 h-10 rounded-lg object-cover bg-slate-900 shrink-0"
-                          />
+                          {item.thumbnail?.startsWith('http') ? (
+                            <Image
+                              src={item.thumbnail}
+                              alt={item.title}
+                              width={48}
+                              height={40}
+                              className="w-12 h-10 rounded-lg object-cover bg-slate-900 shrink-0"
+                            />
+                          ) : (
+                            <div className="w-12 h-10 rounded-lg bg-slate-800 flex items-center justify-center shrink-0">
+                              <ImageIcon className="w-4 h-4 text-slate-500" />
+                            </div>
+                          )}
                           <div>
                             <div className="font-bold text-white line-clamp-1">{item.title}</div>
                             <div className="text-[11px] font-mono text-slate-400">/portfolio/{item.slug}</div>

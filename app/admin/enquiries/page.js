@@ -18,9 +18,11 @@ import {
   Building,
   Mail,
   Phone,
-  Calendar
+  Calendar,
+  Plus
 } from 'lucide-react';
 import { formatDate } from '@/lib/utils';
+import SendEmailModal from '@/components/admin/SendEmailModal';
 
 export default function EnquiriesAdminPage() {
   const [enquiries, setEnquiries] = useState([]);
@@ -30,6 +32,8 @@ export default function EnquiriesAdminPage() {
   const [selectedEnquiry, setSelectedEnquiry] = useState(null);
   const [updating, setUpdating] = useState(false);
   const [noteText, setNoteText] = useState('');
+  const [emailModalOpen, setEmailModalOpen] = useState(false);
+  const [composeModalOpen, setComposeModalOpen] = useState(false);
 
   const statuses = [
     'All',
@@ -43,12 +47,12 @@ export default function EnquiriesAdminPage() {
     'Closed',
   ];
 
-  const fetchEnquiries = async () => {
+  const fetchEnquiries = async (overrideStatus) => {
     try {
-      setLoading(true);
       const query = new URLSearchParams();
       if (search) query.append('search', search);
-      if (selectedStatus && selectedStatus !== 'All') query.append('status', selectedStatus);
+      const statusToUse = overrideStatus !== undefined ? overrideStatus : selectedStatus;
+      if (statusToUse && statusToUse !== 'All') query.append('status', statusToUse);
 
       const res = await fetch(`/api/enquiries?${query.toString()}`);
       const data = await res.json();
@@ -63,13 +67,15 @@ export default function EnquiriesAdminPage() {
   };
 
   useEffect(() => {
-    fetchEnquiries();
+    fetchEnquiries(selectedStatus);
   }, [selectedStatus]);
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
+    setLoading(true);
     fetchEnquiries();
   };
+
 
   const handleOpenDetail = (enquiry) => {
     setSelectedEnquiry(enquiry);
@@ -143,7 +149,7 @@ export default function EnquiriesAdminPage() {
     <div className="flex-1 flex flex-col min-h-screen">
       <AdminHeader 
         title="Enquiries & Lead Management" 
-        subtitle="Manage, triage, add notes, and convert leads (SRS Section 5.2)" 
+        subtitle="Manage, triage, add notes, and convert leads" 
       />
 
       <main className="flex-1 p-6 sm:p-8 space-y-6 max-w-7xl w-full mx-auto">
@@ -160,17 +166,27 @@ export default function EnquiriesAdminPage() {
             />
           </form>
 
-          <div className="flex items-center gap-2 overflow-x-auto pb-1 md:pb-0">
-            <span className="text-xs text-slate-400 font-medium whitespace-nowrap">Filter Status:</span>
-            <select
-              value={selectedStatus}
-              onChange={(e) => setSelectedStatus(e.target.value)}
-              className="px-3 py-2 rounded-xl bg-slate-900 border border-white/10 text-white text-xs focus:outline-none focus:border-cyan-400"
+          <div className="flex items-center gap-3 overflow-x-auto pb-1 md:pb-0">
+            <div className="flex items-center gap-2">
+              <span className="text-xs text-slate-400 font-medium whitespace-nowrap">Filter Status:</span>
+              <select
+                value={selectedStatus}
+                onChange={(e) => setSelectedStatus(e.target.value)}
+                className="px-3 py-2 rounded-xl bg-slate-900 border border-white/10 text-white text-xs focus:outline-none focus:border-cyan-400"
+              >
+                {statuses.map((s) => (
+                  <option key={s} value={s}>{s}</option>
+                ))}
+              </select>
+            </div>
+
+            <button
+              onClick={() => setComposeModalOpen(true)}
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white text-xs font-bold shadow-md shadow-cyan-500/20 whitespace-nowrap cursor-pointer"
             >
-              {statuses.map((s) => (
-                <option key={s} value={s}>{s}</option>
-              ))}
-            </select>
+              <Plus className="w-3.5 h-3.5" />
+              <span>Compose Email</span>
+            </button>
           </div>
         </div>
 
@@ -357,9 +373,17 @@ export default function EnquiriesAdminPage() {
               />
             </div>
 
-            {/* Actions (Convert to Customer / Project) (SRS 5.2) */}
+            {/* Actions (Convert to Customer / Send Email) */}
             <div className="pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-3">
-              <div>
+              <div className="flex flex-wrap items-center gap-2">
+                <button
+                  onClick={() => setEmailModalOpen(true)}
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white text-xs font-bold shadow-md shadow-cyan-500/25 transition-all cursor-pointer"
+                >
+                  <Mail className="w-3.5 h-3.5" />
+                  <span>Send Company Email</span>
+                </button>
+
                 {!selectedEnquiry.customer_id && selectedEnquiry.status !== 'Converted' ? (
                   <button
                     onClick={handleConvertToCustomer}
@@ -367,7 +391,7 @@ export default function EnquiriesAdminPage() {
                     className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold shadow-md shadow-emerald-600/30 transition-all cursor-pointer"
                   >
                     <UserPlus className="w-3.5 h-3.5" />
-                    <span>Convert Enquiry into Customer Record</span>
+                    <span>Convert to Customer</span>
                   </button>
                 ) : (
                   <span className="text-xs text-emerald-400 flex items-center gap-1.5 font-semibold">
@@ -388,6 +412,34 @@ export default function EnquiriesAdminPage() {
           </div>
         </div>
       )}
+
+      {/* Send Email to Enquiry Client */}
+      <SendEmailModal
+        isOpen={emailModalOpen}
+        onClose={() => setEmailModalOpen(false)}
+        initialTo={selectedEnquiry?.email || ''}
+        initialName={selectedEnquiry?.client_name || ''}
+        initialSubject={
+          selectedEnquiry
+            ? `Regarding your inquiry (${selectedEnquiry.enquiry_code}) - 7Hills Web Solutions`
+            : 'Proposal & Update from 7Hills Web Solutions'
+        }
+        onSuccess={() => {
+          if (selectedEnquiry && selectedEnquiry.status === 'New') {
+            handleStatusChange('Contacted');
+          }
+        }}
+      />
+
+      {/* Compose Custom Email Modal */}
+      <SendEmailModal
+        isOpen={composeModalOpen}
+        onClose={() => setComposeModalOpen(false)}
+        initialTo=""
+        initialName=""
+        initialSubject="Proposal & Web Consultation - 7Hills Web Solutions"
+        onSuccess={() => fetchEnquiries()}
+      />
     </div>
   );
 }

@@ -43,12 +43,12 @@ export default function RequirementsAdminPage() {
     'Rejected',
   ];
 
-  const fetchRequirements = async () => {
+  const fetchRequirements = async (statusOverride) => {
     try {
-      setLoading(true);
       const query = new URLSearchParams();
       if (search) query.append('search', search);
-      if (selectedStatus && selectedStatus !== 'All') query.append('status', selectedStatus);
+      const s = statusOverride !== undefined ? statusOverride : selectedStatus;
+      if (s && s !== 'All') query.append('status', s);
 
       const res = await fetch(`/api/requirements?${query.toString()}`);
       const data = await res.json();
@@ -63,13 +63,15 @@ export default function RequirementsAdminPage() {
   };
 
   useEffect(() => {
-    fetchRequirements();
+    fetchRequirements(selectedStatus);
   }, [selectedStatus]);
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
+    setLoading(true);
     fetchRequirements();
   };
+
 
   const handleStatusChange = async (newStatus) => {
     if (!viewingReq) return;
@@ -95,7 +97,7 @@ export default function RequirementsAdminPage() {
     <div className="flex-1 flex flex-col min-h-screen">
       <AdminHeader 
         title="Project Requirement Submissions" 
-        subtitle="Review client intakes, features, and budgets (SRS Section 5.4)" 
+        subtitle="Review client intakes, features, specifications, and budgets" 
       />
 
       <main className="flex-1 p-6 sm:p-8 space-y-6 max-w-7xl w-full mx-auto">

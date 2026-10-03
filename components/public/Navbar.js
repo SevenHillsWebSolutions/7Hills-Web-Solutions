@@ -37,6 +37,7 @@ export default function Navbar() {
     { name: 'Our Work', href: '/portfolio' },
     { name: 'Process', href: '/process' },
     { name: 'About', href: '/about' },
+    { name: 'Track', href: '/track' },
     { name: 'FAQ', href: '/faq' },
     { name: 'Contact', href: '/contact' },
   ];
@@ -61,10 +62,11 @@ export default function Navbar() {
           <Link href="/" className="flex items-center gap-3 group relative">
             <div className="relative h-10 sm:h-11 w-36 sm:w-48 px-2.5 py-1 bg-white rounded-xl shadow-[0_0_15px_rgba(0,229,255,0.35)] border border-cyan-400/50 flex items-center justify-center transition-all duration-300 group-hover:scale-105 group-hover:shadow-[0_0_25px_rgba(0,229,255,0.55)]">
               <Image 
-                src="/logo.png" 
+                src="/logo-sm.webp" 
                 alt="7Hills Web Solutions" 
                 fill 
                 className="object-contain p-1" 
+                sizes="(max-width: 640px) 144px, 192px"
                 priority
               />
             </div>
@@ -79,7 +81,7 @@ export default function Navbar() {
                 className={`px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider rounded-full transition-all duration-200 ${
                   isActive(link.href)
                     ? 'text-cyan-300 bg-cyan-500/15 border border-cyan-500/40 shadow-[0_0_12px_rgba(0,229,255,0.25)]'
-                    : 'text-slate-300 hover:text-white hover:bg-white/5'
+                    : 'text-slate-200 hover:text-white hover:bg-white/10'
                 }`}
               >
                 {link.name}
@@ -89,13 +91,12 @@ export default function Navbar() {
 
           {/* Actions */}
           <div className="hidden lg:flex items-center gap-3">
-            <Link
-              href="/admin"
-              className="text-xs text-slate-400 hover:text-cyan-300 transition-colors px-3 py-2 rounded-xl hover:bg-white/5 border border-transparent hover:border-cyan-500/20 flex items-center gap-1.5"
+            <a
+              href="tel:+919500118875"
+              className="text-xs text-slate-200 hover:text-cyan-300 transition-colors px-3 py-2 rounded-xl hover:bg-white/5 font-mono font-medium flex items-center gap-1.5"
             >
-              <ShieldCheck className="w-3.5 h-3.5 text-cyan-400" />
-              <span>Admin Portal</span>
-            </Link>
+              <span>+91 95001 18875</span>
+            </a>
             <Link
               href="/start-project"
               className="relative group overflow-hidden px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-600 to-violet-600 text-white text-xs font-bold uppercase tracking-wider shadow-[0_0_20px_rgba(0,229,255,0.3)] hover:shadow-[0_0_30px_rgba(0,229,255,0.5)] transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
@@ -117,7 +118,7 @@ export default function Navbar() {
             </Link>
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/80 border border-white/10 transition-all"
+              className="p-2 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/80 border border-white/10 transition-all cursor-pointer"
               aria-label="Toggle navigation menu"
             >
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -134,24 +135,22 @@ export default function Navbar() {
               key={link.name}
               href={link.href}
               onClick={() => setIsOpen(false)}
-              className={`block px-4 py-2.5 rounded-xl text-base font-medium transition-colors ${
+              className={`block px-4 py-2.5 rounded-xl text-base font-semibold transition-colors ${
                 isActive(link.href)
                   ? 'text-cyan-300 bg-cyan-500/15 border border-cyan-500/30'
-                  : 'text-slate-300 hover:text-white hover:bg-white/5'
+                  : 'text-slate-200 hover:text-white hover:bg-white/10'
               }`}
             >
               {link.name}
             </Link>
           ))}
           <div className="pt-3 border-t border-white/10 flex items-center justify-between">
-            <Link
-              href="/admin"
-              onClick={() => setIsOpen(false)}
-              className="text-xs text-slate-400 hover:text-cyan-300 flex items-center gap-1.5 px-3 py-2 rounded-lg bg-slate-900 border border-white/10"
+            <a
+              href="tel:+919500118875"
+              className="text-xs font-mono text-cyan-400 hover:underline"
             >
-              <ShieldCheck className="w-4 h-4 text-cyan-400" />
-              <span>Admin Management</span>
-            </Link>
+              +91 95001 18875
+            </a>
             <Link
               href="/start-project"
               onClick={() => setIsOpen(false)}
@@ -163,6 +162,7 @@ export default function Navbar() {
           </div>
         </div>
       )}
+
     </header>
   );
 }

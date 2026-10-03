@@ -45,10 +45,10 @@ export default function CustomersAdminPage() {
     notes: '',
   });
 
-  const fetchCustomers = async () => {
+  const fetchCustomers = async (searchTerm) => {
     try {
-      setLoading(true);
-      const query = search ? `?search=${encodeURIComponent(search)}` : '';
+      const q = searchTerm !== undefined ? searchTerm : search;
+      const query = q ? `?search=${encodeURIComponent(q)}` : '';
       const res = await fetch(`/api/customers${query}`);
       const data = await res.json();
       if (data.customers) {
@@ -62,13 +62,15 @@ export default function CustomersAdminPage() {
   };
 
   useEffect(() => {
-    fetchCustomers();
+    fetchCustomers('');
   }, []);
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
-    fetchCustomers();
+    setLoading(true);
+    fetchCustomers(search);
   };
+
 
   const handleOpenAdd = () => {
     setFormData({
@@ -148,7 +150,7 @@ export default function CustomersAdminPage() {
     <div className="flex-1 flex flex-col min-h-screen">
       <AdminHeader 
         title="Customer Directory & CRM" 
-        subtitle="Manage client records and related projects (SRS Section 5.3)" 
+        subtitle="Manage client records and related projects" 
       />
 
       <main className="flex-1 p-6 sm:p-8 space-y-6 max-w-7xl w-full mx-auto">

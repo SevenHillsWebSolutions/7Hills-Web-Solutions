@@ -88,7 +88,7 @@ export default function FilesAdminPage() {
     <div className="flex-1 flex flex-col min-h-screen">
       <AdminHeader 
         title="Project Files & Asset Vault" 
-        subtitle="Manage client specifications, design assets, and signed SOW documents (SRS Section 5.7)" 
+        subtitle="Manage client specifications, design assets, and signed SOW documents" 
       />
 
       <main className="flex-1 p-6 sm:p-8 space-y-6 max-w-7xl w-full mx-auto">
@@ -96,7 +96,7 @@ export default function FilesAdminPage() {
         <div className="glass-panel p-4 rounded-2xl border-emerald-500/20 flex items-start gap-3 text-xs text-slate-300">
           <ShieldCheck className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
           <div>
-            <span className="font-bold text-white block">File Security & Sanitation Policy (SRS Section 10 & 11)</span>
+            <span className="font-bold text-white block">File Security & Sanitation Policy</span>
             <span>All uploads are checked against dangerous MIME types and restricted to non-executable assets. Customer private files are protected behind session authentication.</span>
           </div>
         </div>

@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { sql } from '@/lib/db';
 import { getCurrentAdmin } from '@/lib/auth';
 import { generateRequirementCode, generateCustomerCode } from '@/lib/ids';
+import { notifyAdminNewRequirement, sendClientRequirementConfirmation } from '@/lib/email';
 
 export async function GET(request) {
   const admin = await getCurrentAdmin();
@@ -249,6 +250,39 @@ export async function POST(request) {
       RETURNING id
     `;
 
+    // Dispatch emails asynchronously
+    Promise.allSettled([
+      notifyAdminNewRequirement({
+        requirementCode,
+        customerName: fullName.trim(),
+        customerEmail: email.trim().toLowerCase(),
+        customerPhone: phone ? phone.trim() : null,
+        preferredContact,
+        businessName,
+        customerLocation: location,
+        websiteType,
+        budget,
+        timeline,
+        domainDetails,
+        hostingDetails,
+        features: Array.isArray(features) ? features.join(', ') : '',
+        purpose,
+        pages: requiredPages,
+        designPreferences: designStyle,
+        brandColors,
+        referenceWebsites,
+        additionalRequirements,
+      }),
+      sendClientRequirementConfirmation({
+        to: email.trim().toLowerCase(),
+        name: fullName.trim(),
+        requirementCode,
+        websiteType,
+        budget,
+        timeline,
+      }),
+    ]).catch((e) => console.error('Background requirement email error:', e));
+
     return NextResponse.json({
       success: true,
       message: 'Project requirement successfully submitted and registered.',
@@ -262,5 +296,6 @@ export async function POST(request) {
       { error: 'An unexpected error occurred while processing your requirement.' },
       { status: 500 }
     );
+
   }
 }

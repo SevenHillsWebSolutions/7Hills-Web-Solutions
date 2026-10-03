@@ -77,7 +77,7 @@ export default async function AdminDashboardPage() {
     <div className="flex-1 flex flex-col min-h-screen">
       <AdminHeader 
         title="Agency Operations Dashboard" 
-        subtitle="7Hills Web Solutions Management Platform (SRS Section 5.1)" 
+        subtitle="7Hills Web Solutions Command & Operations Center" 
         user={user} 
       />
 

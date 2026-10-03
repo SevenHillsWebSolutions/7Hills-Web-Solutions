@@ -63,12 +63,12 @@ function ProjectsAdminContent() {
     'Completed',
   ];
 
-  const fetchProjects = async () => {
+  const fetchProjects = async (statusOverride) => {
     try {
-      setLoading(true);
       const query = new URLSearchParams();
       if (search) query.append('search', search);
-      if (selectedStatus && selectedStatus !== 'All') query.append('status', selectedStatus);
+      const s = statusOverride !== undefined ? statusOverride : selectedStatus;
+      if (s && s !== 'All') query.append('status', s);
 
       const res = await fetch(`/api/projects?${query.toString()}`);
       const data = await res.json();
@@ -98,14 +98,16 @@ function ProjectsAdminContent() {
   };
 
   useEffect(() => {
-    fetchProjects();
+    fetchProjects(selectedStatus);
     fetchCustomers();
   }, [selectedStatus]);
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
+    setLoading(true);
     fetchProjects();
   };
+
 
   const handleCreateProject = async (e) => {
     e.preventDefault();
@@ -132,7 +134,7 @@ function ProjectsAdminContent() {
     <div className="flex-1 flex flex-col min-h-screen">
       <AdminHeader 
         title="Project Management & Lifecycle" 
-        subtitle="Manage engineering milestones, statuses, and customer deliverables (SRS Section 5.5)" 
+        subtitle="Manage engineering milestones, statuses, and customer deliverables" 
       />
 
       <main className="flex-1 p-6 sm:p-8 space-y-6 max-w-7xl w-full mx-auto">

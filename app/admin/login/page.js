@@ -18,8 +18,8 @@ import {
 
 export default function AdminLoginPage() {
   const router = useRouter();
-  const [email, setEmail] = useState('sanjayelumalai7363@gmail.com');
-  const [password, setPassword] = useState('Sanjay@2006');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -42,7 +42,10 @@ export default function AdminLoginPage() {
         throw new Error(data.error || 'Failed to authenticate.');
       }
 
-      router.push('/admin');
+      // Check for redirect query parameter if present
+      const params = new URLSearchParams(window.location.search);
+      const redirectUrl = params.get('redirect') || '/admin';
+      router.push(redirectUrl);
       router.refresh();
     } catch (err) {
       setError(err.message);
@@ -50,6 +53,7 @@ export default function AdminLoginPage() {
       setLoading(false);
     }
   };
+
 
   return (
     <div className="min-h-screen bg-[#060910] flex flex-col justify-center py-12 sm:px-6 lg:px-8 relative overflow-hidden">
@@ -60,9 +64,10 @@ export default function AdminLoginPage() {
         <Link href="/" className="inline-block group mb-2">
           <div className="relative h-14 w-56 sm:w-64 mx-auto px-3 py-1 bg-white rounded-xl shadow-[0_0_20px_rgba(0,229,255,0.4)] border border-cyan-400/50 flex items-center justify-center transition-all duration-300 group-hover:scale-105">
             <Image 
-              src="/logo.png" 
+              src="/logo-sm.webp" 
               alt="7Hills Web Solutions" 
               fill 
+              sizes="(max-width: 640px) 224px, 256px"
               className="object-contain p-1"
               priority
             />
@@ -72,7 +77,7 @@ export default function AdminLoginPage() {
           Admin Management Platform
         </h1>
         <p className="text-xs text-slate-400">
-          Secure enterprise administration portal & CRM (SRS Section 5 & 10)
+          Secure enterprise administration portal & CRM
         </p>
       </div>
 

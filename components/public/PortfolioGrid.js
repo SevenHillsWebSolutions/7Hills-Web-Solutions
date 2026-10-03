@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ExternalLink, ArrowRight, Calendar, Building, Sparkles } from 'lucide-react';
 import { formatDate } from '@/lib/utils';
 
@@ -65,12 +66,15 @@ export default function PortfolioGrid({ projects }) {
               >
                 {/* Thumbnail */}
                 <div className="relative h-60 w-full overflow-hidden bg-slate-900">
-                  <img
+                  <Image
                     src={project.thumbnail}
                     alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    fill
+                    loading="lazy"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#060c1f] via-transparent to-transparent opacity-85" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#060c1f] via-transparent to-transparent opacity-85 pointer-events-none" />
                   
                   {/* Category Pill */}
                   <div className="absolute top-4 left-4 flex gap-2">

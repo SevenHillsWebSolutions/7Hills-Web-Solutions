@@ -14,18 +14,21 @@ import {
   Clock, 
   Loader2, 
   X,
-  Send
+  Send,
+  Plus
 } from 'lucide-react';
 import { formatDate } from '@/lib/utils';
+import SendEmailModal from '@/components/admin/SendEmailModal';
 
 export default function MessagesAdminPage() {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedMsg, setSelectedMsg] = useState(null);
+  const [emailModalOpen, setEmailModalOpen] = useState(false);
+  const [composeModalOpen, setComposeModalOpen] = useState(false);
 
   const fetchMessages = async () => {
     try {
-      setLoading(true);
       const res = await fetch('/api/messages');
       const data = await res.json();
       if (data.messages) {
@@ -41,6 +44,7 @@ export default function MessagesAdminPage() {
   useEffect(() => {
     fetchMessages();
   }, []);
+
 
   const handleStatusUpdate = async (id, status) => {
     try {
@@ -80,16 +84,24 @@ export default function MessagesAdminPage() {
     <div className="flex-1 flex flex-col min-h-screen">
       <AdminHeader 
         title="Contact Messages Inbox" 
-        subtitle="Public contact inquiries and message logs (SRS Section 5.7)" 
+        subtitle="Public contact inquiries and direct message logs" 
       />
 
       <main className="flex-1 p-6 sm:p-8 space-y-6 max-w-7xl w-full mx-auto">
-        <div className="glass-panel p-5 rounded-2xl border-white/5 flex items-center justify-between">
+        <div className="glass-panel p-5 rounded-2xl border-white/5 flex flex-wrap gap-4 items-center justify-between">
           <div className="text-xs text-slate-400">
             Total Messages: <strong className="text-white">{messages.length}</strong> (
             <span className="text-amber-400 font-semibold">{messages.filter((m) => m.status === 'Unread').length} Unread</span>
             )
           </div>
+
+          <button
+            onClick={() => setComposeModalOpen(true)}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white text-xs font-bold shadow-lg shadow-cyan-500/20 transition-all cursor-pointer"
+          >
+            <Plus className="w-3.5 h-3.5" />
+            <span>Compose Company Email</span>
+          </button>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
@@ -177,16 +189,23 @@ export default function MessagesAdminPage() {
                 </div>
 
                 <div className="pt-2 flex flex-wrap items-center justify-between gap-2 border-t border-white/10">
-                  <div className="flex items-center gap-1.5">
+                  <div className="flex flex-wrap items-center gap-1.5">
+                    <button
+                      onClick={() => setEmailModalOpen(true)}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white text-xs font-bold shadow-md shadow-cyan-500/20 cursor-pointer"
+                    >
+                      <Mail className="w-3.5 h-3.5" />
+                      <span>Reply via Company Email</span>
+                    </button>
                     <button
                       onClick={() => handleStatusUpdate(selectedMsg.id, 'Replied')}
-                      className="px-3 py-1.5 rounded-lg bg-emerald-600/20 text-emerald-300 hover:bg-emerald-600 hover:text-white text-xs font-semibold"
+                      className="px-3 py-1.5 rounded-lg bg-emerald-600/20 text-emerald-300 hover:bg-emerald-600 hover:text-white text-xs font-semibold cursor-pointer"
                     >
                       Mark Replied
                     </button>
                     <button
                       onClick={() => handleStatusUpdate(selectedMsg.id, 'Archived')}
-                      className="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 hover:text-white text-xs"
+                      className="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 hover:text-white text-xs cursor-pointer"
                     >
                       Archive
                     </button>
@@ -194,7 +213,7 @@ export default function MessagesAdminPage() {
 
                   <button
                     onClick={() => handleDelete(selectedMsg.id)}
-                    className="p-1.5 rounded-lg text-slate-500 hover:text-rose-400 hover:bg-rose-500/10"
+                    className="p-1.5 rounded-lg text-slate-500 hover:text-rose-400 hover:bg-rose-500/10 cursor-pointer"
                     title="Delete Message"
                   >
                     <Trash2 className="w-4 h-4" />
@@ -209,6 +228,28 @@ export default function MessagesAdminPage() {
           </div>
         </div>
       </main>
+
+      {/* Reply Modal */}
+      <SendEmailModal
+        isOpen={emailModalOpen}
+        onClose={() => setEmailModalOpen(false)}
+        initialTo={selectedMsg?.email || ''}
+        initialName={selectedMsg?.name || ''}
+        initialSubject={selectedMsg ? `Re: ${selectedMsg.subject}` : 'Regarding your inquiry with 7Hills Web Solutions'}
+        onSuccess={() => {
+          if (selectedMsg) handleStatusUpdate(selectedMsg.id, 'Replied');
+        }}
+      />
+
+      {/* Compose Custom Email Modal */}
+      <SendEmailModal
+        isOpen={composeModalOpen}
+        onClose={() => setComposeModalOpen(false)}
+        initialTo=""
+        initialName=""
+        initialSubject="Update from 7Hills Web Solutions"
+        onSuccess={() => fetchMessages()}
+      />
     </div>
   );
 }

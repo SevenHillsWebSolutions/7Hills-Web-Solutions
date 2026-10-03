@@ -1,6 +1,7 @@
 import { sql } from '@/lib/db';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import { 
   ArrowLeft, 
   ExternalLink, 
@@ -129,15 +130,18 @@ export default async function PortfolioDetailPage({ params }) {
         </div>
 
         {/* Project Hero Image / Screenshot */}
-        <div className="rounded-3xl overflow-hidden glass-panel border-white/10 shadow-2xl">
-          <img
+        <div className="rounded-3xl overflow-hidden glass-panel border-white/10 shadow-2xl relative w-full h-[320px] sm:h-[450px] md:h-[520px]">
+          <Image
             src={project.thumbnail}
             alt={project.title}
-            className="w-full h-auto max-h-[550px] object-cover"
+            fill
+            priority
+            sizes="(max-width: 1024px) 100vw, 1024px"
+            className="object-cover"
           />
         </div>
 
-        {/* Problem & Solution Breakdown (SRS Section 3.5) */}
+        {/* Problem & Solution Breakdown */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Problem */}
           <div className="glass-panel p-8 sm:p-10 rounded-3xl space-y-4 border-rose-500/20 relative">
@@ -206,11 +210,15 @@ export default async function PortfolioDetailPage({ params }) {
                   href={`/portfolio/${rel.slug}`}
                   className="glass-panel glass-panel-hover p-6 rounded-2xl border-white/5 flex gap-5 items-center group"
                 >
-                  <img
-                    src={rel.thumbnail}
-                    alt={rel.title}
-                    className="w-24 h-20 rounded-xl object-cover shrink-0"
-                  />
+                  <div className="relative w-24 h-20 rounded-xl overflow-hidden shrink-0 bg-slate-900">
+                    <Image
+                      src={rel.thumbnail}
+                      alt={rel.title}
+                      fill
+                      sizes="96px"
+                      className="object-cover group-hover:scale-105 transition-transform"
+                    />
+                  </div>
                   <div className="space-y-1">
                     <span className="text-[11px] text-cyan-400 font-semibold uppercase">{rel.category}</span>
                     <h3 className="text-base font-bold text-white group-hover:text-cyan-300 transition-colors line-clamp-1">

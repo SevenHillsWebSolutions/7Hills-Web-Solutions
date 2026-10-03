@@ -61,9 +61,10 @@ export default function AdminSidebar({ user }) {
         <Link href="/admin" className="flex flex-col gap-1 group">
           <div className="relative h-10 w-40 px-2 py-0.5 bg-white rounded-xl shadow-[0_0_12px_rgba(0,229,255,0.3)] border border-cyan-400/40 flex items-center justify-center">
             <Image 
-              src="/logo.png" 
+              src="/logo-sm.webp" 
               alt="7Hills Web Solutions" 
               fill 
+              sizes="160px"
               className="object-contain p-0.5"
             />
           </div>

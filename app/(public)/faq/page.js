@@ -54,7 +54,7 @@ export default function FAQPage() {
     {
       category: 'Security & Privacy',
       question: 'How do you safeguard client data and project specifications?',
-      answer: 'In strict compliance with our SRS Section 10 and 12, client phone numbers, emails, and private requirements are never publicly exposed. All database inputs use parameterized queries to prevent SQL injection, HTTPS is strictly enforced, and only work explicitly approved by you is showcased in our public portfolio.',
+      answer: 'In strict adherence to enterprise security and client non-disclosure standards, client phone numbers, emails, and private requirements are never publicly exposed. All database inputs use parameterized queries to prevent SQL injection, HTTPS is strictly enforced, and only work explicitly approved by you is showcased in our public portfolio.',
     },
   ];
 
@@ -66,7 +66,7 @@ export default function FAQPage() {
         <div className="text-center space-y-4 max-w-2xl mx-auto">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-semibold">
             <HelpCircle className="w-3.5 h-3.5" />
-            <span>Answers to Common Questions (SRS Section 9)</span>
+            <span>Clear Answers & Transparency</span>
           </div>
           <h1 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight">
             Frequently Asked Questions

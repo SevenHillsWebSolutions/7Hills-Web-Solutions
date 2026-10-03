@@ -28,10 +28,13 @@ export default function Footer() {
     { name: 'About Us', href: '/about' },
     { name: 'Our Work / Portfolio', href: '/portfolio' },
     { name: 'Development Process', href: '/process' },
+    { name: 'Track Project Status', href: '/track' },
     { name: 'Frequently Asked Questions', href: '/faq' },
     { name: 'Contact & Inquiries', href: '/contact' },
-    { name: 'Start a Project', href: '/start-project' },
+    { name: 'Privacy Policy', href: '/privacy' },
+    { name: 'Terms of Service', href: '/terms' },
   ];
+
 
   return (
     <footer className="bg-[#030612] border-t border-cyan-500/15 text-slate-400 relative overflow-hidden">
@@ -74,10 +77,11 @@ export default function Footer() {
             <Link href="/" className="inline-block group">
               <div className="relative h-12 w-48 sm:w-56 px-3 py-1 bg-white rounded-xl shadow-[0_0_20px_rgba(0,229,255,0.3)] border border-cyan-400/40 flex items-center justify-center transition-all duration-300 group-hover:scale-105 group-hover:shadow-[0_0_30px_rgba(0,229,255,0.5)]">
                 <Image 
-                  src="/logo.png" 
+                  src="/logo-sm.webp" 
                   alt="7Hills Web Solutions" 
                   fill 
                   className="object-contain p-1"
+                  sizes="(max-width: 640px) 192px, 224px"
                 />
               </div>
             </Link>
@@ -144,10 +148,10 @@ export default function Footer() {
             <div className="pt-2">
               <Link
                 href="/admin"
-                className="inline-flex items-center gap-1.5 text-xs text-slate-400 hover:text-cyan-300 transition-colors"
+                className="inline-flex items-center gap-1.5 text-xs text-slate-300 hover:text-cyan-300 transition-colors"
               >
                 <ShieldCheck className="w-3.5 h-3.5 text-cyan-400" />
-                <span>Internal Business Management System</span>
+                <span>Admin Portal Access</span>
               </Link>
             </div>
           </div>
@@ -156,15 +160,15 @@ export default function Footer() {
 
       {/* Bottom Bar */}
       <div className="border-t border-white/5 py-6 bg-black/40">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-          <p>© {currentYear} 7Hills Web Solutions. All rights reserved. Document SRS v1.0 Compliant.</p>
-          <div className="flex items-center gap-6">
-            <Link href="/about" className="hover:text-slate-400 transition-colors">About</Link>
-            <Link href="/services" className="hover:text-slate-400 transition-colors">Services</Link>
-            <Link href="/portfolio" className="hover:text-slate-400 transition-colors">Portfolio</Link>
-            <Link href="/contact" className="hover:text-slate-400 transition-colors">Contact</Link>
-            <Link href="/admin/login" className="hover:text-cyan-400 transition-colors flex items-center gap-1">
-              <ShieldCheck className="w-3 h-3" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-300">
+          <p className="text-slate-300">© {currentYear} 7Hills Web Solutions. All rights reserved. Enterprise Architecture & Bespoke Web Engineering.</p>
+          <div className="flex flex-wrap items-center gap-4 sm:gap-6">
+            <Link href="/privacy" className="text-slate-300 hover:text-white transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="text-slate-300 hover:text-white transition-colors">Terms of Service</Link>
+            <Link href="/track" className="text-slate-300 hover:text-white transition-colors">Track Project</Link>
+            <Link href="/contact" className="text-slate-300 hover:text-white transition-colors">Contact</Link>
+            <Link href="/admin/login" className="text-slate-300 hover:text-cyan-400 transition-colors flex items-center gap-1 font-medium">
+              <ShieldCheck className="w-3.5 h-3.5 text-cyan-400" />
               <span>Admin Portal</span>
             </Link>
           </div>
@@ -173,3 +177,4 @@ export default function Footer() {
     </footer>
   );
 }
+

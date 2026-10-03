@@ -71,13 +71,15 @@ export default function ProjectDetailPage({ params }) {
     'Completed',
   ];
 
-  const fetchProjectData = async () => {
+  const fetchProjectData = async (idToFetch) => {
+    const targetId = idToFetch !== undefined ? idToFetch : projectId;
+    if (!targetId) return;
+
     try {
-      setLoading(true);
       const res = await fetch(`/api/projects`);
       const data = await res.json();
       if (data.projects) {
-        const found = data.projects.find((p) => String(p.id) === String(projectId));
+        const found = data.projects.find((p) => String(p.id) === String(targetId));
         if (found) {
           setProject(found);
           setStatus(found.status);
@@ -96,7 +98,7 @@ export default function ProjectDetailPage({ params }) {
       }
 
       // Fetch linked tasks
-      const taskRes = await fetch(`/api/tasks?project_id=${projectId}`);
+      const taskRes = await fetch(`/api/tasks?project_id=${targetId}`);
       const taskData = await taskRes.json();
       if (taskData.tasks) {
         setTasks(taskData.tasks);
@@ -109,8 +111,9 @@ export default function ProjectDetailPage({ params }) {
   };
 
   useEffect(() => {
-    fetchProjectData();
+    fetchProjectData(projectId);
   }, [projectId]);
+
 
   const handleUpdateProject = async () => {
     setSaving(true);
@@ -237,7 +240,7 @@ export default function ProjectDetailPage({ params }) {
     <div className="flex-1 flex flex-col min-h-screen">
       <AdminHeader 
         title={`Project: ${project.project_code}`} 
-        subtitle="Manage dates, progress, tasks, and portfolio publication (SRS Section 5.5)" 
+        subtitle="Manage dates, milestones, progress, tasks, and portfolio publication" 
       />
 
       <main className="flex-1 p-6 sm:p-8 space-y-8 max-w-7xl w-full mx-auto">
